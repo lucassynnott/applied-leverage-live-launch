@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "01-build-the-machine",
+    "title": "Build the machine",
+    "aspect_ratio": "16:9",
+    "resolution": "1K",
+    "placement": ["landing hero", "x/linkedin header", "launch page section break"],
+    "prompt": "Premium cyberpunk operator desk for Applied Leverage launch creative. Dark cinematic workspace, black metal desk, subtle green terminal glow, dark UI dashboards floating on screens, abstract agent nodes and workflow graph, premium brutalist typography area with the words 'Build the machine.' No humans visible. Sharp contrast, luxury startup aesthetic, tactical operating-system vibe, clean composition with negative space for copy, realistic lighting, polished ad photography mixed with cinematic 3D UI overlays. Brand feel: sharp, direct, operator-focused, no cartoon look, no cheesy neon clutter."
+  },
+  {
+    "slug": "02-founder-chaos-vs-leverage",
+    "title": "Founder chaos vs leverage",
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "placement": ["meta ad", "linkedin sponsored post", "campaign pack cover"],
+    "prompt": "Split-screen premium ad creative for Applied Leverage. Left side: overwhelmed founder drowning in browser tabs, Slack pings, sticky notes, admin tasks, cluttered desk, stress, muted red tones. Right side: same founder calm and in control with streamlined dashboard, automation flows, AI council cards, clean desk, confident posture, dark premium green and graphite tones. Editorial ad look, realistic human subject, sharp lighting, high contrast, composition designed for paid social. Visual message: from founder bottleneck to leverage machine. No extra text except optional subtle headline space."
+  },
+  {
+    "slug": "03-four-layers-poster",
+    "title": "Target Reps Machine Council",
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "placement": ["instagram/linkedin feed", "pdf campaign pack", "sales deck divider"],
+    "prompt": "Premium dark poster design for Applied Leverage showing four stacked leverage layers as iconic modules: Target, Reps, Machine, Council. Brutalist high-end typography, graphite black background, subtle green accents, thin system lines, elegant depth, polished product-launch poster aesthetic. The four words should feel carved into a tactical operating system. Minimal, sharp, expensive, modern, not cluttered, not sci-fi cheesy. Composition optimized for an ad creative with strong hierarchy and room for a short headline or CTA."
+  },
+  {
+    "slug": "04-growth-creates-chaos",
+    "title": "If growth creates chaos",
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "placement": ["paid social ad", "email hero image", "retargeting creative"],
+    "prompt": "High-contrast paid social ad visual for Applied Leverage. Show a sleek service-business machine under strain: revenue graph rising while cables, tabs, tasks, and admin clutter explode around it. Premium dark background, crisp white and green highlights, tension between growth and chaos. Editorial campaign quality, realistic textures, strong central focal point, room for headline 'If growth creates chaos, you need leverage.' No cheap stock-photo look. Designed to stop the scroll."
+  },
+  {
+    "slug": "05-terminal-founder-relief",
+    "title": "Founder bottleneck relief",
+    "aspect_ratio": "16:9",
+    "resolution": "1K",
+    "placement": ["landing page section", "launch thread art", "website feature panel"],
+    "prompt": "Tactical operating-system style visual for Applied Leverage. Dark terminal interface with elegant green glow, command-line panels, workflow automations, AI council member cards, throughput metrics, and a clear sense of founder relief and control. Premium cinematic tech aesthetic, sharp typography zones, black and deep graphite palette, subtle grain, clean layers, modern and persuasive. Feels like an elite operator dashboard rather than generic SaaS UI."
+  }
+]
