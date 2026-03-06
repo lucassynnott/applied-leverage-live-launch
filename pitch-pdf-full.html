@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Applied Leverage Implementation Sprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0d0e;--bgs:#14181b;--line:rgba(235,241,244,0.12);--text:#f3f4ed;--mu:#9aa4aa;--ac:#d6ff59;--acs:rgba(214,255,89,0.14);--cy:#6de4ff;--or:#ffa86e}
+html{font-size:10.5pt}
+body{font-family:'Space Grotesk',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.p{width:210mm;min-height:297mm;page-break-after:always;position:relative;overflow:hidden;background:var(--bg)}
+.p:last-child{page-break-after:auto}
+.i{padding:42px 50px 34px;min-height:297mm;display:flex;flex-direction:column;position:relative;z-index:2}
+.g1::before{content:'';position:absolute;top:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(109,228,255,0.13),transparent 70%);border-radius:50%;z-index:0}
+.g2::after{content:'';position:absolute;bottom:-60px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(214,255,89,0.1),transparent 70%);border-radius:50%;z-index:0}
+.g3::before{content:'';position:absolute;top:40%;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(214,255,89,0.07),transparent 70%);border-radius:50%;z-index:0}
+.g4::after{content:'';position:absolute;bottom:0;left:-40px;width:220px;height:220px;background:radial-gradient(circle,rgba(109,228,255,0.08),transparent 70%);border-radius:50%;z-index:0}
+.gb::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(circle at center,black 30%,transparent 80%);opacity:0.5;z-index:0}
+h1{font-size:3.4rem;line-height:0.92;letter-spacing:-0.06em;font-weight:700}
+h2{font-size:2.1rem;line-height:0.96;letter-spacing:-0.05em;font-weight:700;margin-bottom:18px}
+h3{font-size:1.2rem;font-weight:600;letter-spacing:-0.03em;margin-bottom:8px}
+.se{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;color:var(--ac)}
+.mo{font-family:'IBM Plex Mono',monospace}
+.ki{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.1em;font-size:0.68rem;color:var(--cy);margin-bottom:12px;font-weight:500}
+.ac{color:var(--ac)}.cy{color:var(--cy)}.mu{color:var(--mu)}.or{color:var(--or)}
+.le{font-size:1.05rem;color:#e2e8e2;line-height:1.5}
+.bt{color:var(--mu);line-height:1.65;font-size:0.88rem}
+.bt strong,.bt b{color:var(--text);font-weight:600}
+.sp{flex:1}
+.cs{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px}
+.ca{border-color:rgba(214,255,89,0.2);background:linear-gradient(180deg,rgba(214,255,89,0.06),rgba(214,255,89,0.02))}
+.cc{border-color:rgba(109,228,255,0.2);background:linear-gradient(180deg,rgba(109,228,255,0.06),rgba(109,228,255,0.02))}
+.co{border-color:rgba(255,168,110,0.2);background:linear-gradient(180deg,rgba(255,168,110,0.06),rgba(255,168,110,0.02))}
+.g2c{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3c{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.pl{display:inline-block;padding:5px 12px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:0.63rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)}
+.pa{background:var(--acs);border-color:rgba(214,255,89,0.25);color:var(--ac)}
+.dv{height:1px;background:var(--line);margin:18px 0}
+.da{background:linear-gradient(90deg,var(--ac),rgba(109,228,255,0.3));opacity:0.4}
+.bn{font-size:3rem;line-height:0.9;letter-spacing:-0.06em;color:var(--ac);font-weight:700}
+.wb{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.wb .n{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,rgba(214,255,89,0.2),rgba(109,228,255,0.15));border:1px solid rgba(255,255,255,0.1);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600}
+.wb .l{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.1em;font-size:0.68rem;color:var(--cy)}
+.pf{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.05);margin-top:auto;font-size:0.62rem;color:rgba(255,255,255,0.2);font-family:'IBM Plex Mono',monospace}
+.bm{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,rgba(214,255,89,0.22),rgba(109,228,255,0.18)),rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;font-weight:600}
+.ct{background:linear-gradient(135deg,var(--ac),#f3ffa7);color:#10120f;border-radius:14px;padding:20px 24px;text-align:center;font-weight:700;font-size:1rem}
+.qu{border-left:3px solid var(--ac);padding-left:16px;font-size:1.1rem;line-height:1.4;color:var(--text)}
+.cl{list-style:none;padding:0}
+.cl li{padding:6px 0 6px 22px;position:relative;color:var(--mu);font-size:0.85rem}
+.cl li::before{content:'\2192';position:absolute;left:0;color:var(--ac);font-weight:600}
+.xl li::before{content:'\2715';color:var(--or)}
+.ob{margin-bottom:16px}
+.ob .q{font-weight:700;font-size:0.88rem;color:var(--text);margin-bottom:4px}
+.ob .a{color:var(--mu);font-size:0.82rem;padding-left:12px;border-left:2px solid rgba(214,255,89,0.3)}
+.mb{margin-bottom:12px}.mb2{margin-bottom:20px}.mt{margin-top:12px}.mt2{margin-top:20px}
+.tl{display:flex;align-items:stretch;gap:0}
+.tl-step{flex:1;text-align:center;padding:14px 10px;position:relative}
+.tl-step::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,0.08)}
+.tl-step:last-child::after{display:none}
+</style>
+</head>
+<body>
+
+<!-- P1: COVER -->
+<div class="p g1 g2 gb">
+<div class="i" style="justify-content:center;align-items:center;text-align:center">
+<div style="margin-bottom:36px"><span class="bm" style="width:56px;height:56px;font-size:1rem;border-radius:16px">AL</span></div>
+<p class="ki" style="font-size:0.72rem;margin-bottom:18px">Applied Leverage</p>
+<h1 style="font-size:3.8rem;max-width:13ch;margin:0 auto 24px">Implementation<br><span class="se">Sprint</span></h1>
+<p class="le" style="max-width:34ch;margin:0 auto 32px">Four weeks. One leverage stack.<br>Built inside your actual business &mdash; not on a whiteboard.</p>
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+<span class="pl">$3,500 flat</span><span class="pl">4 weeks</span><span class="pl">Done-with-you</span>
+</div>
+<div style="margin-top:40px"><p class="bt" style="max-width:38ch;margin:0 auto">You already have the offer. You already have the clients. What you don&rsquo;t have is the architecture to scale it without scaling your hours.</p></div>
+<div style="margin-top:12px"><p class="mu" style="font-size:0.8rem;max-width:36ch;margin:0 auto">For agency owners and consultants who are already making money &mdash; and already drowning in the work of delivering it.</p></div>
+<div class="pf" style="position:absolute;bottom:34px;left:50px;right:50px"><span>Applied Leverage</span><span>appliedleverage.com</span></div>
+</div></div>
+
+<!-- P2: THE PROBLEM -->
+<div class="p g3 g4">
+<div class="i">
+<p class="ki">The Problem</p>
+<h2>You built something real.<br>And it&rsquo;s <span class="se">crushing</span> you.</h2>
+<div class="bt" style="max-width:90%">
+<p class="mb">You&rsquo;re not failing. That&rsquo;s the painful part.</p>
+<p class="mb">You have clients. You have revenue. You have proof that the offer works and that people will pay for it. By most measures, you&rsquo;ve already won the first game.</p>
+<p class="mb">But at some point &mdash; and you know exactly when it happened &mdash; the business stopped feeling like yours. It started feeling like a trap.</p>
+<p class="mb">Your calendar is a war zone. Your inbox is where follow-ups go to die. Every new client adds weight instead of momentum. You&rsquo;re doing work you could probably delegate, but delegating takes time you don&rsquo;t have. So you do it yourself. Again.</p>
+<p class="mb">You aren&rsquo;t just doing the work. <strong>You are the work.</strong> You&rsquo;re the sales system, the delivery system, the QA system, the client relationship system, and the operations system &mdash; all at once, all the time.</p>
+</div>
+<div class="mt2 g2c">
+<div class="cs"><p class="ac mo" style="font-size:0.65rem;margin-bottom:6px">SYMPTOMS</p>
+<ul class="cl" style="margin-top:4px">
+<li>Always busy, rarely productive</li>
+<li>Leads going cold because you didn&rsquo;t follow up in time</li>
+<li>Clients getting inconsistent experience depending on your energy level</li>
+<li>Guilt about the work you know you&rsquo;re not doing</li>
+<li>The sense that more effort won&rsquo;t fix it</li>
+</ul></div>
+<div class="cs"><p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">ROOT CAUSE</p>
+<ul class="cl" style="margin-top:4px">
+<li>No targeting system &rarr; scattered effort</li>
+<li>No rep cadence &rarr; reactive instead of proactive</li>
+<li>No automation layer &rarr; manual everything, always</li>
+<li>No AI leverage &rarr; human bottleneck on every task</li>
+</ul></div>
+</div>
+<div class="sp"></div>
+<div class="qu mt2">The problem isn&rsquo;t discipline. It&rsquo;s architecture. You built a business that only runs when you run it &mdash; and that&rsquo;s not a business, that&rsquo;s a job with extra chaos.</div>
+<div class="pf"><span>Applied Leverage</span><span>02</span></div>
+</div></div>
+
+<!-- P3: THE HIDDEN COST -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">The Hidden Cost</p>
+<h2>Founder dependency has a<br><span class="se">price tag.</span> You&rsquo;re already paying it.</h2>
+<p class="bt mb2">The cost isn&rsquo;t just stress. It&rsquo;s measurable. It&rsquo;s in your revenue, your retention, and your ceiling.</p>
+<div style="display:grid;gap:12px">
+<div class="cs"><h3 style="font-size:1rem"><span class="ac">&rarr;</span> Dropped Leads</h3><p class="bt">You get an inbound inquiry. You&rsquo;re in delivery mode, slammed on a client project. You tell yourself you&rsquo;ll respond tonight. You don&rsquo;t. You respond three days later &mdash; if you respond at all. That lead has already talked to someone else. The window was 24 hours. You missed it by 72.</p><p class="bt mt"><strong>At a $3,000 average deal size and four dropped leads a month, that&rsquo;s $12,000 in missed revenue. Every. Single. Month.</strong></p></div>
+<div class="cs"><h3 style="font-size:1rem"><span class="ac">&rarr;</span> Stalled Upsells</h3><p class="bt">Your existing clients would buy more from you. They already trust you. But you&rsquo;re so buried in delivery that upsell conversations never happen. You meant to check in with that client last month. You didn&rsquo;t. You meant to offer the next service tier. You didn&rsquo;t. Every stalled upsell is money your clients wanted to give you &mdash; that your competitors will eventually get instead.</p></div>
+<div class="cs"><h3 style="font-size:1rem"><span class="ac">&rarr;</span> Ops Debt That Compounds</h3><p class="bt">Every time you do something manually that could be systematized, you&rsquo;re taking on ops debt. And like financial debt, it compounds. The manual client onboarding that takes two hours? That&rsquo;s running 12 times a year. 24 hours a year on a single workflow that could take 20 minutes with automation. The weekly reporting you build from scratch? The invoice chasing? Each one is a debt payment on a loan you never meant to take.</p></div>
+<div class="cs"><h3 style="font-size:1rem"><span class="ac">&rarr;</span> Capacity Ceiling</h3><p class="bt">You can&rsquo;t take on the next client because you&rsquo;re at capacity. But you&rsquo;re at capacity not because the work is inherently heavy &mdash; you&rsquo;re at capacity because you&rsquo;re doing everything yourself. The ceiling isn&rsquo;t a talent ceiling. It&rsquo;s a leverage ceiling. And it doesn&rsquo;t move until the architecture changes.</p></div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>03</span></div>
+</div></div>
+
+<!-- P4: THE COMPOUND EFFECT -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">The Compound Effect</p>
+<h2>The longer you wait,<br>the <span class="se">heavier</span> it gets.</h2>
+<p class="bt mb2">Nobody tells you this about founder dependency: it doesn&rsquo;t stay the same. It gets worse. Specifically, it gets worse when things go <strong>well.</strong></p>
+<div class="g3c">
+<div class="cs">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">YEAR 1</p>
+<h3 style="font-size:0.95rem">Survivable</h3>
+<p class="bt">Five clients. You manage everything manually, but it works. You know all your clients by name, by project, by mood. You&rsquo;re responsive. The cracks are small.</p>
+</div>
+<div class="cs co">
+<p class="or mo" style="font-size:0.65rem;margin-bottom:6px">YEAR 2</p>
+<h3 style="font-size:0.95rem">Strained</h3>
+<p class="bt">Nine clients. The manual work piles up. You hire a VA but they need constant direction because nothing is documented. Follow-up falls through more often. You&rsquo;re working more hours for similar margins.</p>
+</div>
+<div class="cs" style="border-color:rgba(255,125,125,0.2);background:linear-gradient(180deg,rgba(255,125,125,0.06),rgba(255,125,125,0.02))">
+<p style="color:#ff7d7d" class="mo" style="font-size:0.65rem;margin-bottom:6px">YEAR 3</p>
+<h3 style="font-size:0.95rem">Breaking</h3>
+<p class="bt">Fourteen clients. You&rsquo;re maxed. Not sleeping enough. Three clients are unhappy. Two leads went cold last month. You&rsquo;re turning down business you genuinely can&rsquo;t absorb.</p>
+</div>
+</div>
+<div class="dv da mt2"></div>
+<div class="bt">
+<p class="mb"><strong>The cruel irony:</strong> every client you win makes the problem worse. Every month you survive without a system is a month the system deficit grows.</p>
+<p class="mb">You get better at the work. You get worse at the business of doing the work. And because you&rsquo;re busy &mdash; truly, genuinely busy &mdash; it&rsquo;s easy to mistake activity for traction.</p>
+<p><strong>Success without architecture creates more dependency, not less.</strong> The business gets bigger. You get more stuck. The ceiling doesn&rsquo;t just stay put &mdash; it drops.</p>
+</div>
+<div class="sp"></div>
+<div class="qu">This is the pattern. And it breaks exactly the same way for most operators. Not in a blaze of failure. In a slow, quiet ceiling.</div>
+<div class="pf"><span>Applied Leverage</span><span>04</span></div>
+</div></div>
+
+<!-- P5: THE BREAKING POINT -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">The Breaking Point</p>
+<h2>At some point, working harder<br><span class="se">stops working.</span></h2>
+<p class="bt mb2">You know the feeling. You hit a wall that effort can&rsquo;t solve. You&rsquo;ve been hitting it for a while &mdash; you&rsquo;ve just been too busy to name it.</p>
+<p class="bt mb2">The breaking point doesn&rsquo;t usually come from one catastrophic event. It builds. It&rsquo;s the third week in a row where Sunday feels like Monday. It&rsquo;s the client who churns because you missed a check-in. It&rsquo;s the proposal you spent three hours on that you never sent. It&rsquo;s the list of things you were going to systemize &ldquo;when things slow down&rdquo; &mdash; a list that&rsquo;s been growing for eighteen months.</p>
+<div class="dv da"></div>
+<h3 class="mb">What breaking looks like in practice:</h3>
+<div class="g2c" style="gap:10px">
+<div class="cs"><p class="bt"><strong>Resentment.</strong> You start resenting good clients because they require things from you. The work that used to excite you feels like a burden.</p></div>
+<div class="cs"><p class="bt"><strong>Quality erosion.</strong> Delivery starts slipping &mdash; not because you&rsquo;ve gotten worse, but because you&rsquo;re spread too thin. Clients notice.</p></div>
+<div class="cs"><p class="bt"><strong>Avoidance.</strong> You respond to emails slower and feel guilty about it, then ignore the guilt to cope. Your inbox becomes something you dread.</p></div>
+<div class="cs"><p class="bt"><strong>Paralysis.</strong> You think about the business constantly but feel like you&rsquo;re accomplishing less. Every task competes with ten others.</p></div>
+</div>
+<div class="dv da mt2"></div>
+<div class="bt mt">
+<p class="mb"><strong>The hardest moment</strong> is when you realize that the thing you built &mdash; the thing that was supposed to give you freedom &mdash; has become the thing that owns you.</p>
+<p class="mb">Not because you made bad decisions. Not because you&rsquo;re not capable. But because the machine never got built. The system never got installed. The leverage never got created.</p>
+<p><strong>You built revenue. You didn&rsquo;t build infrastructure.</strong></p>
+</div>
+<div class="sp"></div>
+<div class="qu">This is where most operators are when they find Applied Leverage. Not in crisis, but at a ceiling. Not ready to quit, but ready for something to actually change.</div>
+<div class="pf"><span>Applied Leverage</span><span>05</span></div>
+</div></div>
+
+<!-- P6: THE REFRAME -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">The Reframe</p>
+<h2>This isn&rsquo;t a you problem.<br>It&rsquo;s an <span class="se">architecture</span> problem.</h2>
+<p class="bt mb2">Stop solving for discipline when you need design.</p>
+<p class="bt mb">You&rsquo;ve probably tried some version of this already. Better time blocking. A new project management tool. A productivity framework. Maybe a VA or two. Maybe you read the books. Maybe you built a Notion system you stopped using after three weeks.</p>
+<p class="bt mb2">It didn&rsquo;t stick because it wasn&rsquo;t addressing the real problem. The real problem is architectural.</p>
+<div class="g2c">
+<div class="cs co">
+<h3 class="or" style="font-size:0.9rem">What you don&rsquo;t need:</h3>
+<ul class="cl xl" style="margin-top:8px">
+<li>More discipline</li>
+<li>More hours</li>
+<li>More tools</li>
+<li>Another morning routine</li>
+<li>Another strategy session that ends in slides</li>
+</ul>
+</div>
+<div class="cs ca">
+<h3 class="ac" style="font-size:0.9rem">What you actually need:</h3>
+<ul class="cl" style="margin-top:8px">
+<li>A sharp target so your effort lands consistently</li>
+<li>A daily rep system so actions happen without motivation</li>
+<li>An automation layer so machines handle machine work</li>
+<li>An AI council so you have capacity without headcount</li>
+</ul>
+</div>
+</div>
+<div class="dv da mt2"></div>
+<div class="bt">
+<p class="mb">The shift isn&rsquo;t philosophical. It&rsquo;s operational.</p>
+<p class="mb">You stop being the person who <strong>does the business</strong> and start being the person who <strong>runs the machine</strong> that does the business.</p>
+<p class="mb">That&rsquo;s not a metaphor. It&rsquo;s a literal change in how the business operates &mdash; what gets automated, what gets systematized, what gets delegated to AI, and what still requires you.</p>
+<p><strong>The goal isn&rsquo;t to remove yourself from the business. The goal is to remove the parts of the business that only work when you personally execute them.</strong></p>
+</div>
+<div class="sp"></div>
+<div class="qu">Four weeks. Four layers. One architecture change that compounds indefinitely.</div>
+<div class="pf"><span>Applied Leverage</span><span>06</span></div>
+</div></div>
+
+<!-- P7: THE SOLUTION OVERVIEW -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">The Solution</p>
+<h2>The Applied Leverage<br><span class="se">Implementation Sprint.</span></h2>
+<p class="le mb2">Four leverage layers installed into your actual business in four weeks.<br>Done-with-you. $3,500 flat.</p>
+<div class="bt mb2">
+<p class="mb">This is not coaching. There&rsquo;s no ongoing accountability program that costs $500/month forever. There&rsquo;s no 47-module course you&rsquo;ll watch 30% of and abandon.</p>
+<p>This is a focused implementation sprint. We work inside your real business, with your real offers, your real clients, your real workflows. By the end of four weeks, four layers of leverage are live and operational.</p>
+</div>
+<div class="dv da"></div>
+<div style="display:grid;gap:12px;margin-top:18px">
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><div class="wb"><div class="n">01</div><div class="l">Target + Shot</div></div>
+<p class="bt">Sharp positioning. A specific target market. An offer that closes faster because it&rsquo;s built for someone, not everyone.</p></div>
+<div><p class="bt"><strong>Deliverable:</strong> Refined offer doc + positioning one-liner that closes.</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><div class="wb"><div class="n">02</div><div class="l">Daily Reps</div></div>
+<p class="bt">A working daily cadence: outreach, follow-up, content, delivery. Not motivated execution. Systemized execution.</p></div>
+<div><p class="bt"><strong>Deliverable:</strong> Documented operating rhythm you can actually run.</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><div class="wb"><div class="n">03</div><div class="l">First Machine</div></div>
+<p class="bt">Your most painful manual workflow gets automated. Not demoed &mdash; deployed. The hours come back. The errors drop.</p></div>
+<div><p class="bt"><strong>Deliverable:</strong> Live automation doing real work in your business.</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><div class="wb"><div class="n">04</div><div class="l">AI Council</div></div>
+<p class="bt">Defined AI roles with real scopes and handoff protocols. Research, drafting, auditing, decision support.</p></div>
+<div><p class="bt"><strong>Deliverable:</strong> AI team with specific jobs doing real work.</p></div>
+</div></div>
+</div>
+<div class="sp"></div>
+<div class="qu">The benchmark for every deliverable is one question: does this reduce founder dependency?</div>
+<div class="pf"><span>Applied Leverage</span><span>07</span></div>
+</div></div>
+
+<!-- P8: LAYER 1 DEEP DIVE -->
+<div class="p g3 g4">
+<div class="i">
+<p class="ki">Layer 1</p>
+<h2>Target + <span class="se">Shot.</span></h2>
+<p class="le mb2">Most operators have a vague offer aimed at everyone.<br>That&rsquo;s why selling feels like pushing a boulder uphill.</p>
+<div class="bt mb2">
+<p class="mb">When your offer is broad, every sales conversation starts from scratch. You&rsquo;re constantly explaining, customizing, adapting. The prospect doesn&rsquo;t fully understand what they&rsquo;re buying. You don&rsquo;t fully know what you&rsquo;re selling. The close rate reflects the confusion.</p>
+<p class="mb">When the target is tight and the offer is sharp, everything speeds up. The prospect self-qualifies. The pitch lands instantly. The price feels obvious. The close happens faster because there&rsquo;s nothing to figure out.</p>
+<p><strong>Narrowing is not limiting. Narrowing is accelerating.</strong></p>
+</div>
+<div class="dv da"></div>
+<h3 class="mt2 mb">What we actually do in Week 1:</h3>
+<div class="g2c">
+<div class="cs cc">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">AUDIT</p>
+<p class="bt">We tear apart your current offer, positioning, and sales process. Where is the friction? Where does the prospect hesitate? What&rsquo;s taking too long to explain?</p>
+</div>
+<div class="cs cc">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">NARROW</p>
+<p class="bt">We define the specific audience that has the most pain, the most budget, and the fastest path to close. Not &ldquo;everyone who needs marketing.&rdquo; A real segment.</p>
+</div>
+<div class="cs cc">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">SHARPEN</p>
+<p class="bt">We rebuild the offer language: what you do, who you do it for, what they get, what it costs. One paragraph that closes. One positioning line that sticks.</p>
+</div>
+<div class="cs cc">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:6px">ARM</p>
+<p class="bt">You leave with a refined offer document, a positioning one-liner, and a clear ICP definition that makes every subsequent conversation faster.</p>
+</div>
+</div>
+<div class="sp"></div>
+<div class="qu">A sharp offer doesn&rsquo;t just sell better. It makes everything downstream &mdash; delivery, upsells, referrals &mdash; simpler.</div>
+<div class="pf"><span>Applied Leverage</span><span>08</span></div>
+</div></div>
+
+<!-- P9: LAYER 2 DEEP DIVE -->
+<div class="p g1 g2 gb">
+<div class="i">
+<p class="ki">Layer 2</p>
+<h2>Daily <span class="se">Reps.</span></h2>
+<p class="le mb2">Feast-or-famine happens when there&rsquo;s no system &mdash;<br>just motivation. And motivation is the worst business strategy.</p>
+<div class="bt mb2">
+<p class="mb">Most operators work in bursts. When pipeline is dry, they go hard on outreach. When pipeline is full, they disappear into delivery. The cycle repeats every 6&ndash;8 weeks and creates constant revenue instability.</p>
+<p class="mb">A daily rep system kills feast-or-famine by making the essential activities happen every single day, regardless of workload. Not giant blocks of time &mdash; small, consistent actions that compound.</p>
+<p><strong>The difference between operators who grow steadily and operators who lurch is almost always one thing: daily reps.</strong></p>
+</div>
+<div class="dv da"></div>
+<h3 class="mt2 mb">What a daily operating cadence looks like:</h3>
+<div style="display:grid;gap:10px">
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem"><span class="ac">&rarr;</span> Outreach Reps</h3>
+<p class="bt">A set number of targeted outreach actions per day. Not spray-and-pray mass email. Thoughtful, specific outreach to qualified prospects. Consistent, never skipped.</p></div>
+<div><p class="ac mo" style="font-size:0.65rem">DAILY</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem"><span class="ac">&rarr;</span> Follow-up Reps</h3>
+<p class="bt">Systematic follow-up on every open conversation. No lead dies because you forgot. The system remembers so you don&rsquo;t have to.</p></div>
+<div><p class="ac mo" style="font-size:0.65rem">DAILY</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem"><span class="ac">&rarr;</span> Content Reps</h3>
+<p class="bt">Publishing on a rhythm, not on inspiration. Even 15 minutes of daily content compounds into massive authority over 90 days.</p></div>
+<div><p class="ac mo" style="font-size:0.65rem">DAILY</p></div>
+</div></div>
+<div class="cs ca">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem"><span class="ac">&rarr;</span> Delivery Check-ins</h3>
+<p class="bt">Active monitoring of client work. No project drifts. No client feels forgotten. Five minutes of check-in prevents five hours of fire-fighting.</p></div>
+<div><p class="ac mo" style="font-size:0.65rem">DAILY</p></div>
+</div></div>
+</div>
+<div class="sp"></div>
+<div class="qu">Hoping is not a system. Reps are a system. We install the system.</div>
+<div class="pf"><span>Applied Leverage</span><span>09</span></div>
+</div></div>
+
+<!-- P10: LAYER 3 DEEP DIVE -->
+<div class="p g3 g4">
+<div class="i">
+<p class="ki">Layer 3</p>
+<h2>First <span class="se">Machine.</span></h2>
+<p class="le mb2">Building a machine means taking a workflow that currently<br>depends on you and making it run without you.</p>
+<div class="bt mb2">
+<p class="mb">This is not about buying Zapier and hoping for the best. It&rsquo;s about identifying the single most painful manual path in your business &mdash; the one that eats the most time, creates the most errors, and bottlenecks the most &mdash; and building a real automation around it.</p>
+<p class="mb">Could be client onboarding. Could be proposal generation. Could be invoice chasing. Could be weekly reporting. Could be lead qualification. Whatever it is, it currently lives in your head and runs through your hands.</p>
+<p><strong>After Week 3, it doesn&rsquo;t.</strong></p>
+</div>
+<div class="dv da"></div>
+<h3 class="mt2 mb">What &ldquo;building a machine&rdquo; looks like in practice:</h3>
+<div class="g2c" style="gap:12px">
+<div class="cs cc">
+<p class="bn" style="font-size:2rem">01</p>
+<h3 style="font-size:0.95rem">Map the pain</h3>
+<p class="bt">We audit your workflows together and identify the one that causes the most founder drag. Not the flashiest automation target &mdash; the one that hurts most.</p>
+</div>
+<div class="cs cc">
+<p class="bn" style="font-size:2rem">02</p>
+<h3 style="font-size:0.95rem">Design the flow</h3>
+<p class="bt">We document every step of the current process, identify what can be automated vs. what needs human judgment, and design the new flow.</p>
+</div>
+<div class="cs cc">
+<p class="bn" style="font-size:2rem">03</p>
+<h3 style="font-size:0.95rem">Build and deploy</h3>
+<p class="bt">We build the automation inside your existing tool stack. No new enterprise software. No six-month implementation. It goes live in Week 3.</p>
+</div>
+<div class="cs cc">
+<p class="bn" style="font-size:2rem">04</p>
+<h3 style="font-size:0.95rem">Test and hand off</h3>
+<p class="bt">We run it together, catch edge cases, and make sure it works reliably. You get a documented machine you understand and can maintain.</p>
+</div>
+</div>
+<div class="sp"></div>
+<div class="g3c mt2">
+<div class="cs" style="text-align:center"><p class="bn">5+</p><p class="bt"><strong>hours/week</strong> reclaimed</p></div>
+<div class="cs" style="text-align:center"><p class="bn" style="color:var(--cy)">0</p><p class="bt"><strong>manual steps</strong> in the automated path</p></div>
+<div class="cs" style="text-align:center"><p class="bn" style="color:var(--or)">1</p><p class="bt"><strong>template</strong> for automating the next one</p></div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>10</span></div>
+</div></div>
+
+<!-- P11: LAYER 4 DEEP DIVE -->
+<div class="p g1 g2 gb">
+<div class="i">
+<p class="ki">Layer 4</p>
+<h2>AI <span class="se">Council.</span></h2>
+<p class="le mb2">Not ChatGPT prompts. An actual council of AI agents<br>with defined roles, scopes, and handoff protocols.</p>
+<div class="bt mb2">
+<p class="mb">Most people &ldquo;use AI&rdquo; the same way: they open ChatGPT, type a vague prompt, get a vague answer, and wonder why AI hasn&rsquo;t changed their business. That&rsquo;s not leverage. That&rsquo;s a toy.</p>
+<p class="mb">An AI council is different. Each agent has a <strong>specific job</strong>, a <strong>defined scope</strong>, and a <strong>clear handoff protocol</strong>. They don&rsquo;t freelance. They don&rsquo;t wander. They execute within boundaries that make them reliable.</p>
+<p><strong>The difference between &ldquo;using AI&rdquo; and &ldquo;deploying AI leverage&rdquo; is structure.</strong></p>
+</div>
+<div class="dv da"></div>
+<h3 class="mt2 mb">The four council roles:</h3>
+<div class="g2c" style="gap:12px">
+<div class="cs ca">
+<p class="ac mo" style="font-size:0.65rem;margin-bottom:6px">RESEARCH AGENT</p>
+<h3 style="font-size:0.95rem">Competitive intel, market scanning, prospect research</h3>
+<p class="bt">Feeds you relevant data without you having to go looking. Monitors competitors, surfaces opportunities, prepares briefings before calls.</p>
+</div>
+<div class="cs ca">
+<p class="ac mo" style="font-size:0.65rem;margin-bottom:6px">DRAFTING AGENT</p>
+<h3 style="font-size:0.95rem">First drafts of proposals, emails, content, reports</h3>
+<p class="bt">Produces 80% drafts in your voice and style that you edit in minutes instead of writing from scratch in hours. Your throughput multiplies.</p>
+</div>
+<div class="cs ca">
+<p class="ac mo" style="font-size:0.65rem;margin-bottom:6px">AUDIT AGENT</p>
+<h3 style="font-size:0.95rem">Quality checks, consistency reviews, gap detection</h3>
+<p class="bt">Reviews deliverables before they go to clients. Catches inconsistencies, formatting issues, missing elements. A QA layer that never sleeps.</p>
+</div>
+<div class="cs ca">
+<p class="ac mo" style="font-size:0.65rem;margin-bottom:6px">DECISION SUPPORT AGENT</p>
+<h3 style="font-size:0.95rem">Analysis, scenario modeling, strategic options</h3>
+<p class="bt">When you need to make a call, this agent presents the data, the options, and the trade-offs. You still decide. But you decide with better inputs in less time.</p>
+</div>
+</div>
+<div class="sp"></div>
+<div class="qu">An AI council doesn&rsquo;t replace your judgment. It removes the grunt work that prevents you from using it.</div>
+<div class="pf"><span>Applied Leverage</span><span>11</span></div>
+</div></div>
+
+<!-- P12: 4-WEEK TIMELINE OVERVIEW -->
+<div class="p g3 g4">
+<div class="i">
+<p class="ki">The Timeline</p>
+<h2>Four weeks. Four layers.<br><span class="se">Every week</span> ends in something usable.</h2>
+<p class="bt mb2">This is not a four-week discovery phase that ends in a report. Every week produces a deliverable you can use the next day. The sprint is designed so value compounds from day one.</p>
+<div class="dv da"></div>
+<div style="display:grid;gap:16px;margin-top:18px">
+<div class="cs ca" style="padding:20px">
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+<div class="n" style="width:48px;height:48px;font-size:1rem;flex-shrink:0">W1</div>
+<div><h3 style="margin-bottom:2px">Target + Shot</h3><p class="bt" style="margin:0">Sharpen the offer. Define the ICP. Build positioning that closes.</p></div>
+</div>
+<div class="g2c">
+<div><p class="cy mo" style="font-size:0.6rem">FOCUS</p><p class="bt">Offer audit, ICP definition, positioning refinement, competitive gap analysis</p></div>
+<div><p class="ac mo" style="font-size:0.6rem">OUTPUT</p><p class="bt">Offer document, positioning one-liner, ICP profile, sales narrative</p></div>
+</div>
+</div>
+<div class="cs ca" style="padding:20px">
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+<div class="n" style="width:48px;height:48px;font-size:1rem;flex-shrink:0">W2</div>
+<div><h3 style="margin-bottom:2px">Reps</h3><p class="bt" style="margin:0">Install the daily execution rhythm that kills feast-or-famine.</p></div>
+</div>
+<div class="g2c">
+<div><p class="cy mo" style="font-size:0.6rem">FOCUS</p><p class="bt">Outreach cadence, follow-up system, content rhythm, delivery check-ins</p></div>
+<div><p class="ac mo" style="font-size:0.6rem">OUTPUT</p><p class="bt">Daily operating playbook, outreach templates, follow-up sequences, content calendar</p></div>
+</div>
+</div>
+<div class="cs ca" style="padding:20px">
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+<div class="n" style="width:48px;height:48px;font-size:1rem;flex-shrink:0">W3</div>
+<div><h3 style="margin-bottom:2px">Machine</h3><p class="bt" style="margin:0">Automate the most painful workflow. Reclaim hours every week.</p></div>
+</div>
+<div class="g2c">
+<div><p class="cy mo" style="font-size:0.6rem">FOCUS</p><p class="bt">Workflow audit, automation design, build, deploy, test</p></div>
+<div><p class="ac mo" style="font-size:0.6rem">OUTPUT</p><p class="bt">Live automation, process documentation, maintenance guide, template for next automation</p></div>
+</div>
+</div>
+<div class="cs ca" style="padding:20px">
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
+<div class="n" style="width:48px;height:48px;font-size:1rem;flex-shrink:0">W4</div>
+<div><h3 style="margin-bottom:2px">Council</h3><p class="bt" style="margin:0">Deploy AI agents with real jobs, real scopes, real boundaries.</p></div>
+</div>
+<div class="g2c">
+<div><p class="cy mo" style="font-size:0.6rem">FOCUS</p><p class="bt">Agent role design, prompt engineering, integration, handoff protocols</p></div>
+<div><p class="ac mo" style="font-size:0.6rem">OUTPUT</p><p class="bt">AI council with 4 defined agents, prompt stacks, handoff docs, usage guide</p></div>
+</div>
+</div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>12</span></div>
+</div></div>
+
+<!-- P13: WEEK 1 DETAIL -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">Week 1 Detail</p>
+<h2>Target + Shot:<br><span class="se">the deep dive.</span></h2>
+<p class="bt mb2">Week 1 is about clarity. Most operators lose enormous energy to a vague offer and a fuzzy target market. We fix that first because everything else builds on it.</p>
+<div class="dv da"></div>
+<h3 class="mt2">Session 1: The Offer Audit</h3>
+<p class="bt mb">We take your current offer apart. What are you actually selling? Who are you selling it to? What does the prospect experience from first contact to signed deal? We map every step and identify where friction lives &mdash; the hesitation points, the confusion, the unnecessary complexity.</p>
+<h3 class="mt">Session 2: ICP Definition</h3>
+<p class="bt mb">We define a specific Ideal Customer Profile. Not &ldquo;small business owners&rdquo; or &ldquo;marketing managers.&rdquo; A real segment with identifiable characteristics, specific pain points, a budget range, and a buying pattern. The kind of definition that makes targeting surgical instead of scattered.</p>
+<h3 class="mt">Session 3: Positioning Refinement</h3>
+<p class="bt mb">We rebuild the language around your offer. What you do, who you do it for, what outcome they get, why you instead of anyone else. This gets compressed into a positioning one-liner that you can use in cold outreach, on your website, in proposals, and in conversation. One sentence that does the heavy lifting.</p>
+<h3 class="mt">Session 4: Sales Narrative</h3>
+<p class="bt mb">We build a sales narrative that takes a prospect from &ldquo;I&rsquo;m interested&rdquo; to &ldquo;I&rsquo;m in&rdquo; without you having to reinvent the pitch every time. A repeatable story arc that addresses objections before they surface and makes the close feel inevitable.</p>
+<div class="dv da mt2"></div>
+<div class="cs ca mt">
+<h3 class="ac" style="font-size:0.9rem">End-of-Week 1 deliverables:</h3>
+<ul class="cl" style="margin-top:8px">
+<li>Refined offer document with clear scope, pricing, and outcomes</li>
+<li>ICP profile with targeting criteria</li>
+<li>Positioning one-liner</li>
+<li>Sales narrative framework</li>
+<li>Competitive positioning map</li>
+</ul>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>13</span></div>
+</div></div>
+
+<!-- P14: WEEK 2 DETAIL -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">Week 2 Detail</p>
+<h2>Reps:<br><span class="se">the deep dive.</span></h2>
+<p class="bt mb2">Week 2 installs rhythm. The business starts moving forward every day &mdash; not in bursts when you feel motivated, but on a cadence that runs whether you&rsquo;re inspired or not.</p>
+<div class="dv da"></div>
+<h3 class="mt2">Session 1: Current State Audit</h3>
+<p class="bt mb">We map how you currently spend your time. Not your ideal calendar &mdash; your actual one. Where the hours go. What gets done consistently. What gets dropped. What eats disproportionate time. This audit surfaces the gaps between how you think you work and how you actually work.</p>
+<h3 class="mt">Session 2: Cadence Design</h3>
+<p class="bt mb">We design a daily operating cadence around your real schedule. This isn&rsquo;t a generic &ldquo;morning routine&rdquo; framework. It&rsquo;s specific: what you do first, how long outreach takes, when follow-up happens, where content creation fits, and how delivery check-ins slot in without consuming the whole day.</p>
+<h3 class="mt">Session 3: System Build</h3>
+<p class="bt mb">We build the actual systems: outreach templates, follow-up sequences, content production workflows, and delivery monitoring checklists. These live in tools you already use. Nothing to learn from scratch. Just structured execution where chaos used to live.</p>
+<h3 class="mt">Session 4: Stress Test</h3>
+<p class="bt mb">We run the cadence for real and stress-test it. What breaks? What takes longer than planned? What needs adjustment? We iterate until the system feels sustainable &mdash; not heroic. The goal is a rhythm you can maintain for years, not a sprint you burn out on in two weeks.</p>
+<div class="dv da mt2"></div>
+<div class="cs ca mt">
+<h3 class="ac" style="font-size:0.9rem">End-of-Week 2 deliverables:</h3>
+<ul class="cl" style="margin-top:8px">
+<li>Daily operating playbook with time blocks and priorities</li>
+<li>Outreach template library (cold, warm, re-engagement)</li>
+<li>Follow-up sequence with timing rules</li>
+<li>Content production rhythm and template</li>
+<li>Delivery check-in protocol</li>
+<li>Weekly review framework</li>
+</ul>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>14</span></div>
+</div></div>
+
+<!-- P15: WEEK 3 DETAIL -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">Week 3 Detail</p>
+<h2>Machine:<br><span class="se">the deep dive.</span></h2>
+<p class="bt mb2">Week 3 is where leverage becomes tangible. We take the workflow that eats the most founder time and build automation around it. Not a demo. A deployed, working machine.</p>
+<div class="dv da"></div>
+<h3 class="mt2">Session 1: Workflow Mapping</h3>
+<p class="bt mb">We map every step of the target workflow as it currently exists. Every click, every email, every manual data entry, every decision point. This is often the first time an operator has seen their own process documented end-to-end. The waste becomes obvious.</p>
+<h3 class="mt">Session 2: Automation Design</h3>
+<p class="bt mb">We separate the workflow into three buckets: what can be fully automated, what needs human input at a decision point, and what stays manual. Then we design the automated flow with triggers, logic branches, notifications, and error handling. No over-engineering &mdash; just enough to work reliably.</p>
+<h3 class="mt">Session 3: Build + Deploy</h3>
+<p class="bt mb">We build the automation using your existing tools. This usually means connecting platforms you already pay for &mdash; CRM, email, invoicing, project management &mdash; with automation layers. We deploy it live and run real data through it. Not test data. Real clients. Real workflows.</p>
+<h3 class="mt">Session 4: Hardening</h3>
+<p class="bt mb">We test edge cases, add error handling, document the system, and make sure you understand exactly how it works and how to maintain it. You also get a template for mapping and automating your next workflow on your own.</p>
+<div class="dv da mt2"></div>
+<div class="cs ca mt">
+<h3 class="ac" style="font-size:0.9rem">End-of-Week 3 deliverables:</h3>
+<ul class="cl" style="margin-top:8px">
+<li>Live automation handling a real business workflow</li>
+<li>Process documentation with flow diagrams</li>
+<li>Error handling and edge case coverage</li>
+<li>Maintenance guide</li>
+<li>Template for mapping and automating additional workflows</li>
+<li>Time-saved estimate with tracking method</li>
+</ul>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>15</span></div>
+</div></div>
+
+<!-- P16: WEEK 4 DETAIL -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">Week 4 Detail</p>
+<h2>Council:<br><span class="se">the deep dive.</span></h2>
+<p class="bt mb2">Week 4 deploys the AI council. Not one chatbot doing everything. Four specialized agents with defined roles, scopes, and handoff protocols &mdash; each doing a job that used to require your brain.</p>
+<div class="dv da"></div>
+<h3 class="mt2">Session 1: Role Definition</h3>
+<p class="bt mb">We define each agent&rsquo;s role in detail. What exactly does the Research Agent research? What format does the Drafting Agent produce? What does the Audit Agent check? What inputs does the Decision Support Agent need? Each role gets a written job description with scope boundaries &mdash; what the agent does, and critically, what it doesn&rsquo;t.</p>
+<h3 class="mt">Session 2: Prompt Engineering</h3>
+<p class="bt mb">We build the prompt stacks for each agent. These aren&rsquo;t generic prompts. They&rsquo;re engineered for your specific business context, your voice, your quality standards, and your workflows. The Research Agent knows your industry. The Drafting Agent writes like you. The Audit Agent checks against your standards.</p>
+<h3 class="mt">Session 3: Integration</h3>
+<p class="bt mb">We integrate each agent into your workflow. Where do they get triggered? How do they hand off results? Who reviews their output? We build the connective tissue between agents and your existing systems so they&rsquo;re part of the operation, not a side experiment you forget about.</p>
+<h3 class="mt">Session 4: Council Launch</h3>
+<p class="bt mb">We run all four agents on real tasks, review their output, adjust prompts and boundaries, and document the entire system. You leave with a working AI council that you can use tomorrow morning &mdash; and a guide for expanding it.</p>
+<div class="dv da mt2"></div>
+<div class="cs ca mt">
+<h3 class="ac" style="font-size:0.9rem">End-of-Week 4 deliverables:</h3>
+<ul class="cl" style="margin-top:8px">
+<li>Four AI agents with defined roles and boundaries</li>
+<li>Custom prompt stacks for each agent</li>
+<li>Integration protocols and trigger definitions</li>
+<li>Handoff documentation</li>
+<li>Quality review framework for AI output</li>
+<li>Expansion guide for adding new agents</li>
+</ul>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>16</span></div>
+</div></div>
+
+<!-- P17: WHAT YOU WALK AWAY WITH -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">Deliverables</p>
+<h2>What you <span class="se">walk away</span> with.</h2>
+<p class="le mb2">Everything built during the sprint is yours. Documented, deployed, and designed to run without us.</p>
+<div class="g2c" style="gap:14px">
+<div>
+<div class="cs ca mb" style="padding:18px">
+<p class="ac mo" style="font-size:0.65rem;margin-bottom:8px">TANGIBLE ASSETS</p>
+<ul class="cl">
+<li>Refined offer document with scope, pricing, and outcomes</li>
+<li>Ideal Customer Profile with targeting criteria</li>
+<li>Positioning one-liner</li>
+<li>Sales narrative framework</li>
+<li>Daily operating playbook</li>
+<li>Outreach template library</li>
+<li>Follow-up sequence system</li>
+<li>Content production rhythm</li>
+<li>Live automation on your most painful workflow</li>
+<li>Process documentation with flow diagrams</li>
+<li>Four AI agents with custom prompt stacks</li>
+<li>Agent handoff protocols</li>
+<li>Maintenance and expansion guides</li>
+</ul>
+</div>
+</div>
+<div>
+<div class="cs cc mb" style="padding:18px">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:8px">INTANGIBLE SHIFTS</p>
+<ul class="cl">
+<li>Clarity on what you sell and who you sell it to</li>
+<li>Confidence that pipeline moves every day</li>
+<li>Hours reclaimed from automated workflows</li>
+<li>Thinking work offloaded to AI agents</li>
+<li>A template for building the next machine yourself</li>
+<li>The mental relief of knowing the system runs without you</li>
+</ul>
+</div>
+<div class="cs" style="padding:18px">
+<p class="or mo" style="font-size:0.65rem;margin-bottom:8px">THE AFTER PICTURE</p>
+<p class="bt">Monday morning, four weeks from now. You open your laptop. Your outreach went out on schedule. Follow-ups are queued. Your AI research agent has a briefing ready for your 11am call. The client onboarding you used to spend two hours on happened automatically while you slept.</p>
+<p class="bt mt"><strong>You still run the business. But the business no longer runs on your memory, your hands, and your willpower alone.</strong></p>
+</div>
+</div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>17</span></div>
+</div></div>
+
+<!-- P18: WHO THIS IS FOR -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">Fit</p>
+<h2>This is built for<br><span class="se">operators.</span></h2>
+<p class="bt mb2">Not beginners. Not tourists. Not tool collectors. This is for people who already have a working business and need it to work without them holding every piece.</p>
+<div class="g2c" style="gap:14px">
+<div class="cs ca" style="padding:20px">
+<h3 class="ac" style="font-size:0.95rem;margin-bottom:12px">This is for you if:</h3>
+<ul class="cl">
+<li>You run an agency or consultancy doing real revenue</li>
+<li>Clients keep coming but the work keeps getting heavier</li>
+<li>You know you need systems but haven&rsquo;t installed them</li>
+<li>You want execution capacity without hiring a full team first</li>
+<li>You&rsquo;re willing to spend four focused weeks building infrastructure</li>
+<li>You value implementation over theory and advice</li>
+<li>You&rsquo;re ready to invest $3,500 in reducing your own workload</li>
+<li>You have enough revenue that the bottleneck is operations, not sales</li>
+</ul>
+</div>
+<div class="cs co" style="padding:20px">
+<h3 class="or" style="font-size:0.95rem;margin-bottom:12px">This is not for you if:</h3>
+<ul class="cl xl">
+<li>You have no offer and no customers yet</li>
+<li>You&rsquo;re looking for a passive done-for-me fantasy</li>
+<li>You confuse buying AI tools with operational change</li>
+<li>You need basic sales before you need systems</li>
+<li>You want to be told what to think instead of how to build</li>
+<li>You&rsquo;re not willing to do the work during the sprint</li>
+<li>You want a magic bullet instead of installed infrastructure</li>
+<li>Your business doesn&rsquo;t have enough volume to justify automation</li>
+</ul>
+</div>
+</div>
+<div class="dv da mt2"></div>
+<div class="g3c mt">
+<div class="cs" style="text-align:center;padding:20px">
+<p class="bn">4</p>
+<p class="bt"><strong>weeks</strong><br>of focused implementation</p>
+</div>
+<div class="cs" style="text-align:center;padding:20px">
+<p class="bn">4</p>
+<p class="bt"><strong>leverage layers</strong><br>installed in your business</p>
+</div>
+<div class="cs" style="text-align:center;padding:20px">
+<p class="bn">1</p>
+<p class="bt"><strong>price</strong><br>$3,500 flat. No upsells.</p>
+</div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>18</span></div>
+</div></div>
+
+<!-- P19: DIFFERENTIATION -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">Differentiation</p>
+<h2>Why this isn&rsquo;t just<br><span class="se">another</span> offer.</h2>
+<p class="bt mb2">The market is full of advice, frameworks, and AI hype. Here&rsquo;s how Applied Leverage is structurally different from everything else you&rsquo;ve seen.</p>
+<div style="display:grid;gap:14px">
+<div class="cs" style="padding:18px">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem">vs. Marketing Strategy Consultants</h3>
+<p class="bt">They give you slides, frameworks, and recommendations. You pay $5,000&ndash;$15,000 for a strategy deck and then have to implement it yourself. We give you systems, workflows, automations, and agent roles &mdash; installed and running by the end of the sprint. The deliverable isn&rsquo;t advice. It&rsquo;s infrastructure.</p></div>
+<div style="text-align:right"><span class="pl pa">We build. They advise.</span></div>
+</div></div>
+<div class="cs" style="padding:18px">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem">vs. AI Consultants</h3>
+<p class="bt">Most AI consulting sells novelty. Cool demos. Tool tours. &ldquo;Look what GPT can do.&rdquo; None of it connects to your actual business throughput. We tie every automation and agent to a specific operational outcome: less founder time, more consistency, higher capacity. No theater.</p></div>
+<div style="text-align:right"><span class="pl pa">Leverage, not novelty.</span></div>
+</div></div>
+<div class="cs" style="padding:18px">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem">vs. Agency Coaching</h3>
+<p class="bt">Coaching usually stops at positioning, mindset, and sales tactics. Useful &mdash; but incomplete. Applied Leverage goes into execution design: daily reps, machine builds, and AI council deployment. We don&rsquo;t coach you to think differently. We build the systems that make different results inevitable.</p></div>
+<div style="text-align:right"><span class="pl pa">Execution, not pep talks.</span></div>
+</div></div>
+<div class="cs" style="padding:18px">
+<div class="g2c" style="align-items:center">
+<div><h3 style="font-size:0.95rem">vs. DIY / Self-Paced Learning</h3>
+<p class="bt">You could absolutely figure this out yourself. The question is: will you? And when? DIY requires time you don&rsquo;t have, energy you&rsquo;re already burning, and decisions you&rsquo;ll second-guess alone. The sprint compresses months of trial-and-error into four weeks of guided implementation.</p></div>
+<div style="text-align:right"><span class="pl pa">Speed, not theory.</span></div>
+</div></div>
+</div>
+<div class="sp"></div>
+<div class="qu">We don&rsquo;t sell information. We sell installed operating leverage inside a business that already has motion.</div>
+<div class="pf"><span>Applied Leverage</span><span>19</span></div>
+</div></div>
+
+<!-- P20: THE CASE FOR ROI -->
+<div class="p g3 g4 gb">
+<div class="i">
+<p class="ki">Return on Investment</p>
+<h2>Why $3,500 is<br><span class="se">dramatically</span> underpriced.</h2>
+<p class="bt mb2">Let&rsquo;s do the math. Not hypothetical math. The math of what founder dependency is already costing you.</p>
+<div class="dv da"></div>
+<div class="g2c mt2" style="gap:14px">
+<div class="cs cc" style="padding:20px">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:8px">SCENARIO 1</p>
+<h3 style="font-size:1.4rem;margin-bottom:8px">One recovered lead.</h3>
+<p class="bt mb">You drop an average of 2&ndash;4 qualified leads per month because follow-up happens manually (or doesn&rsquo;t happen at all). Average deal size: $3,000&ndash;$5,000.</p>
+<p class="bt"><strong>One recovered lead pays for the entire sprint.</strong></p>
+<p class="bn mt" style="font-size:2.2rem">$3,000&ndash;$5,000</p>
+<p class="mu" style="font-size:0.75rem">recovered per lead</p>
+</div>
+<div class="cs cc" style="padding:20px">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:8px">SCENARIO 2</p>
+<h3 style="font-size:1.4rem;margin-bottom:8px">One automation saving 5 hrs/week.</h3>
+<p class="bt mb">Your time is worth at least $100/hour. An automation that saves 5 hours per week returns $500/week &mdash; $2,000/month &mdash; $24,000/year.</p>
+<p class="bt"><strong>The sprint pays for itself in under two months.</strong></p>
+<p class="bn mt" style="font-size:2.2rem">$24,000</p>
+<p class="mu" style="font-size:0.75rem">annual value of 5 hrs/week</p>
+</div>
+</div>
+<div class="g2c mt" style="gap:14px">
+<div class="cs cc" style="padding:20px">
+<p class="cy mo" style="font-size:0.65rem;margin-bottom:8px">SCENARIO 3</p>
+<h3 style="font-size:1.4rem;margin-bottom:8px">One upsell you didn&rsquo;t miss.</h3>
+<p class="bt mb">Your existing clients would buy more if you asked. One proactive upsell conversation &mdash; triggered by your rep system &mdash; closes a $2,000&ndash;$5,000 expansion.</p>
+<p class="bt"><strong>One upsell. Sprint paid for.</strong></p>
+</div>
+<div class="cs" style="padding:20px;border-color:rgba(255,125,125,0.2);background:linear-gradient(180deg,rgba(255,125,125,0.06),rgba(255,125,125,0.02))">
+<p style="color:#ff7d7d" class="mo" style="font-size:0.65rem;margin-bottom:8px">THE COST OF NOT DOING THIS</p>
+<h3 style="font-size:1.4rem;margin-bottom:8px">Another year of founder drag.</h3>
+<p class="bt">12 more months of dropped leads. 12 more months of stalled upsells. 12 more months of manual work that compounds. Conservative estimate of opportunity cost: <strong>$50,000&ndash;$100,000+</strong> in unrealized revenue and wasted time.</p>
+</div>
+</div>
+<div class="sp"></div>
+<div class="qu">The sprint costs $3,500. The alternative costs everything it&rsquo;s already been costing you &mdash; for another year.</div>
+<div class="pf"><span>Applied Leverage</span><span>20</span></div>
+</div></div>
+
+<!-- P21: FAQ PAGE 1 -->
+<div class="p g1 g2">
+<div class="i">
+<p class="ki">Common Questions</p>
+<h2>Straight <span class="se">answers.</span></h2>
+<p class="bt mb2">No hedging. No corporate non-answers. Here&rsquo;s what people ask and what we tell them.</p>
+<div style="display:grid;gap:6px">
+<div class="ob"><p class="q">&ldquo;I can figure this out myself.&rdquo;</p><p class="a">You probably can. The question is whether you will, given everything else on your plate. DIY is slow when you&rsquo;re already overloaded. You&rsquo;ve been meaning to systemize your business for how long? Six months? A year? The sprint compresses months of figuring-it-out into four weeks of doing-it, with someone who&rsquo;s done it before. The value isn&rsquo;t knowledge. It&rsquo;s compression.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;I already use AI tools.&rdquo;</p><p class="a">Using ChatGPT is not the same as having operational leverage. If your AI usage is ad-hoc &mdash; open a tab, type a prompt, get a response, close the tab &mdash; you&rsquo;re getting maybe 10% of the value. An AI council is different: each agent has a defined job, specific inputs, quality standards, and a handoff protocol. Tools without structure create noise. Structure turns noise into leverage.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;I need more leads, not systems.&rdquo;</p><p class="a">More leads into a broken machine creates more pain, not more profit. If every new client makes the business harder to run, the operating system is the bottleneck &mdash; not the pipeline. Fix the machine first. Then when leads come in, they create revenue instead of chaos. We&rsquo;ve seen operators double their effective capacity without adding a single new lead &mdash; just by installing the infrastructure to handle what they already have.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;This sounds like consulting wrapped in new language.&rdquo;</p><p class="a">Consulting delivers recommendations. A 40-page deck that says &ldquo;you should do X.&rdquo; Then you&rsquo;re on your own to implement it. This delivers installed systems. You walk away with a sharper offer, a daily rhythm, a working automation, and an AI council &mdash; not a slide deck. The output is infrastructure, not information. If nothing is running at the end, we failed. That&rsquo;s the bar we hold ourselves to.</p></div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>21</span></div>
+</div></div>
+
+<!-- P22: FAQ PAGE 2 -->
+<div class="p g3 g4">
+<div class="i">
+<p class="ki">More Questions</p>
+<h2>Still <span class="se">skeptical?</span> Good.</h2>
+<p class="bt mb2">Skepticism is a sign of intelligence. Here are the harder questions.</p>
+<div style="display:grid;gap:6px">
+<div class="ob"><p class="q">&ldquo;How do I know this will actually reduce my workload?&rdquo;</p><p class="a">Because every deliverable is designed around one metric: less founder dependency. We don&rsquo;t build things that are theoretically useful. We build things that directly reduce the number of tasks that require your personal involvement. If the business still routes through your hands at the same rate after the sprint, we failed. We track this explicitly.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;Why $3,500? That seems too cheap for what you&rsquo;re describing.&rdquo;</p><p class="a">Honestly? It probably is. The sprint delivers infrastructure that strategy consultants charge $10,000&ndash;$25,000 for &mdash; and they don&rsquo;t implement anything. We price it at $3,500 because we want operators to say yes without overthinking it. One recovered lead, one automation saving a few hours a week, one upsell you didn&rsquo;t miss &mdash; and the sprint has paid for itself. The ROI is immediate and obvious.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;What if I&rsquo;m too busy for a sprint right now?&rdquo;</p><p class="a">That&rsquo;s the founder dependency trap talking. You&rsquo;re too busy because you don&rsquo;t have systems. You don&rsquo;t have systems because you&rsquo;re too busy. The loop doesn&rsquo;t break on its own. The sprint is designed for busy operators &mdash; it works within your existing schedule, not on top of it. Four sessions per week, each designed to produce immediate output. You don&rsquo;t need to clear your calendar. You need four weeks of focused, structured work.</p></div>
+<div class="dv"></div>
+<div class="ob"><p class="q">&ldquo;What happens after the four weeks?&rdquo;</p><p class="a">You keep everything. Every system, automation, agent, and document is yours. We hand off complete documentation so you can maintain, adjust, and expand what we built. If you want continued support, we can discuss that. But the sprint is designed to be self-sustaining. The whole point is leverage that works without us &mdash; that&rsquo;s the same standard we hold for building systems that work without you.</p></div>
+</div>
+<div class="pf"><span>Applied Leverage</span><span>22</span></div>
+</div></div>
+
+<!-- P23: CTA -->
+<div class="p g1 g2 gb">
+<div class="i" style="justify-content:center;align-items:center;text-align:center">
+<p class="ki" style="font-size:0.72rem;margin-bottom:24px">Next Step</p>
+<h1 style="font-size:3.4rem;max-width:16ch;margin:0 auto 20px">Ready to build<br>the <span class="se">machine?</span></h1>
+<p class="le" style="max-width:40ch;margin:0 auto 16px">Four weeks. $3,500 flat. One leverage stack installed inside your actual business.</p>
+<p class="bt" style="max-width:42ch;margin:0 auto 28px">You already have the clients. You already have the revenue. What you need is the architecture to scale without scaling your hours. The sprint builds that architecture.</p>
+<div class="ct" style="max-width:440px;margin:0 auto 28px;font-size:1.15rem;padding:24px 36px">Book the Implementation Sprint</div>
+<p class="mu" style="font-size:0.85rem;max-width:36ch;margin:0 auto 10px">Reply to this document or reach out directly:</p>
+<p class="ac mo" style="font-size:1rem;margin-bottom:8px">lucas@appliedleverage.com</p>
+<p class="cy mo" style="font-size:0.88rem;margin-bottom:32px">appliedleverage.com</p>
+<div class="dv da" style="max-width:200px;margin:0 auto 24px"></div>
+<p class="bt" style="max-width:36ch;margin:0 auto 32px">Stop carrying the business by hand.<br>Start building the machine that carries it for you.</p>
+<div><span class="bm" style="width:48px;height:48px;font-size:0.9rem;border-radius:14px">AL</span></div>
+<div class="pf" style="position:absolute;bottom:34px;left:50px;right:50px"><span>Applied Leverage</span><span>appliedleverage.com</span></div>
+</div></div>
+
+</body>
+</html>
