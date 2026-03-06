@@ -33,10 +33,7 @@
         margin: 0;
         font-family: 'Inter', sans-serif;
         color: var(--text);
-        background:
-          radial-gradient(circle at top left, rgba(107,227,255,.14), transparent 24%),
-          radial-gradient(circle at top right, rgba(215,255,89,.10), transparent 18%),
-          linear-gradient(180deg, #06080a 0%, #091016 35%, #0a0f14 100%);
+        background: #07090b;
         line-height: 1.58;
       }
 
@@ -47,19 +44,8 @@
         padding: 18mm 18mm 20mm;
         position: relative;
         page-break-after: always;
-      }
-
-      .page::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.024) 1px, transparent 1px);
-        background-size: 30px 30px;
-        mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
-        pointer-events: none;
-        opacity: .6;
+        background:
+          linear-gradient(180deg, #0c1217 0%, #0f171c 100%);
       }
 
       .page-inner { position: relative; z-index: 1; }
@@ -67,6 +53,23 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+      }
+      .cover-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18mm;
+      }
+      .cover-brand img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        display: block;
+      }
+      .cover-brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
       }
       .eyebrow, .meta, .pill {
         font-family: 'IBM Plex Mono', monospace;
@@ -87,11 +90,11 @@
       .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
       .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .card {
-        background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+        background: #15202a;
         border: 1px solid var(--line);
         border-radius: 18px;
         padding: 16px;
-        box-shadow: var(--shadow);
+        box-shadow: none;
       }
       .hero-card { padding: 18px; }
       .stat { font-size: 34px; font-weight: 800; letter-spacing: -.04em; }
@@ -141,8 +144,14 @@
   <body>
     <section class="page cover">
       <div class="page-inner">
-        <p class="eyebrow">Applied Leverage Live</p>
-        <div style="margin-top: 24mm;"></div>
+        <div class="cover-brand">
+          <img src="AL_LOGO.svg" alt="Applied Leverage logo" />
+          <div class="cover-brand-text">
+            <p class="eyebrow" style="margin:0;">Applied Leverage Live</p>
+            <p class="meta" style="margin:0;">Operator systems for real businesses</p>
+          </div>
+        </div>
+        <div style="margin-top: 10mm;"></div>
         <h1>The Applied Leverage Implementation Sprint</h1>
         <p class="lede">A deep dive into the offer, the operating model, the build process, the deliverables, the client experience, and why this works for already-moving operators who are sick of carrying the whole business manually.</p>
         <div class="divider"></div>
