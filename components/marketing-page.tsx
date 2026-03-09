@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { EmbeddedForm } from "@/components/forms";
 import { RichMarkdown } from "@/components/rich-markdown";
@@ -24,6 +24,13 @@ type MarkdownCard = {
 
 type NamedItem = {
   body: string;
+  title: string;
+};
+
+type HeroFeature = {
+  body: string;
+  icon: IconComponent;
+  label?: string;
   title: string;
 };
 
@@ -147,6 +154,98 @@ const iconCycle: IconComponent[] = [
   MailIcon
 ];
 
+const homeHeroCards: HeroFeature[] = [
+  {
+    body: "Start with the founder-shaped work that keeps delivery, follow-up, and approvals tied to you.",
+    icon: CompassIcon,
+    title: "Audit the drag"
+  },
+  {
+    body: "Sequence the stack so the first automation removes pressure instead of adding more software noise.",
+    icon: WorkflowIcon,
+    title: "Order the build"
+  },
+  {
+    body: "Move from strategy into a real implementation sprint with live systems shipped into the business.",
+    icon: BuildIcon,
+    title: "Install leverage"
+  }
+];
+
+const whyHeroCards: HeroFeature[] = [
+  {
+    body: "Most teams automate visible tasks while the real constraint lives in handoffs and approvals.",
+    icon: SignalIcon,
+    title: "Task hacks miss the system"
+  },
+  {
+    body: "Adding AI to a founder-shaped workflow multiplies noise instead of reducing drag.",
+    icon: ShieldIcon,
+    title: "Tools amplify architecture"
+  },
+  {
+    body: "When the order is wrong, every new app becomes another surface area to maintain.",
+    icon: ClockIcon,
+    title: "Complexity compounds fast"
+  }
+];
+
+const sprintRoadmap = [
+  {
+    label: "Week 1",
+    title: "Scope the machine",
+    body: "Lock the build order, technical shape, and first shipping target."
+  },
+  {
+    label: "Week 2",
+    title: "Ship the first win",
+    body: "Launch the highest-leverage automation so momentum is visible immediately."
+  },
+  {
+    label: "Week 3",
+    title: "Expand the stack",
+    body: "Connect the next workflows, review edge cases, and harden the handoffs."
+  },
+  {
+    label: "Week 4",
+    title: "Stabilize and document",
+    body: "Leave the business with a working stack and the operating notes to keep it live."
+  }
+];
+
+const aboutCouncilPreview: HeroFeature[] = [
+  {
+    body: "Turns decisions into implemented systems, code, and shipped automations.",
+    icon: BuildIcon,
+    title: "T-Bug"
+  },
+  {
+    body: "Runs QA, catches regressions, and keeps launch work from slipping through.",
+    icon: ShieldIcon,
+    title: "River"
+  },
+  {
+    body: "Coordinates scope, sequencing, and delivery pressure across the operating system.",
+    icon: CouncilIcon,
+    title: "Johnny Silverhand"
+  }
+];
+
+const applyPathCards: HeroFeature[] = [
+  {
+    body: "Use this when you need to know what to automate first and what to ignore.",
+    icon: CompassIcon,
+    label: "Default path",
+    title: "Diagnostic"
+  },
+  {
+    body: "Use this when the build order is already clear and execution speed is the bottleneck.",
+    icon: BuildIcon,
+    label: "Execution path",
+    title: "Sprint waitlist"
+  }
+];
+
 export function MarketingPage({ page }: { page: SitePage }) {
   switch (page.slug) {
     case "home":
@@ -179,10 +278,7 @@ function renderHomePage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--home">
-      <StandardHero
-        page={page}
-        summary="Applied Leverage turns founder drag into a ranked build order, then ships the operating system behind it."
-      />
+      <PageHero page={page} />
 
       <section className="page-band page-band--accent" id={solution.id}>
         <div className="page-band__header">
@@ -302,10 +398,7 @@ function renderWhyPage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--why">
-      <StandardHero
-        page={page}
-        summary="This page now reads like a narrative argument with contrast sections, pull signals, and a sharper explanation of why AI projects stall."
-      />
+      <PageHero page={page} />
 
       <section className="page-band" id={coreProblem.id}>
         <div className="page-band__header">
@@ -459,10 +552,7 @@ function renderDiagnosticPage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--diagnostic">
-      <StandardHero
-        page={page}
-        summary="The diagnostic page is now an offer page: pricing in the hero, deliverables in cards, timeline steps, and the application form anchored into the narrative."
-      />
+      <PageHero page={page} />
 
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
@@ -634,10 +724,7 @@ function renderSprintPage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--sprint">
-      <StandardHero
-        page={page}
-        summary="The sprint page now behaves like an execution offer page: price in the hero, a week-by-week timeline, inclusion cards, and the waitlist embedded where the decision gets made."
-      />
+      <PageHero page={page} />
 
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
@@ -812,10 +899,7 @@ function renderAboutPage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--about">
-      <StandardHero
-        page={page}
-        summary="The About page now reads like a founder story and capability proof: personal narrative, council architecture, and a clear statement of who the work is built for."
-      />
+      <PageHero page={page} />
 
       <section className="page-band" id={story.id}>
         <div className="page-band__header">
@@ -937,10 +1021,7 @@ function renderApplyPage(page: SitePage) {
 
   return (
     <main className="marketing-page marketing-page--apply">
-      <StandardHero
-        page={page}
-        summary="The apply page now acts like a decision page: two path cards, stronger trust signals, and both forms presented as the next step instead of a long markdown sheet."
-      />
+      <PageHero page={page} />
 
       <section className="page-band page-band--accent" id={paths.id}>
         <div className="page-band__header">
@@ -1016,65 +1097,313 @@ function renderApplyPage(page: SitePage) {
   );
 }
 
-function StandardHero({
-  page,
-  summary
-}: {
-  page: SitePage;
-  summary: string;
-}) {
-  const primaryAction = page.hero.cta ?? primaryActions[page.slug];
-  const secondaryAction = secondaryActions[page.slug];
-  const signals = heroSignals[page.slug] ?? page.definition.highlights;
+function PageHero({ page }: { page: SitePage }) {
+  switch (page.slug) {
+    case "home":
+      return <HomeHero page={page} />;
+    case "why":
+      return <WhyHero page={page} />;
+    case "diagnostic":
+      return <DiagnosticHero page={page} />;
+    case "sprint":
+      return <SprintHero page={page} />;
+    case "about":
+      return <AboutHero page={page} />;
+    case "apply":
+      return <ApplyHero page={page} />;
+    default:
+      return null;
+  }
+}
 
+function HomeHero({ page }: { page: SitePage }) {
   return (
-    <section className={`hero-grid page-hero page-hero--${page.slug}`}>
-      <article className="hero-panel hero-copy-panel">
-        <p className="eyebrow">{page.definition.eyebrow}</p>
-        <h1 className="hero-title">{page.hero.headline}</h1>
-        {page.hero.subheadline ? (
-          <p className="hero-subheadline">{page.hero.subheadline}</p>
-        ) : null}
-        {page.hero.body ? (
-          <RichMarkdown className="markdown hero-body" source={page.hero.body} />
-        ) : null}
-        <div className="hero-actions">
-          <Link className="button button-primary" href={primaryAction.href}>
-            {primaryAction.label}
-          </Link>
-          <Link className="button button-secondary" href={secondaryAction.href}>
-            {secondaryAction.label}
-          </Link>
+    <section className="page-hero home-hero">
+      <HeroLeadPanel page={page} panelClassName="home-hero__lead">
+        <div className="hero-chip-row">
+          {page.definition.highlights.map((highlight) => (
+            <HeroChip icon={WorkflowIcon} key={highlight} text={highlight} />
+          ))}
         </div>
-      </article>
+      </HeroLeadPanel>
 
-      <aside className="hero-panel hero-visual-panel">
+      <aside className="hero-panel home-hero__board">
         <p className="eyebrow eyebrow-accent">
-          {page.hero.badge ?? "Operator system design"}
+          {page.hero.badge ?? "Installed leverage"}
         </p>
-        <p className="hero-visual-summary">{summary}</p>
-        <div className="hero-diagram" aria-hidden="true">
-          {heroSteps[page.slug].map((step) => (
-            <span className="hero-diagram-node" key={step}>
+        <p className="hero-kicker">
+          The offer now opens as a command board: problem shape, build order, and
+          the first measurable wins all visible before the first scroll.
+        </p>
+        <div className="hero-feature-grid">
+          {homeHeroCards.map((item) => (
+            <HeroFeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+        <div className="hero-metric-grid">
+          {heroStats.home.map((stat) => (
+            <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function WhyHero({ page }: { page: SitePage }) {
+  return (
+    <section className="page-hero why-hero">
+      <HeroLeadPanel page={page} panelClassName="why-hero__lead">
+        <div className="hero-chip-row">
+          {heroStats.why.map((stat) => (
+            <HeroChip key={stat.label} text={`${stat.value} ${stat.label}`} />
+          ))}
+        </div>
+      </HeroLeadPanel>
+
+      <aside className="hero-panel why-hero__argument">
+        <article className="hero-quote-card">
+          <QuoteIcon className="quote-icon" />
+          <p>AI projects stall when the workflow stays founder-shaped.</p>
+        </article>
+        <div className="hero-feature-grid hero-feature-grid--dense">
+          {whyHeroCards.map((item) => (
+            <HeroFeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+        <div className="hero-step-strip" aria-hidden="true">
+          {heroSteps.why.map((step) => (
+            <span className="hero-step-pill" key={step}>
               {step}
             </span>
           ))}
         </div>
-        <div className="hero-stat-grid">
-          {heroStats[page.slug].map((stat) => (
-            <StatCard key={stat.label} label={stat.label} value={stat.value} />
-          ))}
-        </div>
-        <ul className="hero-signal-list">
-          {signals.map((signal) => (
-            <li key={signal}>
-              <CheckIcon className="signal-icon" />
-              <span>{signal}</span>
-            </li>
-          ))}
-        </ul>
       </aside>
     </section>
+  );
+}
+
+function DiagnosticHero({ page }: { page: SitePage }) {
+  return (
+    <section className="page-hero diagnostic-hero">
+      <HeroLeadPanel page={page} panelClassName="diagnostic-hero__lead">
+        <div className="hero-chip-row">
+          <HeroChip icon={CompassIcon} text="90-minute working session" />
+          <HeroChip icon={SignalIcon} text="4-hour turnaround" />
+          <HeroChip icon={BuildIcon} text="30-day sprint credit" />
+        </div>
+      </HeroLeadPanel>
+
+      <aside className="hero-panel diagnostic-hero__offer">
+        <div className="hero-price-card">
+          <p className="eyebrow eyebrow-accent">Founding price</p>
+          <span className="hero-price">$297</span>
+          <p className="hero-kicker">
+            Credited into the implementation sprint if you continue within 30
+            days.
+          </p>
+        </div>
+        <div className="hero-checklist">
+          {page.definition.highlights.map((highlight) => (
+            <HeroBullet key={highlight} text={highlight} />
+          ))}
+        </div>
+        <div className="hero-step-strip" aria-hidden="true">
+          {heroSteps.diagnostic.map((step) => (
+            <span className="hero-step-pill" key={step}>
+              {step}
+            </span>
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function SprintHero({ page }: { page: SitePage }) {
+  return (
+    <section className="page-hero sprint-hero">
+      <HeroLeadPanel page={page} panelClassName="sprint-hero__lead">
+        <div className="hero-chip-row">
+          <HeroChip icon={BuildIcon} text="$3.5K flat sprint fee" />
+          <HeroChip icon={WorkflowIcon} text="3 live automations" />
+          <HeroChip icon={ShieldIcon} text="30-day check-in" />
+        </div>
+      </HeroLeadPanel>
+
+      <aside className="hero-panel sprint-hero__roadmap">
+        <div className="hero-metric-grid hero-metric-grid--compact">
+          {heroStats.sprint.map((stat) => (
+            <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+          ))}
+        </div>
+        <div className="hero-roadmap">
+          {sprintRoadmap.map((step) => (
+            <article className="hero-roadmap-step" key={step.label}>
+              <span className="timeline-index">{step.label}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function AboutHero({ page }: { page: SitePage }) {
+  return (
+    <section className="page-hero about-hero">
+      <HeroLeadPanel page={page} panelClassName="about-hero__lead">
+        <div className="hero-chip-row">
+          <HeroChip icon={UserIcon} text="Judgment stays human" />
+          <HeroChip icon={CouncilIcon} text="Council handles the repeatable work" />
+        </div>
+      </HeroLeadPanel>
+
+      <aside className="hero-panel about-hero__council">
+        <p className="eyebrow eyebrow-accent">
+          {page.hero.badge ?? "Council in production"}
+        </p>
+        <div className="hero-council-grid">
+          {aboutCouncilPreview.map((item) => (
+            <HeroFeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+        <div className="hero-step-strip" aria-hidden="true">
+          {heroSteps.about.map((step) => (
+            <span className="hero-step-pill" key={step}>
+              {step}
+            </span>
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function ApplyHero({ page }: { page: SitePage }) {
+  const signals = heroSignals.apply ?? page.definition.highlights;
+
+  return (
+    <section className="page-hero apply-hero">
+      <HeroLeadPanel page={page} panelClassName="apply-hero__lead">
+        <div className="hero-chip-row">
+          <HeroChip icon={CompassIcon} text="Diagnostic first by default" />
+          <HeroChip icon={MailIcon} text="24-hour review target" />
+          <HeroChip icon={BuildIcon} text="Both paths feed one stack" />
+        </div>
+      </HeroLeadPanel>
+
+      <aside className="hero-panel apply-hero__paths">
+        <div className="hero-path-grid">
+          {applyPathCards.map((item) => (
+            <HeroPathCard key={item.title} {...item} />
+          ))}
+        </div>
+        <div className="hero-checklist">
+          {signals.map((signal) => (
+            <HeroBullet key={signal} text={signal} />
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function HeroLeadPanel({
+  children,
+  page,
+  panelClassName
+}: {
+  children?: ReactNode;
+  page: SitePage;
+  panelClassName?: string;
+}) {
+  const primaryAction = page.hero.cta ?? primaryActions[page.slug];
+  const secondaryAction = secondaryActions[page.slug];
+
+  return (
+    <article className={["hero-panel", "hero-copy-panel", panelClassName].filter(Boolean).join(" ")}>
+      <p className="eyebrow">{page.definition.eyebrow}</p>
+      <h1 className="hero-title">{page.hero.headline}</h1>
+      {page.hero.subheadline ? (
+        <p className="hero-subheadline">{page.hero.subheadline}</p>
+      ) : null}
+      {page.hero.body ? (
+        <RichMarkdown className="markdown hero-body" source={page.hero.body} />
+      ) : null}
+      {children}
+      <div className="hero-actions">
+        <Link className="button button-primary" href={primaryAction.href}>
+          {primaryAction.label}
+        </Link>
+        <Link className="button button-secondary" href={secondaryAction.href}>
+          {secondaryAction.label}
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+function HeroChip({
+  icon: Icon,
+  text
+}: {
+  icon?: IconComponent;
+  text: string;
+}) {
+  return (
+    <span className="hero-chip">
+      {Icon ? <Icon className="panel-icon" /> : null}
+      <span>{text}</span>
+    </span>
+  );
+}
+
+function HeroFeatureCard({ body, icon: Icon, label, title }: HeroFeature) {
+  return (
+    <article className="hero-feature-card">
+      {label ? <span className="path-chip">{label}</span> : null}
+      <span className="icon-badge">
+        <Icon className="panel-icon" />
+      </span>
+      <h3>{title}</h3>
+      <p>{body}</p>
+    </article>
+  );
+}
+
+function HeroPathCard({ body, icon, label, title }: HeroFeature) {
+  const Icon = icon;
+
+  return (
+    <article className="hero-path-card">
+      {label ? <span className="path-chip">{label}</span> : null}
+      <span className="icon-badge">
+        <Icon className="panel-icon" />
+      </span>
+      <h3>{title}</h3>
+      <p>{body}</p>
+    </article>
+  );
+}
+
+function HeroMetric({ label, value }: Stat) {
+  return (
+    <article className="hero-metric">
+      <span className="hero-metric__value">{value}</span>
+      <span className="hero-metric__label">{label}</span>
+    </article>
+  );
+}
+
+function HeroBullet({ text }: { text: string }) {
+  return (
+    <div className="hero-bullet">
+      <CheckIcon className="signal-icon" />
+      <span>{text}</span>
+    </div>
   );
 }
 

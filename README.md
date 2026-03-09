@@ -1,42 +1,45 @@
-# Applied Leverage Landing Page
+# Applied Leverage Website
 
-Static single-page landing site for the Applied Leverage Implementation Sprint.
+Multi-page Next.js marketing site for Applied Leverage.
 
-## Files
+## Routes
 
-- `index.html` - page structure and content
-- `styles.css` - visual system, layout, motion, and responsive styles
-- `script.js` - scroll reveal interactions
-- `favicon.svg` - site icon
-- `.nojekyll` - disables Jekyll processing for GitHub Pages
+- `/` - Home
+- `/why` - The Problem
+- `/diagnostic` - Diagnostic offer + application form
+- `/sprint` - Sprint offer + waitlist form
+- `/about` - Lucas + AI council story
+- `/apply` - Combined intake page
 
-## Local preview
+## Content source
 
-From the project root:
+Page copy lives in `copy/*.md`. The React layer reads those markdown files directly, so copy changes do not require editing route components.
+
+## Local development
 
 ```bash
-python3 -m http.server 4173
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:4173`.
+Open `http://localhost:3000`.
+
+## Quality gates
+
+```bash
+npm test
+npm run lint
+npm run build
+```
 
 ## Deploy to Vercel
 
-1. Push this folder to a Git repository.
-2. In Vercel, create a new project and import the repository.
-3. Keep the default static-site settings.
-4. Deploy. No build command is required.
+1. Push the repository to GitHub.
+2. Import the repo into Vercel as a Next.js project.
+3. Keep the default build settings.
+4. Add the custom domain when ready.
 
-## Deploy to GitHub Pages
+## Notes
 
-1. Push this folder to GitHub.
-2. In the repository settings, open `Pages`.
-3. Set the source to `Deploy from a branch`.
-4. Choose the default branch and the `/ (root)` folder.
-5. Save. GitHub Pages will publish the site directly from these static files.
-
-## Customize before launch
-
-- Update the `mailto:` CTA in `index.html` if the booking email should change.
-- Adjust copy blocks in `index.html` for pricing, qualification, or offer details.
-- If you want custom social previews, add an image asset and wire the relevant Open Graph tags.
+- Intake forms submit through FormSubmit to `lucas@appliedleverage.io`. Update `lib/intake-submissions.ts` if the intake destination changes.
+- Legacy static files (`index.html`, `prospectus.html`, PDFs) remain in the repo for reference but are not part of the Next.js runtime.

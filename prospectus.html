@@ -33,27 +33,34 @@
         margin: 0;
         font-family: 'Inter', sans-serif;
         color: var(--text);
-        background: #07090b;
+        background: #0c1217;
         line-height: 1.58;
       }
 
       .page {
-        width: 210mm;
-        min-height: 297mm;
+        width: 8.5in;
         margin: 0 auto;
-        padding: 18mm 18mm 20mm;
+        padding: 0;
         position: relative;
-        page-break-after: always;
-        background:
-          linear-gradient(180deg, #0c1217 0%, #0f171c 100%);
+        background: #0c1217;
       }
-
-      .page-inner { position: relative; z-index: 1; }
+      .section-block {
+        padding: 0.45in 0.6in 0.4in;
+      }
+      .section-block + .section-block {
+        border-top: 1px solid rgba(255,255,255,0.06);
+      }
       .cover {
+        min-height: 10in;
+        padding: 0.55in 0.65in 0.5in;
+        background: #0c1217;
+        page-break-after: always;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
+
+      .page-inner { position: relative; z-index: 1; flex: 1 1 auto; }
       .cover-brand {
         display: flex;
         align-items: center;
@@ -132,17 +139,51 @@
       }
       .image-card img { width: 100%; border-radius: 14px; border: 1px solid var(--line); }
       .footer {
-        position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display:flex; justify-content:space-between; align-items:center;
-        color: var(--muted); font-size: 11px; font-family: 'IBM Plex Mono', monospace; letter-spacing:.08em; text-transform: uppercase;
+        margin-top: 18px;
+        padding-top: 12px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        color: var(--muted);
+        font-size: 11px;
+        font-family: 'IBM Plex Mono', monospace;
+        letter-spacing:.08em;
+        text-transform: uppercase;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .card,
+      .table,
+      .image-card,
+      .quote,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .kpi-strip,
+      table,
+      tr,
+      td,
+      th {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .two-col-copy {
+        columns: 2;
+        column-gap: 22px;
+        orphans: 3;
+        widows: 3;
+      }
+      .cover-brand img {
+        width: 54px;
+        height: 54px;
       }
       @page {
-        size: A4;
-        margin: 0;
+        size: Letter;
+        margin: 0.55in 0.55in 0.6in;
       }
     </style>
   </head>
   <body>
-    <section class="page cover">
+    <section class="cover">
       <div class="page-inner">
         <div class="cover-brand">
           <img src="AL_LOGO.svg" alt="Applied Leverage logo" />
@@ -206,9 +247,9 @@
           <p>The result is not a magically autonomous company. That would be a stupid promise. The result is the first working leverage stack inside a real operating environment. Enough to save time, increase clarity, and create a foundation the client can actually build on.</p>
         </div>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>2</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>2</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">02 · Market problem</p>
       <h2>The founder bottleneck is the real tax</h2>
       <div class="grid-3" style="margin-top:18px;">
@@ -229,9 +270,9 @@
         <tr><td>Too many offers / directions</td><td>"We’re busy, but not focused."</td><td>Target and shot are not locked.</td></tr>
         <tr><td>AI tools create noise</td><td>"We’re playing with toys, not increasing throughput."</td><td>No role design, boundaries, or workflows for agents.</td></tr>
       </table>
-    </div><div class="footer"><span>Applied Leverage</span><span>3</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>3</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">03 · Offer thesis</p>
       <h2>Most operators do not need more leads first. They need leverage.</h2>
       <div class="card">
@@ -264,9 +305,9 @@
         <p>In four weeks, the client walks away with a business that is easier to run, clearer to sell, and less dependent on them doing every damn thing by hand.</p>
         <p class="muted">That promise is strong because it is tangible, grounded, and believable.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>4</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>4</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">04 · Audience</p>
       <h2>Exactly who this is built for</h2>
       <div class="grid-2" style="margin-top:18px;">
@@ -300,9 +341,9 @@
           <p>This offer makes immediate sense to that person because it names the problem correctly. Not laziness. Not lack of ambition. Not “mindset.” Founder dependency.</p>
         </div>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>5</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>5</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">05 · Anti-audience</p>
       <h2>Who should not buy this</h2>
       <div class="grid-4" style="margin-top:18px;">
@@ -320,9 +361,9 @@
         <img src="launch-creatives/nano-banana-2/images/02-founder-chaos-vs-leverage.png" alt="Founder chaos vs leverage concept" />
         <p class="tiny muted" style="margin-top:8px;">Creative direction from the launch pack: chaos on one side, calm system on the other. Simple. Hits the nerve.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>6</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>6</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">06 · Positioning</p>
       <h2>Where this sits in the market</h2>
       <table class="table" style="margin-top:18px;">
@@ -346,9 +387,9 @@
         <h3>Why this language works</h3>
         <p>It turns leverage into an operating model people can picture. Target tells them where the effort goes. Reps tells them what they do daily. Machine tells them what gets automated. Council tells them how AI supports the human operator. That is memorable, teachable, and saleable.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>7</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>7</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">07 · Core promise</p>
       <h2>The promise has to be aggressive, but believable</h2>
       <div class="card">
@@ -368,9 +409,9 @@
           <li>Stop scaling with your hands. Start scaling with systems, automations, and an AI council.</li>
         </ul>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>8</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>8</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">08 · Delivery model</p>
       <h2>Done-with-you is the right middle ground</h2>
       <div class="grid-2" style="margin-top:18px;">
@@ -397,9 +438,9 @@
         <h3>Why this closes better with serious buyers</h3>
         <p>Serious buyers do not want to be abandoned with a Notion doc and a pat on the back. They also do not want to pay for a mystery machine they cannot operate. Done-with-you sits in the sweet spot: real help, real implementation, real understanding.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>9</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>9</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">09 · Sprint architecture</p>
       <h2>The four layers of leverage</h2>
       <div class="grid-4" style="margin-top:18px;">
@@ -416,9 +457,9 @@
         <img src="launch-creatives/nano-banana-2/images/03-four-layers-poster.png" alt="Four layers poster" />
         <p class="tiny muted" style="margin-top:8px;">This visual should appear in the sales conversation. It compresses the entire offer into one memorable frame.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>10</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>10</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">10 · Week 1</p>
       <h2>Week 1 — Target + Shot</h2>
       <div class="card">
@@ -449,9 +490,9 @@
         <p>The client stops trying to be relevant to everybody. They leave the week with a cleaner sales conversation, a more coherent market message, and a better ability to decide which opportunities deserve effort.</p>
         <p>That alone can remove a shocking amount of drag. Because ambiguity is expensive. Every unclear target creates wasted outreach, messy positioning, and delivery that must adapt to too many different contexts.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>11</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>11</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">11 · Week 2</p>
       <h2>Week 2 — Reps</h2>
       <div class="card">
@@ -468,9 +509,9 @@
         <h3>The principle underneath</h3>
         <p>Reps beat mood. If growth only happens when the founder feels switched on, the system is weak. Week two turns effort into cadence. That increases predictability without requiring more hours.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>12</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>12</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">12 · Week 3</p>
       <h2>Week 3 — Machine</h2>
       <div class="card">
@@ -502,9 +543,9 @@
         <img src="launch-creatives/nano-banana-2/images/01-build-the-machine.png" alt="Build the machine visual" />
         <p class="tiny muted" style="margin-top:8px;">The machine is a sales idea because it gives the buyer something concrete to want: less hand-holding, fewer dropped steps, more throughput.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>13</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>13</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">13 · Week 4</p>
       <h2>Week 4 — Council</h2>
       <div class="card">
@@ -520,9 +561,9 @@
         <p>Without role design, AI becomes noise. With role design, it becomes a force multiplier. The founder stops staring at a blank prompt and starts routing defined work to defined capabilities.</p>
         <p>That makes the council usable. More important, it makes it retainable. The system survives because it fits the business instead of floating beside it.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>14</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>14</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">14 · Deliverables</p>
       <h2>What the client walks away with</h2>
       <table class="table" style="margin-top:18px;">
@@ -536,9 +577,9 @@
         <h3>Important framing</h3>
         <p>The deliverables are not templates dropped from the sky. They are tailored to the client’s operating reality. That makes them more convincing in the sales process and more valuable in execution.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>15</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>15</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">15 · Client experience</p>
       <h2>What it feels like to go through the sprint</h2>
       <div class="card">
@@ -568,9 +609,9 @@
         <h3>Why that matters in the sale</h3>
         <p>When a prospect can imagine the experience clearly, the risk feels lower. This is especially important with high-agency buyers. They are not buying because the copy is pretty. They are buying because they can see how the engagement will create an immediate shift in how the business runs.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>16</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>16</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">16 · Time commitment</p>
       <h2>How much time the client actually needs</h2>
       <div class="card">
@@ -585,9 +626,9 @@
         <h3>Best phrasing for prospects</h3>
         <p>Expect a few focused hours each week. The sprint is built to reduce overhead, not create another layer of it.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>17</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>17</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">17 · Proof logic</p>
       <h2>How the offer earns trust before there is massive social proof</h2>
       <div class="card">
@@ -619,9 +660,9 @@
         <h3>The important truth</h3>
         <p>The prospect does not need “proof” in the abstract. They need evidence that you understand the problem at operator level and have a believable way to improve it. This document does exactly that.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>18</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>18</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">18 · Objections</p>
       <h2>The real objections serious prospects will have</h2>
       <table class="table" style="margin-top:18px;">
@@ -632,9 +673,9 @@
         <tr><td>"How do I know it will reduce workload?"</td><td>I do not want another project that adds complexity.</td><td>We focus on a painful manual path first so the result is visible in time saved, reduced friction, or faster throughput.</td></tr>
         <tr><td>"Why $3,500?"</td><td>I am comparing this to generic consulting or software spend.</td><td>This is cheaper than months of drift, dropped opportunities, and founder overload. You are buying installed leverage, not more advice.</td></tr>
       </table>
-    </div><div class="footer"><span>Applied Leverage</span><span>19</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>19</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">19 · Pricing</p>
       <h2>Why the price works</h2>
       <div class="grid-2" style="margin-top:18px;">
@@ -661,9 +702,9 @@
         <h3>How to frame the value</h3>
         <p>The sprint is not priced like a course because it is not a course. It is not priced like broad consulting because the scope is narrower and the outcome is more concrete. It is a premium implementation sprint designed to create a visible operating shift in one month.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>20</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>20</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">20 · Messaging</p>
       <h2>The strongest messaging angles</h2>
       <div class="grid-2" style="margin-top:18px;">
@@ -688,9 +729,9 @@
         <h3>Messaging rule</h3>
         <p>Do not sell AI novelty. Sell operational relief plus throughput. That is the whole game.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>21</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>21</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">21 · Sales narrative</p>
       <h2>The prospect journey from attention to yes</h2>
       <table class="table" style="margin-top:18px;">
@@ -704,9 +745,9 @@
         <h3>Why this sales narrative works</h3>
         <p>It does not try to hypnotize the buyer. It simply moves them from accurate diagnosis to believable mechanism to tangible result. Good operators buy when the logic is sharp.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>22</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>22</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">22 · Strategic rationale</p>
       <h2>Why this offer matters for Applied Leverage as a business</h2>
       <div class="card">
@@ -717,9 +758,9 @@
         <div class="card"><h3>Brand logic</h3><p>Shows Applied Leverage as practical, sharp, and execution-first rather than theoretical.</p></div>
         <div class="card"><h3>Asset logic</h3><p>Every sprint can create case studies, frameworks, workflows, and proof material for future scaling.</p></div>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>23</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>23</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">23 · Why now</p>
       <h2>The market timing is right</h2>
       <div class="card">
@@ -730,9 +771,9 @@
         <img src="launch-creatives/nano-banana-2/images/04-growth-creates-chaos.png" alt="Growth creates chaos visual" />
         <p class="tiny muted" style="margin-top:8px;">This line should keep showing up. It is one of the cleanest needles in the whole campaign.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>24</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>24</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">24 · Mechanism</p>
       <h2>The mechanism is what makes the promise believable</h2>
       <div class="card">
@@ -748,9 +789,9 @@
         <h3>That mechanism matters because</h3>
         <p>It gives buyers a compact mental model. They do not need to memorize twenty tactical details. They only need to understand that this offer improves focus, cadence, automation, and intelligent support in a rational order.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>25</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>25</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">25 · Risk reversal</p>
       <h2>How the offer lowers perceived risk</h2>
       <div class="grid-2" style="margin-top:18px;">
@@ -775,9 +816,9 @@
         <h3>Good closing line</h3>
         <p>If the fit is wrong, the answer is no. That line should stay. It protects the brand and makes the yes more credible.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>26</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>26</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">26 · FAQ expansion</p>
       <h2>Answer the questions before they can slow the sale</h2>
       <div class="card">
@@ -793,9 +834,9 @@
         <h3>Will this work for a team, or only a solo founder?</h3>
         <p>It works for both, as long as there is a clear operating bottleneck and someone with authority to implement decisions during the sprint.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>27</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>27</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">27 · Aesthetics</p>
       <h2>The dark premium aesthetic is not decoration</h2>
       <div class="card">
@@ -817,9 +858,9 @@
           </ul>
         </div>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>28</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>28</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">28 · Sales enablement</p>
       <h2>How this PDF should be used in live selling</h2>
       <div class="card">
@@ -832,9 +873,9 @@
         <tr><td>Warm outbound</td><td>Share selected pages or excerpts.</td><td>Shows thought quality and positioning strength.</td></tr>
         <tr><td>Website companion</td><td>Use alongside the landing page.</td><td>The page creates interest. The PDF builds conviction.</td></tr>
       </table>
-    </div><div class="footer"><span>Applied Leverage</span><span>29</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>29</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">29 · What buyers are really buying</p>
       <h2>The deeper transformation</h2>
       <div class="card">
@@ -845,9 +886,9 @@
         <h3>That is why the offer is persuasive</h3>
         <p>Because it sells a practical version of freedom. Not fake beach-freedom. Operational freedom. Enough structure that the business becomes lighter, stronger, and more scalable.</p>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>30</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>30</span></div>
 
-    <section class="page"><div class="page-inner">
+    <div class="section-block">
       <p class="eyebrow">30 · Final argument</p>
       <h2>This is a serious offer for serious operators</h2>
       <div class="card">
@@ -867,6 +908,6 @@
           <p>Target. Reps. Machine. Council.</p>
         </div>
       </div>
-    </div><div class="footer"><span>Applied Leverage</span><span>31</span></div></section>
+    </div><div class="footer"><span>Applied Leverage</span><span>31</span></div>
   </body>
 </html>
