@@ -2,13 +2,18 @@
 
 import React, { useState, type FormEvent, type ReactNode } from "react";
 
-type EmbeddedFormVariant = "diagnostic" | "sprint";
+import {
+  submitEmbeddedForm,
+  type EmbeddedFormVariant
+} from "@/lib/intake-submissions";
 
 type FormShellProps = {
+  variant: EmbeddedFormVariant;
   eyebrow: string;
   title: string;
   description: string;
   actionLabel: string;
+  note: string;
   successMessage: string;
   children: ReactNode;
 };
@@ -33,52 +38,83 @@ function FormShell({
   title,
   description,
   actionLabel,
+  note,
   successMessage,
+  variant,
   children
 }: FormShellProps) {
-  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    tone: "error" | "success";
+    message: string;
+  } | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
 
     if (!form.reportValidity()) {
-      setStatusMessage(null);
+      setStatus(null);
       return;
     }
 
-    setStatusMessage(successMessage);
-    form.reset();
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      await submitEmbeddedForm(variant, new FormData(form));
+      setStatus({
+        tone: "success",
+        message: successMessage
+      });
+      form.reset();
+    } catch (error) {
+      setStatus({
+        tone: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Couldn't send your form right now. Email lucas@appliedleverage.io if it keeps failing."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form
       className="lead-form"
+      noValidate
       onInput={() => {
-        if (statusMessage) {
-          setStatusMessage(null);
+        if (status) {
+          setStatus(null);
         }
       }}
-      onSubmit={handleSubmit}
+      onSubmit={(event) => {
+        void handleSubmit(event);
+      }}
     >
       <div className="form-intro">
         <p className="eyebrow">{eyebrow}</p>
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
+      <input autoComplete="off" name="_honey" tabIndex={-1} type="text" hidden />
       <div className="form-grid">{children}</div>
       <div className="form-actions">
-        <button className="button button-primary" type="submit">
-          {actionLabel}
+        <button className="button button-primary" disabled={isSubmitting} type="submit">
+          {isSubmitting ? "Sending..." : actionLabel}
         </button>
-        <p className="form-note">
-          Launch placeholder. Submit keeps browser validation intact and shows a
-          local confirmation until the live intake backend is wired.
-        </p>
-        {statusMessage ? (
-          <p aria-live="polite" className="form-status" role="status">
-            {statusMessage}
+        <p className="form-note">{note}</p>
+        {status ? (
+          <p
+            aria-live="polite"
+            className="form-status"
+            data-tone={status.tone}
+            role="status"
+          >
+            {status.message}
           </p>
         ) : null}
       </div>
@@ -102,10 +138,12 @@ function DiagnosticForm() {
   return (
     <FormShell
       actionLabel="Submit Diagnostic Application"
-      description="This placeholder captures the core intake fields needed to qualify a diagnostic call."
+      description="Answer a few questions so Lucas can review the business before the diagnostic call."
       eyebrow="Diagnostic intake"
-      successMessage="Diagnostic application captured locally. Wire this form to your intake backend before launch."
+      note="Submissions go straight to Lucas's intake inbox and get reviewed before the session."
+      successMessage="Application received. Lucas will review your diagnostic intake and reply at the email you submitted."
       title="Apply for the Agent OS Diagnostic"
+      variant="diagnostic"
     >
       <Field id="diagnostic-name" label="Name" required>
         <input
@@ -168,10 +206,12 @@ function SprintForm() {
   return (
     <FormShell
       actionLabel="Join the Sprint Waitlist"
-      description="This placeholder waitlist form keeps the soft launch credible while the intake backend stays lightweight."
+      description="Share the build context and Lucas will review whether the sprint is the right next step."
       eyebrow="Sprint waitlist"
-      successMessage="Sprint waitlist request captured locally. Connect this form to your waitlist workflow before launch."
+      note="Waitlist requests route into the same intake inbox, with replies sent directly by email."
+      successMessage="Waitlist request received. Lucas will review your sprint fit and follow up by email."
       title="Request an invite to the first sprint cohort"
+      variant="sprint"
     >
       <Field id="sprint-name" label="Name" required>
         <input
