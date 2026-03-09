@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { getNavigationPages } from "@/lib/site-content";
 
@@ -31,7 +31,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="header-actions">
-          <a className="button button-ghost header-cta" href="mailto:apply@appliedleverage.io">
+          <a className="button button-ghost header-cta" href="mailto:lucas@appliedleverage.io">
             Email Lucas
           </a>
           <Link className="button button-primary header-cta" href="/apply">
@@ -65,7 +65,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <p className="footer-label">Company</p>
             <Link href="/why">The Problem</Link>
             <Link href="/about">About Lucas</Link>
-            <a href="mailto:apply@appliedleverage.io">apply@appliedleverage.io</a>
+            <a href="mailto:lucas@appliedleverage.io">lucas@appliedleverage.io</a>
           </div>
         </div>
       </footer>

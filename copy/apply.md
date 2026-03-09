@@ -85,7 +85,7 @@ No commitment at this stage. You'll be contacted when a cohort spot opens — be
 
 ## QUESTIONS
 
-Not sure which path is right? Email [apply@appliedleverage.io](mailto:apply@appliedleverage.io) with a one-paragraph description of where you're stuck. I'll reply with a direct recommendation.
+Not sure which path is right? Email [lucas@appliedleverage.io](mailto:lucas@appliedleverage.io) with a one-paragraph description of where you're stuck. I'll reply with a direct recommendation.
 
 ---
 

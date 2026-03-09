@@ -75,7 +75,7 @@ Not beginners. Not people who need to find their first client. People who've bui
 
 ## CONNECT
 
-Questions about the Diagnostic or Sprint: [apply@appliedleverage.io](mailto:apply@appliedleverage.io)
+Questions about the Diagnostic or Sprint: [lucas@appliedleverage.io](mailto:lucas@appliedleverage.io)
 
 Everything else: use the [apply page](/apply).
 

@@ -67,7 +67,7 @@ export const pageDefinitions = {
     path: "/apply",
     navLabel: "Apply",
     eyebrow: "Start here",
-    summary: "Choose the right entry point, submit a launch-ready placeholder form, and move into review.",
+    summary: "Choose the right entry point, submit your intake, and move into review.",
     highlights: [
       "Diagnostic applications reviewed in 1 business day",
       "Sprint waitlist for early cohort access",
