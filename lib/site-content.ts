@@ -161,14 +161,21 @@ export function loadPageContent(slug: PageSlug): SitePage {
   const rawMarkdown = readCopyMarkdown(slug);
   const { pageTitle, sections } = parseCopySections(rawMarkdown);
   const heroSection = sections.find(
-    (section) => section.heading.toLowerCase() === "hero"
+    (section) => {
+      const heading = section.heading.toLowerCase();
+      return heading === "hero" || heading === "headline";
+    }
   );
+  const hero =
+    heroSection?.heading.toLowerCase() === "headline"
+      ? parseHeadlineHero(heroSection.body, definition.summary)
+      : parseHeroSection(heroSection?.body ?? "", definition.summary);
 
   return {
     slug,
     definition,
     pageTitle: pageTitle ?? "Applied Leverage",
-    hero: parseHeroSection(heroSection?.body ?? "", definition.summary),
+    hero,
     sections: sections.filter((section) => section !== heroSection)
   };
 }
@@ -279,6 +286,18 @@ function parseHeroSection(body: string, fallbackSummary: string): PageHero {
     cta: extractFirstMarkdownLink(
       [...(groups["primary cta"] ?? []), ...(groups.cta ?? [])].join("\n")
     )
+  };
+}
+
+function parseHeadlineHero(body: string, fallbackSummary: string): PageHero {
+  return {
+    headline:
+      stripInlineMarkdown(cleanQuoted(body.split("\n")).join(" ").trim()) ||
+      fallbackSummary,
+    subheadline: "",
+    body: "",
+    badge: undefined,
+    cta: undefined
   };
 }
 

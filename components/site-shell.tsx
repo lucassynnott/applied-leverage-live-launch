@@ -9,15 +9,20 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <Link className="brand" href="/">
-          <span aria-hidden="true" className="brand-mark">
-            AL
-          </span>
-          <span className="brand-copy">
-            <strong>Applied Leverage</strong>
-            <span>Operator systems for real businesses</span>
-          </span>
-        </Link>
+        <div className="header-topline">
+          <Link className="brand" href="/">
+            <span aria-hidden="true" className="brand-mark">
+              AL
+            </span>
+            <span className="brand-copy">
+              <strong>Applied Leverage</strong>
+              <span>Operator systems for real businesses</span>
+            </span>
+          </Link>
+          <p className="header-context">
+            Dublin-based operator systems studio for founder-led service businesses
+          </p>
+        </div>
         <nav aria-label="Primary" className="site-nav">
           {pages.map((page) => (
             <Link className="nav-link" href={page.path} key={page.slug}>
@@ -25,9 +30,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
           ))}
         </nav>
-        <Link className="button button-ghost header-cta" href="/apply">
-          Apply
-        </Link>
+        <div className="header-actions">
+          <a className="button button-ghost header-cta" href="mailto:apply@appliedleverage.io">
+            Email Lucas
+          </a>
+          <Link className="button button-primary header-cta" href="/apply">
+            Apply
+          </Link>
+        </div>
       </header>
 
       {children}
@@ -39,12 +49,24 @@ export function SiteShell({ children }: { children: ReactNode }) {
             Clarity first. Build second. Replace the bottleneck instead of
             decorating it.
           </p>
+          <p className="footer-note">
+            Diagnostic for the map. Sprint for the build. Same leverage logic,
+            different entry point.
+          </p>
         </div>
-        <div className="footer-links">
-          <Link href="/diagnostic">Diagnostic</Link>
-          <Link href="/sprint">Sprint</Link>
-          <Link href="/about">About Lucas</Link>
-          <a href="mailto:apply@appliedleverage.io">apply@appliedleverage.io</a>
+        <div className="footer-columns">
+          <div className="footer-links">
+            <p className="footer-label">Paths</p>
+            <Link href="/diagnostic">Diagnostic</Link>
+            <Link href="/sprint">Sprint</Link>
+            <Link href="/apply">Apply</Link>
+          </div>
+          <div className="footer-links">
+            <p className="footer-label">Company</p>
+            <Link href="/why">The Problem</Link>
+            <Link href="/about">About Lucas</Link>
+            <a href="mailto:apply@appliedleverage.io">apply@appliedleverage.io</a>
+          </div>
         </div>
       </footer>
     </div>

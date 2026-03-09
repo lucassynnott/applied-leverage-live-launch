@@ -18,4 +18,13 @@ describe("loadPageContent", () => {
     expect(page.hero.headline).toContain("90 minutes");
     expect(page.sections.some((section) => section.id === "apply")).toBe(true);
   });
+
+  it("uses headline sections as the about page hero", () => {
+    const page = loadPageContent("about");
+
+    expect(page.hero.headline).toContain("replace yourself");
+    expect(page.sections.some((section) => section.heading === "HEADLINE")).toBe(
+      false
+    );
+  });
 });
