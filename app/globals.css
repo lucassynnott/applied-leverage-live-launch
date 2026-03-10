@@ -1062,6 +1062,10 @@ a {
   gap: 1.5rem;
 }
 
+.bottom-cta h2 {
+  margin-bottom: 0.75rem;
+}
+
 .cta-copy {
   display: grid;
   gap: 1rem;
