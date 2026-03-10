@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d0e"
+  themeColor: "#0a0a0a"
 };
 
 export default function RootLayout({
@@ -52,8 +52,6 @@ export default function RootLayout({
       lang="en"
     >
       <body>
-        <div aria-hidden="true" className="page-glow page-glow-left" />
-        <div aria-hidden="true" className="page-glow page-glow-right" />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

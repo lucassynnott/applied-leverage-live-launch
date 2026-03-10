@@ -59,7 +59,6 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
         }}
         type="button"
       >
-        <span className="mobile-nav__toggle-label">Menu</span>
         <span aria-hidden="true" className="mobile-nav__toggle-icon">
           <span />
           <span />

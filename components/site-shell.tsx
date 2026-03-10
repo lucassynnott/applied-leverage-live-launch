@@ -16,17 +16,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="header-topline">
           <Link className="brand" href="/">
-            <span aria-hidden="true" className="brand-mark">
-              AL
-            </span>
             <span className="brand-copy">
               <strong>Applied Leverage</strong>
-              <span>Operator systems for real businesses</span>
             </span>
           </Link>
-          <p className="header-context">
-            Dublin-based operator systems studio for founder-led service businesses
-          </p>
           <MobileNav pages={pages} />
         </div>
         <nav aria-label="Primary" className="site-nav site-nav--desktop">
@@ -52,8 +45,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="footer-copy">
           <p className="eyebrow">Applied Leverage</p>
           <p className="footer-title">
-            Clarity first. Build second. Replace the bottleneck instead of
-            decorating it.
+            Operator systems that replace the bottleneck.
           </p>
           <p className="footer-note">
             Diagnostic for the map. Sprint for the build. Same leverage logic,
@@ -73,7 +65,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link href="/about">About Lucas</Link>
             <a href="mailto:lucas@appliedleverage.io">lucas@appliedleverage.io</a>
           </div>
+          <div className="footer-links">
+            <p className="footer-label">Connect</p>
+            <a href="https://x.com/lucassynnott" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+            <a href="https://www.linkedin.com/in/lucas-synnott/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://appliedleverage.io" target="_blank" rel="noopener noreferrer">Newsletter</a>
+          </div>
         </div>
+        <p className="footer-copyright">&copy; {new Date().getFullYear()} Applied Leverage. All rights reserved.</p>
       </footer>
     </div>
   );

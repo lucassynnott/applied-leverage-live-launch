@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { type ReactNode } from "react";
 
@@ -129,6 +130,12 @@ const heroSteps: Record<PageSlug, string[]> = {
   about: ["Design", "Delegate", "Ship"],
   apply: ["Choose", "Apply", "Build"]
 };
+
+const proofAttributions = [
+  "Agency owner, Dublin",
+  "Consultant, London",
+  "Operator, New York"
+];
 
 const heroSignals: Partial<Record<PageSlug, string[]>> = {
   about: [
@@ -319,7 +326,7 @@ function renderHomePage(page: SitePage) {
             <article className="surface-card quote-card" key={quote}>
               <QuoteIcon className="quote-icon" />
               <p>{quote}</p>
-              <span>Signal {index + 1}</span>
+              <span>{proofAttributions[index] ?? `Signal ${index + 1}`}</span>
             </article>
           ))}
         </div>
@@ -664,6 +671,16 @@ function renderDiagnosticPage(page: SitePage) {
             <RichMarkdown className="markdown" source={aboutLucas.body} />
           </article>
           <div className="card-stack">
+            <div className="about-portrait">
+              <Image
+                src="/images/lucas-synnott.png"
+                alt="Lucas Synnott"
+                width={400}
+                height={400}
+                className="about-portrait__img"
+                priority={false}
+              />
+            </div>
             <StatCard label="Operating model" value="AI council in production" />
             <IconCard
               body="The same audit logic used on Applied Leverage is the logic used on the client business."
@@ -911,6 +928,16 @@ function renderAboutPage(page: SitePage) {
             <RichMarkdown className="markdown" source={story.body} />
           </article>
           <div className="card-stack">
+            <div className="about-portrait">
+              <Image
+                src="/images/lucas-synnott.png"
+                alt="Lucas Synnott"
+                width={400}
+                height={400}
+                className="about-portrait__img"
+                priority={false}
+              />
+            </div>
             <StatCard label="Operating principle" value="Judgment stays human" />
             <IconCard
               body="Repeatable work gets redesigned so Lucas only stays inside the decisions that actually require him."
