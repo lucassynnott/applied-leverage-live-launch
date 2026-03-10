@@ -837,7 +837,7 @@ function renderAboutPage(page: SitePage) {
       </section>
 
       {/* Connect — clean CTA */}
-      <section className="page-band page-band--cta" id={connect.id}>
+      <section className="page-band" id={connect.id}>
         <div className="page-band__header">
           <p className="eyebrow">{connect.heading}</p>
           <h2>Where to go from here.</h2>
