@@ -1,10 +1,15 @@
 import Link from "next/link";
 import React, { type ReactNode } from "react";
 
+import { MobileNav } from "@/components/mobile-nav";
 import { getNavigationPages } from "@/lib/site-content";
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const pages = getNavigationPages();
+  const pages = getNavigationPages().map(({ navLabel, path, slug }) => ({
+    navLabel,
+    path,
+    slug
+  }));
 
   return (
     <div className="site-shell">
@@ -22,15 +27,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <p className="header-context">
             Dublin-based operator systems studio for founder-led service businesses
           </p>
+          <MobileNav pages={pages} />
         </div>
-        <nav aria-label="Primary" className="site-nav">
+        <nav aria-label="Primary" className="site-nav site-nav--desktop">
           {pages.map((page) => (
             <Link className="nav-link" href={page.path} key={page.slug}>
               {page.navLabel}
             </Link>
           ))}
         </nav>
-        <div className="header-actions">
+        <div className="header-actions header-actions--desktop">
           <a className="button button-ghost header-cta" href="mailto:lucas@appliedleverage.io">
             Email Lucas
           </a>

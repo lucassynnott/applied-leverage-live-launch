@@ -285,8 +285,8 @@ function renderHomePage(page: SitePage) {
           <p className="eyebrow">{solution.heading}</p>
           <h2>One offer, two clear steps, and a stronger operating rhythm.</h2>
           <p className="section-intro">
-            The site now starts with a real website structure: benefits up front,
-            proof in the middle, and a clear path into the offer.
+            One offer. Two clear steps. A business that runs without you in the
+            middle of everything.
           </p>
         </div>
         <div className="card-grid card-grid--three">
@@ -312,7 +312,7 @@ function renderHomePage(page: SitePage) {
       <section className="page-band page-band--tight" id={proof.id}>
         <div className="page-band__header">
           <p className="eyebrow">{proof.heading}</p>
-          <h2>Social proof now reads like a strip, not a footnote.</h2>
+          <h2>What operators say after the diagnostic.</h2>
         </div>
         <div className="quote-strip">
           {extractQuotes(proof.body).map((quote, index) => (
@@ -328,7 +328,7 @@ function renderHomePage(page: SitePage) {
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
-          <h2>The site now gives the bottleneck a shape prospects can recognize.</h2>
+          <h2>{"Most operators aren't stuck on revenue. They're stuck on drag."}</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -350,7 +350,7 @@ function renderHomePage(page: SitePage) {
       <section className="page-band page-band--contrast" id={fit.id}>
         <div className="page-band__header">
           <p className="eyebrow">{fit.heading}</p>
-          <h2>Fit is framed as a clear operator profile, not generic audience copy.</h2>
+          <h2>This is built for operators who are already making money.</h2>
         </div>
         <div className="check-grid">
           {fitList.map((item, index) => (
@@ -403,7 +403,7 @@ function renderWhyPage(page: SitePage) {
       <section className="page-band" id={coreProblem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{coreProblem.heading}</p>
-          <h2>The main argument leads with architecture, not tool hype.</h2>
+          <h2>Your workflow is the bottleneck. Not your tools.</h2>
         </div>
         <div className="split-layout split-layout--wide">
           <article className="surface-card narrative-card">
@@ -428,7 +428,7 @@ function renderWhyPage(page: SitePage) {
       <section className="page-band page-band--contrast" id={reasons.id}>
         <div className="page-band__header">
           <p className="eyebrow">{reasons.heading}</p>
-          <h2>Each failure mode is now framed as a card prospects can scan fast.</h2>
+          <h2>{"Why AI tools haven't worked and what's actually going wrong."}</h2>
         </div>
         {reasonCards.intro ? (
           <article className="surface-card narrative-card">
@@ -449,7 +449,7 @@ function renderWhyPage(page: SitePage) {
       <section className="page-band" id={whatWorks.id}>
         <div className="page-band__header">
           <p className="eyebrow">{whatWorks.heading}</p>
-          <h2>The solution is presented as a sequence: map first, build second.</h2>
+          <h2>Map the leverage first. Build in the right order.</h2>
         </div>
         <div className="split-layout split-layout--flip">
           <article className="surface-card narrative-card">
@@ -474,7 +474,7 @@ function renderWhyPage(page: SitePage) {
       <section className="page-band page-band--accent" id={approach.id}>
         <div className="page-band__header">
           <p className="eyebrow">{approach.heading}</p>
-          <h2>Diagnostic and sprint are shown as one path with two entry points.</h2>
+          <h2>One path. Two clear entry points.</h2>
         </div>
         <div className="card-grid card-grid--two">
           <article className="surface-card">
@@ -502,7 +502,7 @@ function renderWhyPage(page: SitePage) {
       <section className="page-band" id={cost.id}>
         <div className="page-band__header">
           <p className="eyebrow">{cost.heading}</p>
-          <h2>The cost of waiting now lands as an economic argument.</h2>
+          <h2>Every month without leverage is another month of trading time for output.</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -557,7 +557,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
-          <h2>Start with the real drag, then show exactly what the session removes.</h2>
+          <h2>{"The problem isn't hustle. It's not knowing what to automate first."}</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -582,7 +582,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band page-band--accent" id={whatYouGet.id}>
         <div className="page-band__header">
           <p className="eyebrow">{whatYouGet.heading}</p>
-          <h2>The offer now shows the deliverable as a product, not just copy.</h2>
+          <h2>What you leave the call with.</h2>
         </div>
         <article className="surface-card narrative-card">
           <RichMarkdown className="markdown" source={whatYouGet.body} />
@@ -602,7 +602,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={format.id}>
         <div className="page-band__header">
           <p className="eyebrow">{format.heading}</p>
-          <h2>The call flow is laid out as a timeline with clear expectations.</h2>
+          <h2>Ninety minutes. A map in your inbox within four hours.</h2>
         </div>
         <div className="timeline-grid">
           {formatSteps.map((step, index) => (
@@ -618,7 +618,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band page-band--contrast" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
-          <h2>Good-fit and bad-fit signals now sit side by side.</h2>
+          <h2>Is this the right move for you?</h2>
         </div>
         <div className="card-grid card-grid--two">
           <ChecklistPanel
@@ -637,7 +637,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Offer detail</p>
-          <h2>Pricing, credit, and next-step logic are grouped into one decision block.</h2>
+          <h2>$297 founding price, fully credited into the sprint if you continue.</h2>
         </div>
         <div className="card-grid card-grid--two">
           <article className="surface-card">
@@ -657,7 +657,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band page-band--accent" id={aboutLucas.id}>
         <div className="page-band__header">
           <p className="eyebrow">{aboutLucas.heading}</p>
-          <h2>The founder credibility section now reads like proof, not a sidebar.</h2>
+          <h2>Built by an operator who ran the same audit on his own business.</h2>
         </div>
         <div className="split-layout split-layout--flip">
           <article className="surface-card narrative-card">
@@ -677,7 +677,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={faq.id}>
         <div className="page-band__header">
           <p className="eyebrow">{faq.heading}</p>
-          <h2>Questions are broken into cards so objections can be scanned fast.</h2>
+          <h2>Common questions.</h2>
         </div>
         <div className="faq-grid">
           {faqItems.map((item) => (
@@ -697,7 +697,7 @@ function renderDiagnosticPage(page: SitePage) {
         ]}
         page={page}
         section={apply}
-        title="Application section with trust signals and the form in context."
+        title="Apply for your diagnostic."
       />
     </main>
   );
@@ -729,7 +729,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
-          <h2>The page makes the execution bottleneck explicit before selling the sprint.</h2>
+          <h2>{"You know what to build. You're not building it."}</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -749,7 +749,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band page-band--accent" id={sprintIs.id}>
         <div className="page-band__header">
           <p className="eyebrow">{sprintIs.heading}</p>
-          <h2>The core promise is framed around a live stack, not theory.</h2>
+          <h2>Four weeks. Three automations. Your business runs differently on the other side.</h2>
         </div>
         <div className="card-grid card-grid--two">
           <article className="surface-card">
@@ -776,7 +776,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={structure.id}>
         <div className="page-band__header">
           <p className="eyebrow">{structure.heading}</p>
-          <h2>The weekly structure is now a true timeline instead of one long markdown block.</h2>
+          <h2>The four-week build.</h2>
         </div>
         {structureCards.intro ? (
           <article className="surface-card narrative-card">
@@ -797,7 +797,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band page-band--contrast" id={included.id}>
         <div className="page-band__header">
           <p className="eyebrow">{included.heading}</p>
-          <h2>Included items are laid out as deliverable cards, not buried in bullets.</h2>
+          <h2>{"What's included in every sprint."}</h2>
         </div>
         <div className="card-grid card-grid--three">
           {includedItems.map((item, index) => (
@@ -814,7 +814,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
-          <h2>The right-fit signal is paired against the reasons to start with the diagnostic.</h2>
+          <h2>Is the sprint the right starting point?</h2>
         </div>
         <div className="card-grid card-grid--two">
           <ChecklistPanel
@@ -833,7 +833,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band page-band--accent" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Decision block</p>
-          <h2>Pricing, launch status, and what comes next are grouped into one panel.</h2>
+          <h2>$3,500 flat. First soft-launch cohort only.</h2>
         </div>
         <div className="card-grid card-grid--three">
           <article className="surface-card">
@@ -860,7 +860,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={faq.id}>
         <div className="page-band__header">
           <p className="eyebrow">{faq.heading}</p>
-          <h2>Common objections are framed as execution questions, not generic FAQ filler.</h2>
+          <h2>Common questions.</h2>
         </div>
         <div className="faq-grid">
           {faqItems.map((item) => (
@@ -880,7 +880,7 @@ function renderSprintPage(page: SitePage) {
         ]}
         page={page}
         section={waitlist}
-        title="Waitlist form paired with cohort and launch-trust signals."
+        title="Join the sprint waitlist."
       />
     </main>
   );
@@ -904,7 +904,7 @@ function renderAboutPage(page: SitePage) {
       <section className="page-band" id={story.id}>
         <div className="page-band__header">
           <p className="eyebrow">{story.heading}</p>
-          <h2>The founder story has a real narrative arc and delivery context.</h2>
+          <h2>Lucas built this on himself first.</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -924,7 +924,7 @@ function renderAboutPage(page: SitePage) {
       <section className="page-band page-band--accent" id={council.id}>
         <div className="page-band__header">
           <p className="eyebrow">{council.heading}</p>
-          <h2>The council now appears as a proper capability grid with role clarity.</h2>
+          <h2>The AI council running the operation.</h2>
         </div>
         <article className="surface-card narrative-card">
           <RichMarkdown className="markdown" source={council.body} />
@@ -944,7 +944,7 @@ function renderAboutPage(page: SitePage) {
       <section className="page-band" id={product.id}>
         <div className="page-band__header">
           <p className="eyebrow">{product.heading}</p>
-          <h2>The product rationale is tied back to the operator problem the site solves.</h2>
+          <h2>Why this became a product.</h2>
         </div>
         <div className="split-layout split-layout--flip">
           <article className="surface-card narrative-card">
@@ -964,7 +964,7 @@ function renderAboutPage(page: SitePage) {
       <section className="page-band page-band--contrast" id={who.id}>
         <div className="page-band__header">
           <p className="eyebrow">{who.heading}</p>
-          <h2>The ideal client profile is framed with more conviction and less generic copy.</h2>
+          <h2>Who I build for.</h2>
         </div>
         <div className="check-grid">
           {splitParagraphs(who.body).map((item, index) => (
@@ -981,7 +981,7 @@ function renderAboutPage(page: SitePage) {
       <section className="page-band" id={connect.id}>
         <div className="page-band__header">
           <p className="eyebrow">{connect.heading}</p>
-          <h2>Contact and next-step routes are positioned as the final trust block.</h2>
+          <h2>Where to go from here.</h2>
         </div>
         <div className="card-grid card-grid--two">
           <article className="surface-card">
@@ -1026,7 +1026,7 @@ function renderApplyPage(page: SitePage) {
       <section className="page-band page-band--accent" id={paths.id}>
         <div className="page-band__header">
           <p className="eyebrow">{paths.heading}</p>
-          <h2>Two clear paths, each framed by the problem it solves.</h2>
+          <h2>Two paths. One right starting point for you.</h2>
         </div>
         <div className="card-grid card-grid--two">
           {pathCards.items.map((item, index) => (
@@ -1042,7 +1042,7 @@ function renderApplyPage(page: SitePage) {
       <section className="page-band" id={notSure.id}>
         <div className="page-band__header">
           <p className="eyebrow">{notSure.heading}</p>
-          <h2>The page now recommends a default path instead of forcing a guess.</h2>
+          <h2>Not sure which one fits?</h2>
         </div>
         <div className="split-layout">
           <article className="surface-card narrative-card">
@@ -1067,7 +1067,7 @@ function renderApplyPage(page: SitePage) {
         ]}
         page={page}
         section={diagnosticForm}
-        title="Diagnostic application with trust signals next to the form."
+        title="Apply for the diagnostic."
       />
 
       <FormSection
@@ -1078,7 +1078,7 @@ function renderApplyPage(page: SitePage) {
         ]}
         page={page}
         section={sprintForm}
-        title="Sprint waitlist with clearer expectations and commitment framing."
+        title="Join the sprint waitlist."
       />
 
       <PromoPanel
@@ -1132,8 +1132,8 @@ function HomeHero({ page }: { page: SitePage }) {
           {page.hero.badge ?? "Installed leverage"}
         </p>
         <p className="hero-kicker">
-          The offer now opens as a command board: problem shape, build order, and
-          the first measurable wins all visible before the first scroll.
+          Map your leverage. Sequence the build. Ship automations that free up
+          your calendar, not just your task list.
         </p>
         <div className="hero-feature-grid">
           {homeHeroCards.map((item) => (
