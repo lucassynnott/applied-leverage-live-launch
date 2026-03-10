@@ -6,6 +6,10 @@ import { EmbeddedForm } from "@/components/forms";
 import { RichMarkdown } from "@/components/rich-markdown";
 import type { PageSection, PageSlug, SitePage } from "@/lib/site-content";
 
+/* ─────────────────────────────────────────────
+   Types
+   ───────────────────────────────────────────── */
+
 type ActionLink = {
   label: string;
   href: string;
@@ -34,6 +38,10 @@ type HeroFeature = {
   label?: string;
   title: string;
 };
+
+/* ─────────────────────────────────────────────
+   Data constants
+   ───────────────────────────────────────────── */
 
 const primaryActions: Record<PageSlug, ActionLink> = {
   home: {
@@ -247,6 +255,39 @@ const applyPathCards: HeroFeature[] = [
   }
 ];
 
+const homeFitTitles = [
+  "Revenue is already real",
+  "The founder is still the bottleneck",
+  "AI traction is missing",
+  "More tools are not the goal",
+  "Leverage is the target"
+];
+
+const diagnosticDeliverableTitles = [
+  "Offer and delivery audit",
+  "Founder bottleneck map",
+  "Current stack review",
+  "Top three automation moves"
+];
+
+const sprintIncludeTitles = [
+  "Weekly build sessions",
+  "Async review between calls",
+  "Direct operator access",
+  "Automation documentation",
+  "30-day check-in"
+];
+
+const aboutFitTitles = [
+  "Agency operators",
+  "Consultants with real workload",
+  "Businesses with genuine drag"
+];
+
+/* ─────────────────────────────────────────────
+   Main export
+   ───────────────────────────────────────────── */
+
 export function MarketingPage({ page }: { page: SitePage }) {
   switch (page.slug) {
     case "home":
@@ -266,6 +307,10 @@ export function MarketingPage({ page }: { page: SitePage }) {
   }
 }
 
+/* ─────────────────────────────────────────────
+   HOME PAGE
+   ───────────────────────────────────────────── */
+
 function renderHomePage(page: SitePage) {
   const proof = getSectionByHeading(page.sections, "PROOF BAR");
   const problem = getSectionByHeading(page.sections, "THE PROBLEM");
@@ -281,32 +326,39 @@ function renderHomePage(page: SitePage) {
     <main className="marketing-page marketing-page--home">
       <PageHero page={page} />
 
+      {/* Social Proof — editorial pull-quotes */}
       <section className="page-band" id={proof.id}>
         <div className="page-band__header">
           <p className="eyebrow">What operators say</p>
-          <h2>After the diagnostic.</h2>
         </div>
         <div className="quote-strip">
           {quotes.map((quote) => (
             <article className="quote-card" key={quote.text}>
-              <p>{quote.text}</p>
-              <span>{quote.attribution}</span>
+              <QuoteIcon className="quote-icon" />
+              <blockquote>
+                <p>{quote.text}</p>
+              </blockquote>
+              {quote.attribution ? (
+                <cite>{quote.attribution}</cite>
+              ) : null}
             </article>
           ))}
         </div>
       </section>
 
+      {/* The Problem — full-width editorial narrative */}
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
           <h2>{"You don't have a tool problem. You have a prioritization problem."}</h2>
         </div>
-        <article className="surface-card narrative-card">
+        <article className="narrative-card">
           <RichMarkdown className="markdown" source={problem.body} />
         </article>
       </section>
 
-      <section className="page-band page-band--accent" id={solution.id}>
+      {/* The Solution — two-step editorial cards */}
+      <section className="page-band" id={solution.id}>
         <div className="page-band__header">
           <p className="eyebrow">{solution.heading}</p>
           <h2>Clarity first. Then build.</h2>
@@ -322,6 +374,7 @@ function renderHomePage(page: SitePage) {
         </div>
       </section>
 
+      {/* Who This Is For — check cards */}
       <section className="page-band" id={fit.id}>
         <div className="page-band__header">
           <p className="eyebrow">{fit.heading}</p>
@@ -339,6 +392,7 @@ function renderHomePage(page: SitePage) {
         </div>
       </section>
 
+      {/* CTA */}
       <PromoPanel
         body={ctaCopy.body || cta.body}
         eyebrow="Founding cohort"
@@ -354,6 +408,10 @@ function renderHomePage(page: SitePage) {
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   WHY PAGE
+   ───────────────────────────────────────────── */
 
 function renderWhyPage(page: SitePage) {
   const coreProblem = getSectionByHeading(page.sections, "THE CORE PROBLEM");
@@ -375,40 +433,37 @@ function renderWhyPage(page: SitePage) {
     <main className="marketing-page marketing-page--why">
       <PageHero page={page} />
 
+      {/* Core Problem — full-width narrative with a stat sidebar */}
       <section className="page-band" id={coreProblem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{coreProblem.heading}</p>
           <h2>Your workflow is the bottleneck. Not your tools.</h2>
         </div>
         <div className="split-layout split-layout--wide">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={coreProblem.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <StatCard label="Map before software" value="Order matters" />
             <IconCard
               body="Busywork is visible, but the expensive bottlenecks are usually hidden in delivery, handoffs, and approvals."
               icon={CompassIcon}
               title="Visible work is not the constraint"
             />
-            <IconCard
-              body="Adding AI to a broken workflow compounds the chaos instead of removing it."
-              icon={SignalIcon}
-              title="Tools amplify architecture"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section className="page-band page-band--contrast" id={reasons.id}>
+      {/* Why AI Tools Haven't Delivered — numbered reason cards */}
+      <section className="page-band" id={reasons.id}>
         <div className="page-band__header">
           <p className="eyebrow">{reasons.heading}</p>
           <h2>{"Why AI tools haven't worked and what's actually going wrong."}</h2>
         </div>
         {reasonCards.intro ? (
-          <article className="surface-card narrative-card">
+          <div className="section-intro">
             <RichMarkdown className="markdown" source={reasonCards.intro} />
-          </article>
+          </div>
         ) : null}
         <div className="card-grid card-grid--two">
           {reasonCards.items.map((item, index) => (
@@ -421,17 +476,17 @@ function renderWhyPage(page: SitePage) {
         </div>
       </section>
 
+      {/* What Actually Works — split layout with supporting cards */}
       <section className="page-band" id={whatWorks.id}>
         <div className="page-band__header">
           <p className="eyebrow">{whatWorks.heading}</p>
           <h2>Map the leverage first. Build in the right order.</h2>
         </div>
         <div className="split-layout split-layout--flip">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={whatWorks.body} />
           </article>
-          <div className="card-stack">
-            <StatCard label="Shared pattern" value="Map, then order the build" />
+          <aside className="card-stack">
             <IconCard
               body="High-value leverage is not always obvious from inside the operation."
               icon={WorkflowIcon}
@@ -442,58 +497,38 @@ function renderWhyPage(page: SitePage) {
               icon={ArrowUpIcon}
               title="Speed follows clarity"
             />
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section className="page-band page-band--accent" id={approach.id}>
+      {/* The Applied Leverage Approach — editorial narrative */}
+      <section className="page-band" id={approach.id}>
         <div className="page-band__header">
           <p className="eyebrow">{approach.heading}</p>
           <h2>One path. Two clear entry points.</h2>
         </div>
-        <div className="card-grid card-grid--two">
-          <article className="surface-card">
-            <h3>Clarity first</h3>
-            <RichMarkdown className="markdown card-markdown" source={approach.body} />
-          </article>
-          <article className="surface-card">
-            <h3>Then build the stack</h3>
-            <div className="card-grid">
-              <IconCard
-                body="Use the diagnostic when the highest-leverage move is still unclear."
-                icon={CompassIcon}
-                title="Diagnostic"
-              />
-              <IconCard
-                body="Use the sprint when the map is clear and execution is the bottleneck."
-                icon={BuildIcon}
-                title="Sprint"
-              />
-            </div>
-          </article>
-        </div>
+        <article className="narrative-card">
+          <RichMarkdown className="markdown" source={approach.body} />
+        </article>
       </section>
 
+      {/* The Cost of Waiting — narrative with a supporting stat */}
       <section className="page-band" id={cost.id}>
         <div className="page-band__header">
           <p className="eyebrow">{cost.heading}</p>
           <h2>Every month without leverage is another month of trading time for output.</h2>
         </div>
         <div className="split-layout">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={cost.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <StatCard label="Low-end upside" value="5 hours a week" />
-            <IconCard
-              body="Without leverage, you keep buying growth with your own calendar."
-              icon={ClockIcon}
-              title="Time is the real tax"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
+      {/* CTA */}
       <PromoPanel
         body={ctaCopy.body || cta.body}
         eyebrow="Start with the map"
@@ -509,6 +544,10 @@ function renderWhyPage(page: SitePage) {
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   DIAGNOSTIC PAGE
+   ───────────────────────────────────────────── */
 
 function renderDiagnosticPage(page: SitePage) {
   const problem = getSectionByHeading(page.sections, "THE PROBLEM");
@@ -529,40 +568,24 @@ function renderDiagnosticPage(page: SitePage) {
     <main className="marketing-page marketing-page--diagnostic">
       <PageHero page={page} />
 
+      {/* The Problem */}
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
           <h2>{"The problem isn't hustle. It's not knowing what to automate first."}</h2>
         </div>
-        <div className="split-layout">
-          <article className="surface-card narrative-card">
-            <RichMarkdown className="markdown" source={problem.body} />
-          </article>
-          <div className="card-stack">
-            <StatCard label="Best fit" value="$5K-$30K / month" />
-            <IconCard
-              body="You do not need more AI ideas. You need the build order that frees time first."
-              icon={CompassIcon}
-              title="Prioritization over novelty"
-            />
-            <IconCard
-              body="The output is a ranked automation map you can act on immediately."
-              icon={WorkflowIcon}
-              title="Tangible deliverable"
-            />
-          </div>
-        </div>
+        <article className="narrative-card">
+          <RichMarkdown className="markdown" source={problem.body} />
+        </article>
       </section>
 
-      <section className="page-band page-band--accent" id={whatYouGet.id}>
+      {/* What You Get — deliverable check cards */}
+      <section className="page-band" id={whatYouGet.id}>
         <div className="page-band__header">
           <p className="eyebrow">{whatYouGet.heading}</p>
           <h2>What you leave the call with.</h2>
         </div>
-        <article className="surface-card narrative-card">
-          <RichMarkdown className="markdown" source={whatYouGet.body} />
-        </article>
-        <div className="card-grid card-grid--three">
+        <div className="card-grid card-grid--two">
           {deliverables.map((item, index) => (
             <IconCard
               body={item}
@@ -574,6 +597,7 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
+      {/* The Format — timeline steps */}
       <section className="page-band" id={format.id}>
         <div className="page-band__header">
           <p className="eyebrow">{format.heading}</p>
@@ -590,7 +614,8 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
-      <section className="page-band page-band--contrast" id={forSection.id}>
+      {/* For / Not For — two checklist panels */}
+      <section className="page-band" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
           <h2>Is this the right move for you?</h2>
@@ -609,6 +634,7 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
+      {/* What Happens After + Pricing — two clean cards */}
       <section className="page-band" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Offer detail</p>
@@ -629,16 +655,17 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
-      <section className="page-band page-band--accent" id={aboutLucas.id}>
+      {/* About Lucas — split layout with profile image */}
+      <section className="page-band" id={aboutLucas.id}>
         <div className="page-band__header">
           <p className="eyebrow">{aboutLucas.heading}</p>
           <h2>Built by an operator who ran the same audit on his own business.</h2>
         </div>
         <div className="split-layout split-layout--flip">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={aboutLucas.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <div className="about-portrait">
               <Image
                 src="/images/lucas-synnott.png"
@@ -646,19 +673,13 @@ function renderDiagnosticPage(page: SitePage) {
                 width={400}
                 height={400}
                 className="about-portrait__img"
-                priority={false}
               />
             </div>
-            <StatCard label="Operating model" value="AI council in production" />
-            <IconCard
-              body="The same audit logic used on Applied Leverage is the logic used on the client business."
-              icon={CouncilIcon}
-              title="Internal proof of concept"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
+      {/* FAQ */}
       <section className="page-band" id={faq.id}>
         <div className="page-band__header">
           <p className="eyebrow">{faq.heading}</p>
@@ -674,6 +695,7 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
+      {/* Apply form */}
       <FormSection
         notes={[
           "Every application is reviewed personally",
@@ -687,6 +709,10 @@ function renderDiagnosticPage(page: SitePage) {
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   SPRINT PAGE
+   ───────────────────────────────────────────── */
 
 function renderSprintPage(page: SitePage) {
   const problem = getSectionByHeading(page.sections, "THE PROBLEM THE SPRINT SOLVES");
@@ -711,62 +737,38 @@ function renderSprintPage(page: SitePage) {
     <main className="marketing-page marketing-page--sprint">
       <PageHero page={page} />
 
+      {/* The Problem the Sprint Solves */}
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
           <h2>{"You know what to build. You're not building it."}</h2>
         </div>
-        <div className="split-layout">
-          <article className="surface-card narrative-card">
-            <RichMarkdown className="markdown" source={problem.body} />
-          </article>
-          <div className="card-stack">
-            <StatCard label="Soft launch" value="3 clients per cohort" />
-            <IconCard
-              body="This is for operators who know what to build but keep getting blocked by scope, setup, or time."
-              icon={BuildIcon}
-              title="Execution, not discovery"
-            />
-          </div>
-        </div>
+        <article className="narrative-card">
+          <RichMarkdown className="markdown" source={problem.body} />
+        </article>
       </section>
 
-      <section className="page-band page-band--accent" id={sprintIs.id}>
+      {/* What the Sprint Is */}
+      <section className="page-band" id={sprintIs.id}>
         <div className="page-band__header">
           <p className="eyebrow">{sprintIs.heading}</p>
           <h2>Four weeks. Three automations. Your business runs differently on the other side.</h2>
         </div>
-        <div className="card-grid card-grid--two">
-          <article className="surface-card">
-            <RichMarkdown className="markdown" source={sprintIs.body} />
-          </article>
-          <article className="surface-card">
-            <h3>What changes in four weeks</h3>
-            <div className="card-grid">
-              <IconCard
-                body="One highest-leverage automation goes live first so momentum shows up immediately."
-                icon={ArrowUpIcon}
-                title="Week-one movement"
-              />
-              <IconCard
-                body="Every week ends with a real system in the stack, not another planning doc."
-                icon={WorkflowIcon}
-                title="Live implementation"
-              />
-            </div>
-          </article>
-        </div>
+        <article className="narrative-card">
+          <RichMarkdown className="markdown" source={sprintIs.body} />
+        </article>
       </section>
 
+      {/* The 4-Week Structure — timeline cards */}
       <section className="page-band" id={structure.id}>
         <div className="page-band__header">
           <p className="eyebrow">{structure.heading}</p>
           <h2>The four-week build.</h2>
         </div>
         {structureCards.intro ? (
-          <article className="surface-card narrative-card">
+          <div className="section-intro">
             <RichMarkdown className="markdown" source={structureCards.intro} />
-          </article>
+          </div>
         ) : null}
         <div className="timeline-grid">
           {structureCards.items.map((item, index) => (
@@ -779,7 +781,8 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
-      <section className="page-band page-band--contrast" id={included.id}>
+      {/* What's Included */}
+      <section className="page-band" id={included.id}>
         <div className="page-band__header">
           <p className="eyebrow">{included.heading}</p>
           <h2>{"What's included in every sprint."}</h2>
@@ -796,6 +799,7 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
+      {/* For / Not For */}
       <section className="page-band" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
@@ -815,7 +819,8 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
-      <section className="page-band page-band--accent" id={pricing.id}>
+      {/* Pricing and Credit */}
+      <section className="page-band" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Decision block</p>
           <h2>$3,500 flat. First soft-launch cohort only.</h2>
@@ -842,6 +847,7 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
+      {/* FAQ */}
       <section className="page-band" id={faq.id}>
         <div className="page-band__header">
           <p className="eyebrow">{faq.heading}</p>
@@ -857,6 +863,7 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
+      {/* Waitlist form */}
       <FormSection
         notes={[
           "Waitlist is for the first soft-launch cohort only",
@@ -870,6 +877,10 @@ function renderSprintPage(page: SitePage) {
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   ABOUT PAGE
+   ───────────────────────────────────────────── */
 
 function renderAboutPage(page: SitePage) {
   const story = getSectionByHeading(page.sections, "THE STORY");
@@ -886,16 +897,17 @@ function renderAboutPage(page: SitePage) {
     <main className="marketing-page marketing-page--about">
       <PageHero page={page} />
 
+      {/* The Story — split layout with portrait */}
       <section className="page-band" id={story.id}>
         <div className="page-band__header">
           <p className="eyebrow">{story.heading}</p>
           <h2>Lucas built this on himself first.</h2>
         </div>
         <div className="split-layout">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={story.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <div className="about-portrait">
               <Image
                 src="/images/lucas-synnott.png"
@@ -903,27 +915,18 @@ function renderAboutPage(page: SitePage) {
                 width={400}
                 height={400}
                 className="about-portrait__img"
-                priority={false}
               />
             </div>
-            <StatCard label="Operating principle" value="Judgment stays human" />
-            <IconCard
-              body="Repeatable work gets redesigned so Lucas only stays inside the decisions that actually require him."
-              icon={UserIcon}
-              title="Replace the wrong work first"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section className="page-band page-band--accent" id={council.id}>
+      {/* The AI Council — 3-column agent grid */}
+      <section className="page-band" id={council.id}>
         <div className="page-band__header">
           <p className="eyebrow">{council.heading}</p>
           <h2>The AI council running the operation.</h2>
         </div>
-        <article className="surface-card narrative-card">
-          <RichMarkdown className="markdown" source={council.body} />
-        </article>
         <div className="card-grid card-grid--three">
           {councilItems.map((item, index) => (
             <IconCard
@@ -936,27 +939,24 @@ function renderAboutPage(page: SitePage) {
         </div>
       </section>
 
+      {/* Why I Built This Into a Product */}
       <section className="page-band" id={product.id}>
         <div className="page-band__header">
           <p className="eyebrow">{product.heading}</p>
           <h2>Why this became a product.</h2>
         </div>
         <div className="split-layout split-layout--flip">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={product.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <StatCard label="What most operators need" value="Three high-impact automations" />
-            <IconCard
-              body="The product is scoped to what creates an immediate operating shift instead of recreating the full council."
-              icon={CouncilIcon}
-              title="Architecture scaled to fit"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section className="page-band page-band--contrast" id={who.id}>
+      {/* Who I Build For — check cards */}
+      <section className="page-band" id={who.id}>
         <div className="page-band__header">
           <p className="eyebrow">{who.heading}</p>
           <h2>Who I build for.</h2>
@@ -973,35 +973,42 @@ function renderAboutPage(page: SitePage) {
         </div>
       </section>
 
-      <section className="page-band" id={connect.id}>
+      {/* Connect — clean CTA */}
+      <section className="page-band page-band--cta" id={connect.id}>
         <div className="page-band__header">
           <p className="eyebrow">{connect.heading}</p>
           <h2>Where to go from here.</h2>
         </div>
-        <div className="card-grid card-grid--two">
-          <article className="surface-card">
+        <div className="split-layout">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={connect.body} />
           </article>
-          <article className="surface-card callout-card">
-            <h3>Where to start</h3>
-            <p>
-              If the work is still unclear, start with the diagnostic. If the
-              map already exists, the sprint is the execution path.
-            </p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/apply">
-                Apply
-              </Link>
-              <Link className="button button-secondary" href="/sprint">
-                See the Sprint
-              </Link>
-            </div>
-          </article>
+          <aside className="card-stack">
+            <article className="surface-card callout-card">
+              <h3>Where to start</h3>
+              <p>
+                If the work is still unclear, start with the diagnostic. If the
+                map already exists, the sprint is the execution path.
+              </p>
+              <div className="cta-actions">
+                <Link className="button button-primary" href="/apply">
+                  Apply
+                </Link>
+                <Link className="button button-secondary" href="/sprint">
+                  See the Sprint
+                </Link>
+              </div>
+            </article>
+          </aside>
         </div>
       </section>
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   APPLY PAGE
+   ───────────────────────────────────────────── */
 
 function renderApplyPage(page: SitePage) {
   const paths = getSectionByHeading(page.sections, "TWO PATHS");
@@ -1018,7 +1025,8 @@ function renderApplyPage(page: SitePage) {
     <main className="marketing-page marketing-page--apply">
       <PageHero page={page} />
 
-      <section className="page-band page-band--accent" id={paths.id}>
+      {/* Two Paths — side by side cards */}
+      <section className="page-band" id={paths.id}>
         <div className="page-band__header">
           <p className="eyebrow">{paths.heading}</p>
           <h2>Two paths. One right starting point for you.</h2>
@@ -1034,26 +1042,23 @@ function renderApplyPage(page: SitePage) {
         </div>
       </section>
 
+      {/* Decision helper */}
       <section className="page-band" id={notSure.id}>
         <div className="page-band__header">
           <p className="eyebrow">{notSure.heading}</p>
           <h2>Not sure which one fits?</h2>
         </div>
         <div className="split-layout">
-          <article className="surface-card narrative-card">
+          <article className="narrative-card">
             <RichMarkdown className="markdown" source={notSure.body} />
           </article>
-          <div className="card-stack">
+          <aside className="card-stack">
             <StatCard label="Default recommendation" value="Start with the diagnostic" />
-            <IconCard
-              body="The sprint only works when the build order is already clear."
-              icon={CompassIcon}
-              title="Clarity before implementation"
-            />
-          </div>
+          </aside>
         </div>
       </section>
 
+      {/* Diagnostic Application form */}
       <FormSection
         notes={[
           "Current offer and revenue range",
@@ -1065,6 +1070,7 @@ function renderApplyPage(page: SitePage) {
         title="Apply for the diagnostic."
       />
 
+      {/* Sprint Waitlist form */}
       <FormSection
         notes={[
           "Whether the diagnostic is already complete",
@@ -1076,6 +1082,7 @@ function renderApplyPage(page: SitePage) {
         title="Join the sprint waitlist."
       />
 
+      {/* Questions CTA */}
       <PromoPanel
         body={questions.body}
         eyebrow={questions.heading}
@@ -1091,6 +1098,10 @@ function renderApplyPage(page: SitePage) {
     </main>
   );
 }
+
+/* ─────────────────────────────────────────────
+   HERO — router
+   ───────────────────────────────────────────── */
 
 function PageHero({ page }: { page: SitePage }) {
   switch (page.slug) {
@@ -1110,6 +1121,10 @@ function PageHero({ page }: { page: SitePage }) {
       return null;
   }
 }
+
+/* ─────────────────────────────────────────────
+   HERO — per-page implementations
+   ───────────────────────────────────────────── */
 
 function HomeHero({ page }: { page: SitePage }) {
   return (
@@ -1161,7 +1176,7 @@ function WhyHero({ page }: { page: SitePage }) {
           <QuoteIcon className="quote-icon" />
           <p>AI projects stall when the workflow stays founder-shaped.</p>
         </article>
-        <div className="hero-feature-grid hero-feature-grid--dense">
+        <div className="hero-feature-grid">
           {whyHeroCards.map((item) => (
             <HeroFeatureCard key={item.title} {...item} />
           ))}
@@ -1227,7 +1242,7 @@ function SprintHero({ page }: { page: SitePage }) {
       </HeroLeadPanel>
 
       <aside className="hero-panel sprint-hero__roadmap">
-        <div className="hero-metric-grid hero-metric-grid--compact">
+        <div className="hero-metric-grid">
           {heroStats.sprint.map((stat) => (
             <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
           ))}
@@ -1305,6 +1320,10 @@ function ApplyHero({ page }: { page: SitePage }) {
     </section>
   );
 }
+
+/* ─────────────────────────────────────────────
+   HERO — shared building blocks
+   ───────────────────────────────────────────── */
 
 function HeroLeadPanel({
   children,
@@ -1402,6 +1421,10 @@ function HeroBullet({ text }: { text: string }) {
   );
 }
 
+/* ─────────────────────────────────────────────
+   SECTION — shared building blocks
+   ───────────────────────────────────────────── */
+
 function FormSection({
   notes,
   page,
@@ -1422,7 +1445,7 @@ function FormSection({
         <h2>{title}</h2>
       </div>
       <div className="form-layout">
-        <article className="surface-card narrative-card">
+        <article className="narrative-card">
           <RichMarkdown className="markdown" source={section.body} />
           <div className="trust-list">
             {notes.map((note) => (
@@ -1552,6 +1575,10 @@ function StatCard({ label, value }: Stat) {
     </article>
   );
 }
+
+/* ─────────────────────────────────────────────
+   HELPER / UTILITY FUNCTIONS
+   ───────────────────────────────────────────── */
 
 function getSectionByHeading(sections: PageSection[], heading: string): PageSection {
   const match = sections.find(
@@ -1857,6 +1884,10 @@ function getEmbeddedForm(
   return null;
 }
 
+/* ─────────────────────────────────────────────
+   SVG ICON COMPONENTS
+   ───────────────────────────────────────────── */
+
 function svgProps(className?: string) {
   return {
     className,
@@ -1998,32 +2029,3 @@ function QuoteIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-const homeFitTitles = [
-  "Revenue is already real",
-  "The founder is still the bottleneck",
-  "AI traction is missing",
-  "More tools are not the goal",
-  "Leverage is the target"
-];
-
-const diagnosticDeliverableTitles = [
-  "Offer and delivery audit",
-  "Founder bottleneck map",
-  "Current stack review",
-  "Top three automation moves"
-];
-
-const sprintIncludeTitles = [
-  "Weekly build sessions",
-  "Async review between calls",
-  "Direct operator access",
-  "Automation documentation",
-  "30-day check-in"
-];
-
-const aboutFitTitles = [
-  "Agency operators",
-  "Consultants with real workload",
-  "Businesses with genuine drag"
-];

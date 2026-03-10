@@ -15,9 +15,7 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
   const navRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
+    if (!isOpen) return;
 
     const handlePointerDown = (event: PointerEvent) => {
       if (!navRef.current?.contains(event.target as Node)) {
@@ -26,9 +24,7 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (event.key === "Escape") setIsOpen(false);
     };
 
     document.addEventListener("pointerdown", handlePointerDown);
@@ -40,23 +36,16 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
     };
   }, [isOpen]);
 
-  const closeNav = () => {
-    setIsOpen(false);
-  };
+  const close = () => setIsOpen(false);
 
   return (
-    <div
-      className={`mobile-nav${isOpen ? " is-open" : ""}`}
-      ref={navRef}
-    >
+    <div className={`mobile-nav${isOpen ? " is-open" : ""}`} ref={navRef}>
       <button
         aria-controls={panelId}
         aria-expanded={isOpen}
-        aria-label={isOpen ? "Close navigation" : "Open navigation"}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
         className="mobile-nav__toggle"
-        onClick={() => {
-          setIsOpen((open) => !open);
-        }}
+        onClick={() => setIsOpen((o) => !o)}
         type="button"
       >
         <span aria-hidden="true" className="mobile-nav__toggle-icon">
@@ -67,31 +56,18 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
       </button>
 
       <div className="mobile-nav__panel" id={panelId}>
-        <nav aria-label="Mobile primary" className="mobile-nav__links">
+        <nav aria-label="Mobile" className="mobile-nav__links">
           {pages.map((page) => (
-            <Link
-              className="mobile-nav__link"
-              href={page.path}
-              key={page.slug}
-              onClick={closeNav}
-            >
+            <Link className="mobile-nav__link" href={page.path} key={page.slug} onClick={close}>
               {page.navLabel}
             </Link>
           ))}
         </nav>
         <div className="mobile-nav__actions">
-          <a
-            className="button button-ghost mobile-nav__cta"
-            href="mailto:lucas@appliedleverage.io"
-            onClick={closeNav}
-          >
-            Email Lucas
+          <a className="button button-ghost" href="mailto:lucas@appliedleverage.io" onClick={close}>
+            Email
           </a>
-          <Link
-            className="button button-primary mobile-nav__cta"
-            href="/apply"
-            onClick={closeNav}
-          >
+          <Link className="button button-primary" href="/apply" onClick={close}>
             Apply
           </Link>
         </div>
