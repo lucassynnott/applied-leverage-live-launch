@@ -34,7 +34,7 @@ The Diagnostic is 90 minutes. You leave with a 1-page Automation Priority Map: y
 ### Path 2: Implementation Sprint
 **If you already know what to build and need someone in the room while you build it.**
 
-The Sprint is 4 weeks of building together. Three automations, built and deployed. Live working sessions, async feedback, and a running system on the other side.
+The Sprint is 4 weeks of building together. Three dedicated AI agents, built and deployed — each one solving a specific business problem. Live working sessions, async feedback, and a running agents team on the other side.
 
 Waitlist only — first cohort limited to 3 clients.
 

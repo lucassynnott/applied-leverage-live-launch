@@ -1,16 +1,16 @@
 # Sprint Page Copy — `/sprint`
 
-**Page title:** Agent OS Implementation Sprint — Build Your Automation Stack in 4 Weeks
+**Page title:** Agent OS Implementation Sprint — Build Your AI Agents Team in 4 Weeks
 
 ---
 
 ## HERO
 
 **Headline:**
-> Your top 3 automations. Built. In 4 weeks.
+> Your AI agents team. Built in 4 weeks.
 
 **Subheadline:**
-> The Implementation Sprint is how operators who already have the map get the work done. We build together. You leave with a running automation stack.
+> The Implementation Sprint is how operators who already have the map get the work done. We build together. In 4 weeks, you have three dedicated AI agents — each one solving a specific business problem — running in your operation.
 
 **Status badge:** 🔒 Soft Launch — Waitlist Only
 
@@ -31,7 +31,7 @@ Most operators don't. Not because they're not motivated — because:
 
 - They get one week in and hit a configuration wall
 - The scope creeps because they're learning as they go
-- The week fills up with client work and the automation project slips to "next week"
+- The week fills up with client work and the build slips to "next week"
 - They have no one to call when they're stuck
 
 The Sprint removes every one of those blockers.
@@ -40,33 +40,33 @@ The Sprint removes every one of those blockers.
 
 ## WHAT THE SPRINT IS
 
-**4 weeks. 3 automations. 1 operator who's done it before.**
+**4 weeks. 3 dedicated AI agents. 1 operator who's done it before.**
 
 This is not a course. There are no modules to watch at 2am.
 
-Every week, we work together on one specific automation. I guide the build, review your setup, and course-correct in real time. You do the work; I make sure it's the right work.
+Every week, we build one dedicated AI agent together. Each agent is designed around a specific function in your business — something that currently requires your time, attention, or judgment to run. By the end of the sprint, that agent runs it instead.
 
-By the end of week 4, you have a running system — not a plan, not a video library, not a Notion doc. A live automation stack that changes what your week looks like.
+By the end of week 4, you have a running agents team — not a plan, not a video library, not a Notion doc. Three live AI agents that change what your week looks like.
 
 ---
 
 ## THE 4-WEEK STRUCTURE
 
-### Week 1: Automation #1 — Your Highest-Leverage Move
+### Week 1: Agent #1 — Your Highest-Leverage Move
 
-We start with the highest-impact item from your Priority Map. This is the automation that frees up the most time or unblocks the most revenue. We build it first because momentum matters.
+We start with the agent that frees up the most time or unblocks the most revenue. This is the one that pays for itself fastest. We design it, build it, and deploy it in week one — because momentum matters.
 
-### Week 2: Automation #2 — The Delivery Bottleneck
+### Week 2: Agent #2 — Your Delivery Agent
 
-Most operators have a delivery step that requires their personal involvement every time. Week 2 is about finding that step and removing you from it.
+Most operators have a delivery step that requires their personal involvement every time. Week 2 is about finding that step and handing it to a dedicated agent that handles it without you.
 
-### Week 3: Automation #3 — The Follow-Up System
+### Week 3: Agent #3 — Your Follow-Up Agent
 
-Lead follow-up, client check-ins, onboarding sequences — the things that generate revenue but require consistent execution. Week 3 builds the system that does this without you.
+Lead follow-up, client check-ins, onboarding sequences — the things that generate revenue but require consistent execution. Week 3 builds the agent that does this without you.
 
 ### Week 4: Stabilize and Handoff
 
-We audit all three automations, fix edge cases, document what was built, and set up a monitoring layer so you know when something breaks. You finish the sprint with a system, not just a tool.
+We review all three agents, fix edge cases, document what was built, and set up monitoring so you know when something needs attention. You finish the sprint with a team, not just a tool.
 
 ---
 
@@ -75,7 +75,7 @@ We audit all three automations, fix edge cases, document what was built, and set
 - **4 weekly live working sessions** (60 minutes each) — structured, not open-ended
 - **Async review and feedback** between sessions via voice note
 - **Direct access** to Lucas for questions during the sprint period
-- **Documentation** of every automation built — so you can maintain and expand it
+- **Documentation** of every agent built — so you can maintain and extend it
 - **Post-sprint check-in** at 30 days — confirm it's running, fix anything that's slipped
 
 ---
@@ -84,7 +84,7 @@ We audit all three automations, fix edge cases, document what was built, and set
 
 ✓ You've completed the [Agent OS Diagnostic](/diagnostic) (or equivalent audit)
 ✓ Agency owners and consultants at $5K–$30K/month
-✓ You have clear automations to build — the Sprint is execution, not discovery
+✓ You know what you need to build — the Sprint is execution, not discovery
 ✓ You want someone in the room while you build, not a course to watch alone
 ✓ You're ready to actually change how your operation runs
 
@@ -102,7 +102,7 @@ We audit all three automations, fix edge cases, document what was built, and set
 
 **$3,500 flat.**
 
-No monthly fee. No "maintenance plan." You pay once, you get the sprint, you own the automations.
+No monthly fee. No "maintenance plan." You pay once, you get the sprint, you own the agents.
 
 **Diagnostic credit:** If you completed the Agent OS Diagnostic within the last 30 days, your $297 applies as a credit. You pay $3,203 at Sprint enrollment.
 
@@ -124,7 +124,7 @@ There's no firm launch date yet. Waitlist members will be contacted first — be
 
 For operators who complete the Sprint and want ongoing support, **Agent OS Operations** launches later in 2026.
 
-$997/month. Monthly optimization sessions, new automation builds as your business evolves, and monitoring.
+$997/month. Monthly optimization sessions, new agent builds as your business evolves, and monitoring.
 
 *Not available yet. Sprint alumni get first access.*
 
@@ -142,7 +142,7 @@ That depends on your stack and what you're building. Common tools include N8N, M
 In limited cases, yes — if you've done an equivalent audit and have a clear list of what to build. Message me and we can assess fit.
 
 **What if I fall behind?**
-We adjust. The schedule is a guide, not a contract. If a week slips, we adapt. The goal is a working system, not a rigid timeline.
+We adjust. The schedule is a guide, not a contract. If a week slips, we adapt. The goal is a working agents team, not a rigid timeline.
 
 **What's the refund policy?**
 If you complete week 1 and decide the Sprint isn't right for you, I'll refund the remaining weeks, prorated. No cliff edge.

@@ -73,7 +73,7 @@ You leave the call knowing exactly what to build first.
 
 If the map points to a 4-week implementation — and for most operators, it does — the [Implementation Sprint](/sprint) is how we build it together.
 
-Three automations. Four weeks. Your business runs differently on the other side.
+Three dedicated AI agents. Four weeks. Your business runs differently on the other side.
 
 **→ $3,500. [Waitlist open.](/sprint)**
 

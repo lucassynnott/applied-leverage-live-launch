@@ -108,7 +108,7 @@ const heroStats: Record<PageSlug, Stat[]> = {
   ],
   sprint: [
     { value: "$3.5K", label: "flat sprint fee" },
-    { value: "3", label: "automations shipped" },
+    { value: "3", label: "AI agents built" },
     { value: "30 day", label: "post-sprint check-in" }
   ],
   about: [
@@ -153,7 +153,7 @@ const sprintIncludeTitles = [
   "Weekly build sessions",
   "Async review between calls",
   "Direct operator access",
-  "Automation documentation",
+  "Agent documentation",
   "30-day check-in"
 ];
 
@@ -623,7 +623,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={sprintIs.id}>
         <div className="page-band__header">
           <p className="eyebrow">{sprintIs.heading}</p>
-          <h2>Four weeks. Three automations. Your business runs differently on the other side.</h2>
+          <h2>Four weeks. Three dedicated AI agents. Your business runs differently on the other side.</h2>
         </div>
         <article className="narrative-card">
           <RichMarkdown className="markdown" source={sprintIs.body} />
@@ -813,7 +813,7 @@ function renderAboutPage(page: SitePage) {
             <RichMarkdown className="markdown" source={product.body} />
           </article>
           <aside className="card-stack">
-            <StatCard label="What most operators need" value="Three high-impact automations" />
+            <StatCard label="What most operators need" value="Three dedicated AI agents" />
           </aside>
         </div>
       </section>
