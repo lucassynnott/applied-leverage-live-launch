@@ -131,12 +131,6 @@ const heroSteps: Record<PageSlug, string[]> = {
   apply: ["Choose", "Apply", "Build"]
 };
 
-const proofAttributions = [
-  "Agency owner, Dublin",
-  "Consultant, London",
-  "Operator, New York"
-];
-
 const heroSignals: Partial<Record<PageSlug, string[]>> = {
   about: [
     "AI council operating model in production",
@@ -278,55 +272,25 @@ function renderHomePage(page: SitePage) {
   const solution = getSectionByHeading(page.sections, "THE SOLUTION");
   const fit = getSectionByHeading(page.sections, "WHO THIS IS FOR");
   const cta = getSectionByHeading(page.sections, "CTA");
-  const problemList = extractChecklist(problem.body);
-  const steps = splitOnRules(solution.body);
+  const steps = splitSteps(solution.body);
   const fitList = extractChecklist(fit.body);
   const ctaCopy = splitLeadCopy(cta.body);
+  const quotes = extractQuotes(proof.body);
 
   return (
     <main className="marketing-page marketing-page--home">
       <PageHero page={page} />
 
-      <section className="page-band page-band--accent" id={solution.id}>
+      <section className="page-band" id={proof.id}>
         <div className="page-band__header">
-          <p className="eyebrow">{solution.heading}</p>
-          <h2>One offer, two clear steps, and a stronger operating rhythm.</h2>
-          <p className="section-intro">
-            One offer. Two clear steps. A business that runs without you in the
-            middle of everything.
-          </p>
-        </div>
-        <div className="card-grid card-grid--three">
-          {page.definition.highlights.map((item, index) => (
-            <IconCard
-              body={item}
-              icon={iconCycle[index % iconCycle.length]}
-              key={item}
-              title={homeFeatureTitles[index] ?? `Signal ${index + 1}`}
-            />
-          ))}
-        </div>
-        <div className="timeline-grid timeline-grid--two">
-          {steps.map((step, index) => (
-            <article className="surface-card timeline-card" key={step}>
-              <span className="timeline-index">Step {index + 1}</span>
-              <RichMarkdown className="markdown card-markdown" source={step} />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="page-band page-band--tight" id={proof.id}>
-        <div className="page-band__header">
-          <p className="eyebrow">{proof.heading}</p>
-          <h2>What operators say after the diagnostic.</h2>
+          <p className="eyebrow">What operators say</p>
+          <h2>After the diagnostic.</h2>
         </div>
         <div className="quote-strip">
-          {extractQuotes(proof.body).map((quote, index) => (
-            <article className="surface-card quote-card" key={quote}>
-              <QuoteIcon className="quote-icon" />
-              <p>{quote}</p>
-              <span>{proofAttributions[index] ?? `Signal ${index + 1}`}</span>
+          {quotes.map((quote) => (
+            <article className="quote-card" key={quote.text}>
+              <p>{quote.text}</p>
+              <span>{quote.attribution}</span>
             </article>
           ))}
         </div>
@@ -335,26 +299,30 @@ function renderHomePage(page: SitePage) {
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
           <p className="eyebrow">{problem.heading}</p>
-          <h2>{"Most operators aren't stuck on revenue. They're stuck on drag."}</h2>
+          <h2>{"You don't have a tool problem. You have a prioritization problem."}</h2>
         </div>
-        <div className="split-layout">
-          <article className="surface-card narrative-card">
-            <RichMarkdown className="markdown" source={problem.body} />
-          </article>
-          <div className="card-grid">
-            {problemList.map((item, index) => (
-              <IconCard
-                body={item}
-                icon={iconCycle[(index + 2) % iconCycle.length]}
-                key={item}
-                title={homeProblemTitles[index] ?? `Pressure point ${index + 1}`}
-              />
-            ))}
-          </div>
+        <article className="surface-card narrative-card">
+          <RichMarkdown className="markdown" source={problem.body} />
+        </article>
+      </section>
+
+      <section className="page-band page-band--accent" id={solution.id}>
+        <div className="page-band__header">
+          <p className="eyebrow">{solution.heading}</p>
+          <h2>Clarity first. Then build.</h2>
+        </div>
+        <div className="card-grid card-grid--two">
+          {steps.map((step, index) => (
+            <article className="surface-card timeline-card" key={step.title}>
+              <span className="timeline-index">Step {index + 1}</span>
+              <h3>{step.title}</h3>
+              <RichMarkdown className="markdown card-markdown" source={step.body} />
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="page-band page-band--contrast" id={fit.id}>
+      <section className="page-band" id={fit.id}>
         <div className="page-band__header">
           <p className="eyebrow">{fit.heading}</p>
           <h2>This is built for operators who are already making money.</h2>
@@ -1604,13 +1572,6 @@ function splitParagraphs(markdown: string): string[] {
     .filter(Boolean);
 }
 
-function splitOnRules(markdown: string): string[] {
-  return markdown
-    .split(/\n-{3,}\n/g)
-    .map((part) => normalizeMarkdown(part))
-    .filter(Boolean);
-}
-
 function splitMarkdownSubsections(markdown: string): {
   intro: string;
   items: MarkdownCard[];
@@ -1760,8 +1721,8 @@ function parseNamedList(markdown: string): NamedItem[] {
     });
 }
 
-function extractQuotes(markdown: string): string[] {
-  const quotes: string[] = [];
+function extractQuotes(markdown: string): { text: string; attribution: string }[] {
+  const quotes: { text: string; attribution: string }[] = [];
   let current: string[] = [];
 
   const pushCurrent = () => {
@@ -1769,13 +1730,27 @@ function extractQuotes(markdown: string): string[] {
       return;
     }
 
-    quotes.push(stripMarkdown(current.join(" ").trim()));
+    const raw = stripMarkdown(current.join(" ").trim());
+    const dashMatch = raw.match(/^(.+?)\s*[—\u2014-]\s*(.+)$/);
+    if (dashMatch) {
+      quotes.push({
+        text: dashMatch[1].replace(/^[""\u201C]|[""\u201D]$/g, "").trim(),
+        attribution: dashMatch[2].trim()
+      });
+    } else {
+      quotes.push({ text: raw.replace(/^[""\u201C]|[""\u201D]$/g, "").trim(), attribution: "" });
+    }
     current = [];
   };
 
   for (const line of markdown.split("\n")) {
     if (line.trim().startsWith(">")) {
-      current.push(line.replace(/^>\s?/, "").trim());
+      const content = line.replace(/^>\s?/, "").trim();
+      if (!content) {
+        pushCurrent();
+        continue;
+      }
+      current.push(content);
       continue;
     }
 
@@ -1787,6 +1762,22 @@ function extractQuotes(markdown: string): string[] {
   pushCurrent();
 
   return quotes;
+}
+
+function splitSteps(markdown: string): MarkdownCard[] {
+  const parts = markdown.split(/(?=\*\*Step \d+:)/);
+  return parts
+    .filter(part => part.trim())
+    .map(part => {
+      const match = part.match(/^\*\*Step \d+:\s*(.+?)\*\*\s*([\s\S]*)/);
+      if (!match) {
+        return { title: "Step", body: part.trim() };
+      }
+      return {
+        title: stripMarkdown(match[1]),
+        body: normalizeMarkdown(match[2])
+      };
+    });
 }
 
 function extractChecklist(markdown: string): string[] {
@@ -2007,19 +1998,6 @@ function QuoteIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-const homeFeatureTitles = [
-  "Map the leverage",
-  "Install the right order",
-  "Build for operator relief"
-];
-
-const homeProblemTitles = [
-  "Client load keeps stacking",
-  "Follow-up lives in your head",
-  "Delivery needs your presence",
-  "Admin never stops"
-];
 
 const homeFitTitles = [
   "Revenue is already real",

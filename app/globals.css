@@ -227,10 +227,12 @@ a {
 .site-nav {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -1006,12 +1008,17 @@ a {
 
 .quote-strip {
   grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
 }
 
 .quote-card {
   gap: 1rem;
+  border: none;
   border-left: 2px solid var(--accent);
-  padding-left: 1.5rem;
+  padding: 0 0 0 1.5rem;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .quote-card p {
@@ -1384,10 +1391,13 @@ a {
   .card-grid--two,
   .faq-grid,
   .timeline-grid,
-  .quote-strip,
   .check-grid,
   .form-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quote-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .card-grid--three {
@@ -1406,7 +1416,7 @@ a {
 
 @media (min-width: 960px) {
   .site-header {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
   }
 

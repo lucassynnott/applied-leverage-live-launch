@@ -210,10 +210,12 @@ function parseCopySections(rawMarkdown: string): {
       return;
     }
 
+    const rawBody = normalizeMarkdown(bodyLines.join("\n"));
+    const cleanBody = rawBody.replace(/\n*\*?©.*?All rights reserved\.?\*?\s*$/i, "").trim();
     sections.push({
       heading: currentHeading.title,
       id: currentHeading.id,
-      body: normalizeMarkdown(bodyLines.join("\n"))
+      body: cleanBody
     });
   };
 
