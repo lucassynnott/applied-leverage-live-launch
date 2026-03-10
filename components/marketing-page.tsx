@@ -163,83 +163,6 @@ const iconCycle: IconComponent[] = [
   MailIcon
 ];
 
-const homeHeroCards: HeroFeature[] = [
-  {
-    body: "Start with the founder-shaped work that keeps delivery, follow-up, and approvals tied to you.",
-    icon: CompassIcon,
-    title: "Audit the drag"
-  },
-  {
-    body: "Sequence the stack so the first automation removes pressure instead of adding more software noise.",
-    icon: WorkflowIcon,
-    title: "Order the build"
-  },
-  {
-    body: "Move from strategy into a real implementation sprint with live systems shipped into the business.",
-    icon: BuildIcon,
-    title: "Install leverage"
-  }
-];
-
-const whyHeroCards: HeroFeature[] = [
-  {
-    body: "Most teams automate visible tasks while the real constraint lives in handoffs and approvals.",
-    icon: SignalIcon,
-    title: "Task hacks miss the system"
-  },
-  {
-    body: "Adding AI to a founder-shaped workflow multiplies noise instead of reducing drag.",
-    icon: ShieldIcon,
-    title: "Tools amplify architecture"
-  },
-  {
-    body: "When the order is wrong, every new app becomes another surface area to maintain.",
-    icon: ClockIcon,
-    title: "Complexity compounds fast"
-  }
-];
-
-const sprintRoadmap = [
-  {
-    label: "Week 1",
-    title: "Scope the machine",
-    body: "Lock the build order, technical shape, and first shipping target."
-  },
-  {
-    label: "Week 2",
-    title: "Ship the first win",
-    body: "Launch the highest-leverage automation so momentum is visible immediately."
-  },
-  {
-    label: "Week 3",
-    title: "Expand the stack",
-    body: "Connect the next workflows, review edge cases, and harden the handoffs."
-  },
-  {
-    label: "Week 4",
-    title: "Stabilize and document",
-    body: "Leave the business with a working stack and the operating notes to keep it live."
-  }
-];
-
-const aboutCouncilPreview: HeroFeature[] = [
-  {
-    body: "Turns decisions into implemented systems, code, and shipped automations.",
-    icon: BuildIcon,
-    title: "T-Bug"
-  },
-  {
-    body: "Runs QA, catches regressions, and keeps launch work from slipping through.",
-    icon: ShieldIcon,
-    title: "River"
-  },
-  {
-    body: "Coordinates scope, sequencing, and delivery pressure across the operating system.",
-    icon: CouncilIcon,
-    title: "Johnny Silverhand"
-  }
-];
-
 const applyPathCards: HeroFeature[] = [
   {
     body: "Use this when you need to know what to automate first and what to ignore.",
@@ -1142,14 +1065,8 @@ function HomeHero({ page }: { page: SitePage }) {
           {page.hero.badge ?? "Installed leverage"}
         </p>
         <p className="hero-kicker">
-          Map your leverage. Sequence the build. Ship automations that free up
-          your calendar, not just your task list.
+          Map your leverage. Sequence the build. Ship what matters.
         </p>
-        <div className="hero-feature-grid">
-          {homeHeroCards.map((item) => (
-            <HeroFeatureCard key={item.title} {...item} />
-          ))}
-        </div>
         <div className="hero-metric-grid">
           {heroStats.home.map((stat) => (
             <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1176,11 +1093,6 @@ function WhyHero({ page }: { page: SitePage }) {
           <QuoteIcon className="quote-icon" />
           <p>AI projects stall when the workflow stays founder-shaped.</p>
         </article>
-        <div className="hero-feature-grid">
-          {whyHeroCards.map((item) => (
-            <HeroFeatureCard key={item.title} {...item} />
-          ))}
-        </div>
         <div className="hero-step-strip" aria-hidden="true">
           {heroSteps.why.map((step) => (
             <span className="hero-step-pill" key={step}>
@@ -1247,15 +1159,6 @@ function SprintHero({ page }: { page: SitePage }) {
             <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
           ))}
         </div>
-        <div className="hero-roadmap">
-          {sprintRoadmap.map((step) => (
-            <article className="hero-roadmap-step" key={step.label}>
-              <span className="timeline-index">{step.label}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
-        </div>
       </aside>
     </section>
   );
@@ -1275,10 +1178,9 @@ function AboutHero({ page }: { page: SitePage }) {
         <p className="eyebrow eyebrow-accent">
           {page.hero.badge ?? "Council in production"}
         </p>
-        <div className="hero-council-grid">
-          {aboutCouncilPreview.map((item) => (
-            <HeroFeatureCard key={item.title} {...item} />
-          ))}
+        <div className="hero-chip-row">
+          <HeroChip icon={UserIcon} text="Judgment stays human" />
+          <HeroChip icon={CouncilIcon} text="Council handles the repeatable work" />
         </div>
         <div className="hero-step-strip" aria-hidden="true">
           {heroSteps.about.map((step) => (
@@ -1372,19 +1274,6 @@ function HeroChip({
       {Icon ? <Icon className="panel-icon" /> : null}
       <span>{text}</span>
     </span>
-  );
-}
-
-function HeroFeatureCard({ body, icon: Icon, label, title }: HeroFeature) {
-  return (
-    <article className="hero-feature-card">
-      {label ? <span className="path-chip">{label}</span> : null}
-      <span className="icon-badge">
-        <Icon className="panel-icon" />
-      </span>
-      <h3>{title}</h3>
-      <p>{body}</p>
-    </article>
   );
 }
 
@@ -1995,15 +1884,6 @@ function MailIcon({ className }: { className?: string }) {
     <svg {...svgProps(className)}>
       <rect height="12" rx="2" width="18" x="3" y="6" />
       <path d="m5 8 7 5 7-5" />
-    </svg>
-  );
-}
-
-function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg {...svgProps(className)}>
-      <circle cx="12" cy="12" r="8" />
-      <path d="M12 8v4.5l3 1.7" />
     </svg>
   );
 }
