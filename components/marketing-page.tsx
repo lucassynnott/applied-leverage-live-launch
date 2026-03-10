@@ -32,13 +32,6 @@ type NamedItem = {
   title: string;
 };
 
-type HeroFeature = {
-  body: string;
-  icon: IconComponent;
-  label?: string;
-  title: string;
-};
-
 /* ─────────────────────────────────────────────
    Data constants
    ───────────────────────────────────────────── */
@@ -130,28 +123,6 @@ const heroStats: Record<PageSlug, Stat[]> = {
   ]
 };
 
-const heroSteps: Record<PageSlug, string[]> = {
-  home: ["Audit", "Sequence", "Build"],
-  why: ["Map", "Prioritize", "Install"],
-  diagnostic: ["Audit", "Rank", "Decide"],
-  sprint: ["Scope", "Build", "Stabilize"],
-  about: ["Design", "Delegate", "Ship"],
-  apply: ["Choose", "Apply", "Build"]
-};
-
-const heroSignals: Partial<Record<PageSlug, string[]>> = {
-  about: [
-    "AI council operating model in production",
-    "Operator-first implementation perspective",
-    "Built from Lucas's own business constraints"
-  ],
-  apply: [
-    "Diagnostic is the default starting point",
-    "Sprint is for operators who already know what to build",
-    "Both paths route into the same leverage stack"
-  ]
-};
-
 const iconCycle: IconComponent[] = [
   CompassIcon,
   WorkflowIcon,
@@ -161,21 +132,6 @@ const iconCycle: IconComponent[] = [
   ArrowUpIcon,
   UserIcon,
   MailIcon
-];
-
-const applyPathCards: HeroFeature[] = [
-  {
-    body: "Use this when you need to know what to automate first and what to ignore.",
-    icon: CompassIcon,
-    label: "Default path",
-    title: "Diagnostic"
-  },
-  {
-    body: "Use this when the build order is already clear and execution speed is the bottleneck.",
-    icon: BuildIcon,
-    label: "Execution path",
-    title: "Sprint waitlist"
-  }
 ];
 
 const homeFitTitles = [
@@ -537,24 +493,16 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
-      {/* For / Not For — two checklist panels */}
+      {/* For / Not For — comparison table */}
       <section className="page-band" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
           <h2>Is this the right move for you?</h2>
         </div>
-        <div className="card-grid card-grid--two">
-          <ChecklistPanel
-            icon={CheckIcon}
-            items={extractChecklist(forSection.body)}
-            title="This is for"
-          />
-          <ChecklistPanel
-            icon={CloseIcon}
-            items={extractChecklist(notForSection.body)}
-            title="This is not for"
-          />
-        </div>
+        <ComparisonTable
+          forItems={extractChecklist(forSection.body)}
+          notForItems={extractChecklist(notForSection.body)}
+        />
       </section>
 
       {/* What Happens After + Pricing — two clean cards */}
@@ -722,24 +670,16 @@ function renderSprintPage(page: SitePage) {
         </div>
       </section>
 
-      {/* For / Not For */}
+      {/* For / Not For — comparison table */}
       <section className="page-band" id={forSection.id}>
         <div className="page-band__header">
           <p className="eyebrow">Qualification</p>
           <h2>Is the sprint the right starting point?</h2>
         </div>
-        <div className="card-grid card-grid--two">
-          <ChecklistPanel
-            icon={CheckIcon}
-            items={extractChecklist(forSection.body)}
-            title="This sprint fits when"
-          />
-          <ChecklistPanel
-            icon={CloseIcon}
-            items={extractChecklist(notForSection.body)}
-            title="Start elsewhere when"
-          />
-        </div>
+        <ComparisonTable
+          forItems={extractChecklist(forSection.body)}
+          notForItems={extractChecklist(notForSection.body)}
+        />
       </section>
 
       {/* Pricing and Credit */}
@@ -1051,175 +991,73 @@ function PageHero({ page }: { page: SitePage }) {
 
 function HomeHero({ page }: { page: SitePage }) {
   return (
-    <section className="page-hero home-hero">
-      <HeroLeadPanel page={page} panelClassName="home-hero__lead">
-        <div className="hero-chip-row">
-          {page.definition.highlights.map((highlight) => (
-            <HeroChip icon={WorkflowIcon} key={highlight} text={highlight} />
-          ))}
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel home-hero__board">
-        <p className="eyebrow eyebrow-accent">
-          {page.hero.badge ?? "Installed leverage"}
-        </p>
-        <p className="hero-kicker">
-          Map your leverage. Sequence the build. Ship what matters.
-        </p>
-        <div className="hero-metric-grid">
-          {heroStats.home.map((stat) => (
-            <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.home.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
 function WhyHero({ page }: { page: SitePage }) {
   return (
-    <section className="page-hero why-hero">
-      <HeroLeadPanel page={page} panelClassName="why-hero__lead">
-        <div className="hero-chip-row">
-          {heroStats.why.map((stat) => (
-            <HeroChip key={stat.label} text={`${stat.value} ${stat.label}`} />
-          ))}
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel why-hero__argument">
-        <article className="hero-quote-card">
-          <QuoteIcon className="quote-icon" />
-          <p>AI projects stall when the workflow stays founder-shaped.</p>
-        </article>
-        <div className="hero-step-strip" aria-hidden="true">
-          {heroSteps.why.map((step) => (
-            <span className="hero-step-pill" key={step}>
-              {step}
-            </span>
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.why.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
 function DiagnosticHero({ page }: { page: SitePage }) {
   return (
-    <section className="page-hero diagnostic-hero">
-      <HeroLeadPanel page={page} panelClassName="diagnostic-hero__lead">
-        <div className="hero-chip-row">
-          <HeroChip icon={CompassIcon} text="90-minute working session" />
-          <HeroChip icon={SignalIcon} text="4-hour turnaround" />
-          <HeroChip icon={BuildIcon} text="30-day sprint credit" />
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel diagnostic-hero__offer">
-        <div className="hero-price-card">
-          <p className="eyebrow eyebrow-accent">Founding price</p>
-          <span className="hero-price">$297</span>
-          <p className="hero-kicker">
-            Credited into the implementation sprint if you continue within 30
-            days.
-          </p>
-        </div>
-        <div className="hero-checklist">
-          {page.definition.highlights.map((highlight) => (
-            <HeroBullet key={highlight} text={highlight} />
-          ))}
-        </div>
-        <div className="hero-step-strip" aria-hidden="true">
-          {heroSteps.diagnostic.map((step) => (
-            <span className="hero-step-pill" key={step}>
-              {step}
-            </span>
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.diagnostic.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
 function SprintHero({ page }: { page: SitePage }) {
   return (
-    <section className="page-hero sprint-hero">
-      <HeroLeadPanel page={page} panelClassName="sprint-hero__lead">
-        <div className="hero-chip-row">
-          <HeroChip icon={BuildIcon} text="$3.5K flat sprint fee" />
-          <HeroChip icon={WorkflowIcon} text="3 live automations" />
-          <HeroChip icon={ShieldIcon} text="30-day check-in" />
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel sprint-hero__roadmap">
-        <div className="hero-metric-grid">
-          {heroStats.sprint.map((stat) => (
-            <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.sprint.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
 function AboutHero({ page }: { page: SitePage }) {
   return (
-    <section className="page-hero about-hero">
-      <HeroLeadPanel page={page} panelClassName="about-hero__lead">
-        <div className="hero-chip-row">
-          <HeroChip icon={UserIcon} text="Judgment stays human" />
-          <HeroChip icon={CouncilIcon} text="Council handles the repeatable work" />
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel about-hero__council">
-        <p className="eyebrow eyebrow-accent">
-          {page.hero.badge ?? "Council in production"}
-        </p>
-        <div className="hero-chip-row">
-          <HeroChip icon={UserIcon} text="Judgment stays human" />
-          <HeroChip icon={CouncilIcon} text="Council handles the repeatable work" />
-        </div>
-        <div className="hero-step-strip" aria-hidden="true">
-          {heroSteps.about.map((step) => (
-            <span className="hero-step-pill" key={step}>
-              {step}
-            </span>
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.about.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
 function ApplyHero({ page }: { page: SitePage }) {
-  const signals = heroSignals.apply ?? page.definition.highlights;
-
   return (
-    <section className="page-hero apply-hero">
-      <HeroLeadPanel page={page} panelClassName="apply-hero__lead">
-        <div className="hero-chip-row">
-          <HeroChip icon={CompassIcon} text="Diagnostic first by default" />
-          <HeroChip icon={MailIcon} text="24-hour review target" />
-          <HeroChip icon={BuildIcon} text="Both paths feed one stack" />
-        </div>
-      </HeroLeadPanel>
-
-      <aside className="hero-panel apply-hero__paths">
-        <div className="hero-path-grid">
-          {applyPathCards.map((item) => (
-            <HeroPathCard key={item.title} {...item} />
-          ))}
-        </div>
-        <div className="hero-checklist">
-          {signals.map((signal) => (
-            <HeroBullet key={signal} text={signal} />
-          ))}
-        </div>
-      </aside>
-    </section>
+    <HeroCentered page={page}>
+      <div className="hero-stats-bar">
+        {heroStats.apply.map((stat) => (
+          <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
+        ))}
+      </div>
+    </HeroCentered>
   );
 }
 
@@ -1227,68 +1065,38 @@ function ApplyHero({ page }: { page: SitePage }) {
    HERO — shared building blocks
    ───────────────────────────────────────────── */
 
-function HeroLeadPanel({
+function HeroCentered({
   children,
-  page,
-  panelClassName
+  page
 }: {
   children?: ReactNode;
   page: SitePage;
-  panelClassName?: string;
 }) {
   const primaryAction = page.hero.cta ?? primaryActions[page.slug];
   const secondaryAction = secondaryActions[page.slug];
 
   return (
-    <article className={["hero-panel", "hero-copy-panel", panelClassName].filter(Boolean).join(" ")}>
-      <p className="eyebrow">{page.definition.eyebrow}</p>
-      <h1 className="hero-title">{page.hero.headline}</h1>
-      {page.hero.subheadline ? (
-        <p className="hero-subheadline">{page.hero.subheadline}</p>
-      ) : null}
-      {page.hero.body ? (
-        <RichMarkdown className="markdown hero-body" source={page.hero.body} />
-      ) : null}
-      {children}
-      <div className="hero-actions">
-        <Link className="button button-primary" href={primaryAction.href}>
-          {primaryAction.label}
-        </Link>
-        <Link className="button button-secondary" href={secondaryAction.href}>
-          {secondaryAction.label}
-        </Link>
+    <section className="page-hero">
+      <div className="hero-centered">
+        <p className="eyebrow">{page.definition.eyebrow}</p>
+        <h1 className="hero-title">{page.hero.headline}</h1>
+        {page.hero.subheadline ? (
+          <p className="hero-subheadline">{page.hero.subheadline}</p>
+        ) : null}
+        {page.hero.body ? (
+          <RichMarkdown className="markdown hero-body" source={page.hero.body} />
+        ) : null}
+        <div className="hero-actions">
+          <Link className="button button-primary" href={primaryAction.href}>
+            {primaryAction.label}
+          </Link>
+          <Link className="button button-secondary" href={secondaryAction.href}>
+            {secondaryAction.label}
+          </Link>
+        </div>
       </div>
-    </article>
-  );
-}
-
-function HeroChip({
-  icon: Icon,
-  text
-}: {
-  icon?: IconComponent;
-  text: string;
-}) {
-  return (
-    <span className="hero-chip">
-      {Icon ? <Icon className="panel-icon" /> : null}
-      <span>{text}</span>
-    </span>
-  );
-}
-
-function HeroPathCard({ body, icon, label, title }: HeroFeature) {
-  const Icon = icon;
-
-  return (
-    <article className="hero-path-card">
-      {label ? <span className="path-chip">{label}</span> : null}
-      <span className="icon-badge">
-        <Icon className="panel-icon" />
-      </span>
-      <h3>{title}</h3>
-      <p>{body}</p>
-    </article>
+      {children}
+    </section>
   );
 }
 
@@ -1298,15 +1106,6 @@ function HeroMetric({ label, value }: Stat) {
       <span className="hero-metric__value">{value}</span>
       <span className="hero-metric__label">{label}</span>
     </article>
-  );
-}
-
-function HeroBullet({ text }: { text: string }) {
-  return (
-    <div className="hero-bullet">
-      <CheckIcon className="signal-icon" />
-      <span>{text}</span>
-    </div>
   );
 }
 
@@ -1329,12 +1128,10 @@ function FormSection({
 
   return (
     <section className="page-band page-band--form" id={section.id}>
-      <div className="page-band__header">
-        <p className="eyebrow">{section.heading}</p>
-        <h2>{title}</h2>
-      </div>
       <div className="form-layout">
-        <article className="narrative-card">
+        <div className="form-layout__intro">
+          <p className="eyebrow">{section.heading}</p>
+          <h2>{title}</h2>
           <RichMarkdown className="markdown" source={section.body} />
           <div className="trust-list">
             {notes.map((note) => (
@@ -1344,7 +1141,7 @@ function FormSection({
               </div>
             ))}
           </div>
-        </article>
+        </div>
         {form ? <EmbeddedForm variant={form} /> : null}
       </div>
     </section>
@@ -1395,24 +1192,49 @@ function PromoPanel({
   );
 }
 
-function ChecklistPanel({
-  icon,
-  items,
-  title
+function ComparisonTable({
+  forItems,
+  notForItems
 }: {
-  icon: IconComponent;
-  items: string[];
-  title: string;
+  forItems: string[];
+  notForItems: string[];
 }) {
   return (
-    <article className="surface-card checklist-panel">
-      <h3>{title}</h3>
-      <div className="check-grid check-grid--nested">
-        {items.map((item) => (
-          <CheckCard icon={icon} key={item} label={item} title="" />
-        ))}
+    <div className="comparison-table">
+      <div className="comparison-col comparison-col--for">
+        <div className="comparison-col__header">
+          <span className="comparison-col__icon comparison-col__icon--for">
+            <CheckIcon className="panel-icon" />
+          </span>
+          <h3>This is for you if&hellip;</h3>
+        </div>
+        <ul className="comparison-col__list">
+          {forItems.map((item) => (
+            <li key={item}>
+              <CheckIcon className="comparison-check" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </article>
+      <div className="comparison-divider" />
+      <div className="comparison-col comparison-col--not">
+        <div className="comparison-col__header">
+          <span className="comparison-col__icon comparison-col__icon--not">
+            <CloseIcon className="panel-icon" />
+          </span>
+          <h3>This is not for you if&hellip;</h3>
+        </div>
+        <ul className="comparison-col__list">
+          {notForItems.map((item) => (
+            <li key={item}>
+              <CloseIcon className="comparison-x" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
 
@@ -1884,19 +1706,6 @@ function MailIcon({ className }: { className?: string }) {
     <svg {...svgProps(className)}>
       <rect height="12" rx="2" width="18" x="3" y="6" />
       <path d="m5 8 7 5 7-5" />
-    </svg>
-  );
-}
-
-function CouncilIcon({ className }: { className?: string }) {
-  return (
-    <svg {...svgProps(className)}>
-      <circle cx="6.5" cy="8" r="2.5" />
-      <circle cx="17.5" cy="8" r="2.5" />
-      <circle cx="12" cy="15.5" r="2.5" />
-      <path d="M8.5 9.8 10.4 13" />
-      <path d="m15.5 9.8-1.9 3.2" />
-      <path d="M9 8h6" />
     </svg>
   );
 }
