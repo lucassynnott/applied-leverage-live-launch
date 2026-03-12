@@ -35,6 +35,29 @@ describe("buildFormSubmitPayload", () => {
       submittedAt: "2026-03-09T22:00:00.000Z"
     });
   });
+
+  it("supports assessment roadmap requests too", () => {
+    const formData = new FormData();
+
+    formData.set("email", "jane@company.com");
+    formData.set("band", "Scale-ready");
+    formData.set("score", "31");
+
+    const payload = buildFormSubmitPayload(
+      "assessment",
+      formData,
+      new Date("2026-03-09T22:00:00.000Z")
+    );
+
+    expect(payload).toMatchObject({
+      _replyto: "jane@company.com",
+      _subject: "Applied Leverage assessment roadmap request",
+      band: "Scale-ready",
+      formType: "Assessment roadmap request",
+      score: "31",
+      submittedAt: "2026-03-09T22:00:00.000Z"
+    });
+  });
 });
 
 describe("submitEmbeddedForm", () => {

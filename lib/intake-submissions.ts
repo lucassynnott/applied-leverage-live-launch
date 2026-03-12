@@ -1,13 +1,15 @@
-export type EmbeddedFormVariant = "diagnostic" | "sprint";
+export type EmbeddedFormVariant = "assessment" | "diagnostic" | "sprint";
 
 const FORM_SUBMIT_ENDPOINT = "https://formsubmit.co/ajax/lucas@appliedleverage.io";
 
 const formTypeByVariant: Record<EmbeddedFormVariant, string> = {
+  assessment: "Assessment roadmap request",
   diagnostic: "Diagnostic application",
   sprint: "Sprint waitlist"
 };
 
 const subjectByVariant: Record<EmbeddedFormVariant, string> = {
+  assessment: "Applied Leverage assessment roadmap request",
   diagnostic: "Applied Leverage diagnostic application",
   sprint: "Applied Leverage sprint waitlist"
 };
