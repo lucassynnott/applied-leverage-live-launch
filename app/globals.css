@@ -1676,7 +1676,8 @@ a {
   color: var(--text-secondary);
   line-height: 1.75;
   max-width: 600px;
-  margin-bottom: 2rem;
+  margin-top: -1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1684,13 +1685,15 @@ a {
    ═══════════════════════════════════════════════════════════════ */
 
 .quiz-container {
-  max-width: 680px;
+  width: 680px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .quiz-results {
-  max-width: 680px;
+  width: 680px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
