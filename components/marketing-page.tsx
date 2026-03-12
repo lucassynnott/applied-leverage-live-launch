@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { type ReactNode } from "react";
 
+import { AutomationQuiz } from "@/components/automation-quiz";
 import { EmbeddedForm } from "@/components/forms";
 import { RichMarkdown } from "@/components/rich-markdown";
 import type { PageSection, PageSlug, SitePage } from "@/lib/site-content";
@@ -108,7 +109,7 @@ const heroStats: Record<PageSlug, Stat[]> = {
   ],
   sprint: [
     { value: "$3.5K", label: "flat sprint fee" },
-    { value: "3", label: "AI agents built" },
+    { value: "3", label: "dedicated AI agents" },
     { value: "30 day", label: "post-sprint check-in" }
   ],
   about: [
@@ -456,6 +457,20 @@ function renderDiagnosticPage(page: SitePage) {
         <article className="narrative-card">
           <RichMarkdown className="markdown" source={problem.body} />
         </article>
+      </section>
+
+      {/* Quick Automation Quiz */}
+      <section className="page-band" id="quiz">
+        <div className="page-band__header">
+          <p className="eyebrow">Self-Assessment</p>
+          <h2>Find out what you should automate first.</h2>
+        </div>
+        <p className="page-band__intro">
+          Answer 7 quick questions about how you run your business.
+          You&apos;ll see exactly where your biggest automation opportunities are —
+          and where the Diagnostic goes deeper.
+        </p>
+        <AutomationQuiz />
       </section>
 
       {/* What You Get — deliverable check cards */}
@@ -1074,15 +1089,17 @@ function HeroCentered({
 }) {
   const primaryAction = page.hero.cta ?? primaryActions[page.slug];
   const secondaryAction = secondaryActions[page.slug];
+  const heroClassName = `page-hero ${page.slug}-hero`;
 
   return (
-    <section className="page-hero">
+    <section className={heroClassName}>
       <div className="hero-centered">
         <p className="eyebrow">{page.definition.eyebrow}</p>
         <h1 className="hero-title">{page.hero.headline}</h1>
         {page.hero.subheadline ? (
           <p className="hero-subheadline">{page.hero.subheadline}</p>
         ) : null}
+        {page.hero.badge ? <p className="hero-badge">{page.hero.badge}</p> : null}
         {page.hero.body ? (
           <RichMarkdown className="markdown hero-body" source={page.hero.body} />
         ) : null}
