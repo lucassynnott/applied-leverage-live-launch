@@ -58,8 +58,6 @@ If you complete the Diagnostic and decide to do the Sprint within 30 days, the $
 
 ## DIAGNOSTIC APPLICATION {#diagnostic-form}
 
-*[Application form — embed below]*
-
 **What we'll ask:**
 - Your current offer and revenue range
 - How you deliver your work today
@@ -71,8 +69,6 @@ Applications reviewed within 1 business day. If you're the right fit, you'll rec
 ---
 
 ## SPRINT WAITLIST {#sprint-form}
-
-*[Waitlist form — embed below]*
 
 **What we'll ask:**
 - Whether you've completed the Diagnostic (or equivalent)

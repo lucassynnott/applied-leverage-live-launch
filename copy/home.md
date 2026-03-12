@@ -11,6 +11,8 @@
 > Applied Leverage builds the operating system that runs your business without you running it.
 
 **Body:**
+Map your leverage. Sequence the build.
+
 The work isn't the problem. The drag is.
 
 Every client you take on adds to a pile that only you can clear. You've seen the AI tools. Maybe tried a few. Most of them added complexity, not leverage.

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 /* ─────────────────────────────────────────────
    Quiz data
@@ -204,10 +204,10 @@ const questions: Question[] = [
 ];
 
 /* ─────────────────────────────────────────────
-   Quiz component
+   Helpers
    ───────────────────────────────────────────── */
 
-function computeResults(selections: Record<string, number>) {
+function computeResults(selections: Record<number, number>) {
   let totalPoints = 0;
   const tagCounts: Record<AutomationArea, number> = {
     "follow-up": 0,
@@ -261,72 +261,105 @@ function getVerdict(points: number): { headline: string; body: string } {
   };
 }
 
+/* ─────────────────────────────────────────────
+   Quiz component — multi-step with fade
+   ───────────────────────────────────────────── */
+
+type Phase = "quiz" | "results";
+
 export function AutomationQuiz() {
   const [selections, setSelections] = useState<Record<number, number>>({});
-  const [showResults, setShowResults] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [phase, setPhase] = useState<Phase>("quiz");
+  const [fading, setFading] = useState(false);
 
   const answered = Object.keys(selections).length;
-  const allAnswered = answered === questions.length;
+  const isLastQuestion = currentStep === questions.length - 1;
 
-  function selectAnswer(qIndex: number, aIndex: number) {
-    if (showResults) return;
-    setSelections((prev) => ({ ...prev, [qIndex]: aIndex }));
-  }
+  const fadeToNext = useCallback((callback: () => void) => {
+    setFading(true);
+    setTimeout(() => {
+      callback();
+      setFading(false);
+    }, 280);
+  }, []);
 
-  function handleShowResults() {
-    if (!allAnswered) return;
-    setShowResults(true);
+  function selectAnswer(aIndex: number) {
+    if (fading) return;
+
+    setSelections((prev) => ({ ...prev, [currentStep]: aIndex }));
+
+    // Auto-advance after a brief pause so they see their selection
+    setTimeout(() => {
+      if (isLastQuestion) {
+        fadeToNext(() => setPhase("results"));
+      } else {
+        fadeToNext(() => setCurrentStep((s) => s + 1));
+      }
+    }, 350);
   }
 
   function handleReset() {
-    setSelections({});
-    setShowResults(false);
+    fadeToNext(() => {
+      setSelections({});
+      setCurrentStep(0);
+      setPhase("quiz");
+    });
   }
 
-  if (showResults) {
+  function goBack() {
+    if (currentStep === 0 || fading) return;
+    fadeToNext(() => setCurrentStep((s) => s - 1));
+  }
+
+  const q = questions[currentStep];
+
+  if (phase === "results") {
     const { totalPoints, topAreas } = computeResults(selections);
     const verdict = getVerdict(totalPoints);
 
     return (
-      <div className="quiz-results">
-        <div className="quiz-results__header">
-          <p className="eyebrow">Your Results</p>
-          <h3>{verdict.headline}</h3>
-          <p className="quiz-results__body">{verdict.body}</p>
-        </div>
-
-        {topAreas.length > 0 && (
-          <div className="quiz-results__areas">
-            <h4>Your top automation opportunities:</h4>
-            <div className="quiz-area-cards">
-              {topAreas.map((area, i) => (
-                <div className="quiz-area-card surface-card" key={area}>
-                  <span className="quiz-area-rank">#{i + 1}</span>
-                  <h5>{areaLabels[area]}</h5>
-                  <p>{areaDescriptions[area]}</p>
-                </div>
-              ))}
-            </div>
+      <div className={`quiz-step-wrapper ${fading ? "quiz-step--fading" : "quiz-step--visible"}`}>
+        <div className="quiz-results">
+          <div className="quiz-results__header">
+            <p className="eyebrow">Your Results</p>
+            <h3>{verdict.headline}</h3>
+            <p className="quiz-results__body">{verdict.body}</p>
           </div>
-        )}
 
-        <div className="quiz-results__cta">
-          <p>
-            This quiz shows you <em>where</em> to look. The Diagnostic shows you{" "}
-            <em>exactly what to build</em>, in what order, and why — customized
-            to your specific business.
-          </p>
-          <div className="quiz-cta-row">
-            <Link className="button button-primary" href="#apply">
-              Book Your Diagnostic — $297 →
-            </Link>
-            <button
-              className="button button-secondary"
-              onClick={handleReset}
-              type="button"
-            >
-              Retake Quiz
-            </button>
+          {topAreas.length > 0 && (
+            <div className="quiz-results__areas">
+              <h4>Your top automation opportunities:</h4>
+              <div className="quiz-area-cards">
+                {topAreas.map((area, i) => (
+                  <div className="quiz-area-card surface-card" key={area}>
+                    <span className="quiz-area-rank">#{i + 1}</span>
+                    <h5>{areaLabels[area]}</h5>
+                    <p>{areaDescriptions[area]}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="quiz-results__cta">
+            <p>
+              This quiz shows you <em>where</em> to look. The Diagnostic shows you{" "}
+              <em>exactly what to build</em>, in what order, and why — customized
+              to your specific business.
+            </p>
+            <div className="quiz-cta-row">
+              <Link className="button button-primary" href="#apply">
+                Book Your Diagnostic — $297 →
+              </Link>
+              <button
+                className="button button-secondary"
+                onClick={handleReset}
+                type="button"
+              >
+                Retake Quiz
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -335,53 +368,54 @@ export function AutomationQuiz() {
 
   return (
     <div className="quiz-container">
+      {/* Progress bar */}
       <div className="quiz-progress">
         <div
           className="quiz-progress__bar"
-          style={{ width: `${(answered / questions.length) * 100}%` }}
+          style={{ width: `${((answered) / questions.length) * 100}%` }}
         />
       </div>
-      <p className="quiz-counter">
-        {answered} of {questions.length} answered
-      </p>
-
-      <div className="quiz-questions">
-        {questions.map((q, qIndex) => (
-          <div
-            className={`quiz-question ${selections[qIndex] !== undefined ? "quiz-question--answered" : ""}`}
-            key={q.id}
+      <div className="quiz-step-meta">
+        <span className="quiz-counter">
+          Question {currentStep + 1} of {questions.length}
+        </span>
+        {currentStep > 0 && (
+          <button
+            className="quiz-back-btn"
+            onClick={goBack}
+            type="button"
+            disabled={fading}
           >
-            <p className="quiz-question__number">
-              {String(qIndex + 1).padStart(2, "0")}
-            </p>
-            <p className="quiz-question__text">{q.question}</p>
-            <div className="quiz-answers">
-              {q.answers.map((a, aIndex) => (
-                <button
-                  className={`quiz-answer ${selections[qIndex] === aIndex ? "quiz-answer--selected" : ""}`}
-                  key={a.text}
-                  onClick={() => selectAnswer(qIndex, aIndex)}
-                  type="button"
-                >
-                  {a.text}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
+            ← Back
+          </button>
+        )}
       </div>
 
-      {allAnswered && (
-        <div className="quiz-submit-row">
-          <button
-            className="button button-primary"
-            onClick={handleShowResults}
-            type="button"
-          >
-            See My Results →
-          </button>
+      {/* Single question card with fade */}
+      <div
+        className={`quiz-step-wrapper ${fading ? "quiz-step--fading" : "quiz-step--visible"}`}
+        key={q.id}
+      >
+        <div className="quiz-step">
+          <p className="quiz-question__number">
+            {String(currentStep + 1).padStart(2, "0")}
+          </p>
+          <p className="quiz-question__text">{q.question}</p>
+          <div className="quiz-answers">
+            {q.answers.map((a, aIndex) => (
+              <button
+                className={`quiz-answer ${selections[currentStep] === aIndex ? "quiz-answer--selected" : ""}`}
+                key={a.text}
+                onClick={() => selectAnswer(aIndex)}
+                type="button"
+                disabled={fading || selections[currentStep] !== undefined}
+              >
+                {a.text}
+              </button>
+            ))}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1699,31 +1699,64 @@ a {
   height: 100%;
   background: var(--gold);
   border-radius: 2px;
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
+}
+
+.quiz-step-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
 .quiz-counter {
   font-size: 0.8rem;
   color: var(--text-muted);
-  margin-bottom: 2rem;
 }
 
-.quiz-questions {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.quiz-back-btn {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  transition: color 0.15s ease;
 }
 
-.quiz-question {
-  padding: 1.5rem;
+.quiz-back-btn:hover {
+  color: var(--text-secondary);
+}
+
+.quiz-back-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Step fade transition ──────────────────────────────────── */
+
+.quiz-step-wrapper {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.quiz-step--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quiz-step--fading {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ── Single question card ──────────────────────────────────── */
+
+.quiz-step {
+  padding: 2rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: border-color 0.2s ease;
-}
-
-.quiz-question--answered {
-  border-color: var(--gold-glow);
 }
 
 .quiz-question__number {
@@ -1736,10 +1769,10 @@ a {
 }
 
 .quiz-question__text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   line-height: 1.5;
 }
 
@@ -1753,7 +1786,7 @@ a {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 0.85rem 1rem;
+  padding: 1rem 1.25rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
   background: var(--surface-elevated);
@@ -1764,7 +1797,7 @@ a {
   line-height: 1.5;
 }
 
-.quiz-answer:hover {
+.quiz-answer:hover:not(:disabled) {
   background: var(--surface-hover);
   border-color: var(--border-strong);
   color: var(--text);
@@ -1781,9 +1814,8 @@ a {
   border-color: var(--gold-bright);
 }
 
-.quiz-submit-row {
-  margin-top: 2rem;
-  text-align: center;
+.quiz-answer:disabled {
+  cursor: default;
 }
 
 /* ── Quiz Results ──────────────────────────────────────────── */

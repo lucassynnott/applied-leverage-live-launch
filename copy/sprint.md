@@ -153,8 +153,6 @@ If you complete week 1 and decide the Sprint isn't right for you, I'll refund th
 
 Join the waitlist for the first Sprint cohort.
 
-*[Waitlist form — embed below]*
-
 You'll be contacted when spots open — before any public announcement.
 
 ---

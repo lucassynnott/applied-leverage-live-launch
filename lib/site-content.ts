@@ -267,6 +267,11 @@ function parseHeroSection(body: string, fallbackSummary: string): PageHero {
     if (labelMatch) {
       currentKey = labelMatch[1].toLowerCase();
       groups[currentKey] ??= [];
+
+      const inlineValue = trimmed.slice(labelMatch[0].length).trim();
+      if (inlineValue) {
+        groups[currentKey].push(inlineValue);
+      }
       continue;
     }
 

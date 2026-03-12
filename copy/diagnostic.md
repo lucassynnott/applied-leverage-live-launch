@@ -159,8 +159,6 @@ Fill out the form below. I review every application personally. If you're accept
 
 *If you're not the right fit, I'll tell you directly.*
 
-**→ [Application form — embed below]**
-
 *Applications reviewed within 1 business day.*
 
 ---
