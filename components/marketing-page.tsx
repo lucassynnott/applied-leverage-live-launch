@@ -66,8 +66,8 @@ const primaryActions: Record<PageSlug, ActionLink> = {
 
 const secondaryActions: Record<PageSlug, ActionLink> = {
   home: {
-    label: "See Both Paths",
-    href: "/apply"
+    label: "Take the Free Assessment",
+    href: "/assess"
   },
   why: {
     label: "Compare Both Offers",
@@ -202,6 +202,54 @@ function renderHomePage(page: SitePage) {
   const ctaCopy = splitLeadCopy(cta.body);
   const quotes = extractQuotes(proof.body);
 
+  const offerLadder = [
+    {
+      body:
+        "Answer 10 questions, get an instant readiness score, and see whether you need systems work, a self-audit, expert diagnosis, or implementation.",
+      cta: { href: "/assess", label: "Take the free assessment" },
+      title: "Automation Readiness Assessment"
+    },
+    {
+      body:
+        "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book a call.",
+      cta: { href: "/workbook", label: "Get the workbook" },
+      title: "The Operator's Automation Audit"
+    },
+    {
+      body:
+        "Book the paid diagnostic if you want Lucas to pressure-test the business and hand you the top three moves in order.",
+      cta: { href: "/diagnostic", label: "Book the diagnostic" },
+      title: "Agent OS Diagnostic"
+    },
+    {
+      body:
+        "Apply for implementation when the drag is already obvious and you want the first leverage layers built properly.",
+      cta: { href: "/sprint", label: "Apply for implementation" },
+      title: "Implementation Sprint"
+    }
+  ];
+
+  const chooserPaths = [
+    {
+      body:
+        "Start with the assessment if you still need a reality check on whether automation is even the right move.",
+      cta: { href: "/assess", label: "Start with the assessment" },
+      title: "Need a fast reality check?"
+    },
+    {
+      body:
+        "Choose the workbook if you want structure and self-audit clarity before you talk to anyone live.",
+      cta: { href: "/workbook", label: "Choose the workbook" },
+      title: "Want to figure it out yourself first?"
+    },
+    {
+      body:
+        "Book the diagnostic if you want expert prioritization instead of another month of guessing.",
+      cta: { href: "/diagnostic", label: "Get expert prioritization" },
+      title: "Want the sharpest answer fastest?"
+    }
+  ];
+
   return (
     <main className="marketing-page marketing-page--home">
       <PageHero page={page} />
@@ -254,6 +302,38 @@ function renderHomePage(page: SitePage) {
         </div>
       </section>
 
+      {/* Offer Ladder — route colder traffic without weakening the sales spine */}
+      <section className="page-band" id="offer-ladder">
+        <div className="page-band__header">
+          <p className="eyebrow">Start here</p>
+          <h2>Start with the level of help you actually need.</h2>
+        </div>
+        <p className="page-band__intro">
+          Not every business needs the same next move. Some need a reality check.
+          Some need a self-audit. Some need expert prioritization. Some need the machine built.
+        </p>
+        <div className="card-grid card-grid--two">
+          {offerLadder.map((offer, index) => {
+            const Icon = iconCycle[index % iconCycle.length];
+
+            return (
+              <article className="surface-card icon-card" key={offer.title}>
+                <span className="icon-badge">
+                  <Icon className="panel-icon" />
+                </span>
+                <h3>{offer.title}</h3>
+                <p>{offer.body}</p>
+                <div className="cta-actions">
+                  <Link className="button button-secondary" href={offer.cta.href}>
+                    {offer.cta.label}
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Who This Is For — check cards */}
       <section className="page-band" id={fit.id}>
         <div className="page-band__header">
@@ -268,6 +348,27 @@ function renderHomePage(page: SitePage) {
               label={item}
               title={homeFitTitles[index] ?? `Fit signal ${index + 1}`}
             />
+          ))}
+        </div>
+      </section>
+
+      {/* Stage chooser */}
+      <section className="page-band" id="path-chooser">
+        <div className="page-band__header">
+          <p className="eyebrow">Routing</p>
+          <h2>Don’t buy the wrong level of help.</h2>
+        </div>
+        <div className="card-grid card-grid--three">
+          {chooserPaths.map((path) => (
+            <article className="surface-card path-card" key={path.title}>
+              <h3>{path.title}</h3>
+              <p>{path.body}</p>
+              <div className="cta-actions">
+                <Link className="button button-secondary" href={path.cta.href}>
+                  {path.cta.label}
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
       </section>
