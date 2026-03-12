@@ -1685,6 +1685,14 @@ a {
 
 .quiz-container {
   max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quiz-results {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .quiz-progress {
