@@ -35,7 +35,7 @@ export const pageDefinitions = {
     highlights: [
       "90 minutes with Lucas",
       "Top 3 automation moves ranked",
-      "Map delivered within 4 hours"
+      "Map delivered after the call, usually the same day"
     ]
   },
   sprint: {
@@ -47,7 +47,7 @@ export const pageDefinitions = {
     highlights: [
       "4 weeks, 3 automations",
       "Weekly working sessions",
-      "Soft-launch cohort capped at 3 clients"
+      "Soft-launch waitlist only"
     ]
   },
   about: {
@@ -69,9 +69,9 @@ export const pageDefinitions = {
     eyebrow: "Start here",
     summary: "Choose the right entry point, submit your intake, and move into review.",
     highlights: [
-      "Diagnostic applications reviewed in 1 business day",
-      "Sprint waitlist for early cohort access",
-      "Diagnostic fee rolls into the sprint"
+      "Diagnostic applications reviewed personally",
+      "Sprint waitlist reviewed manually before space is opened",
+      "Diagnostic can lead into implementation if the fit is real"
     ]
   }
 } as const;

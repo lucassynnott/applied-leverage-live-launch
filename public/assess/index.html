@@ -192,6 +192,14 @@ h1 em{font-style:normal;color:var(--a)}
 .share-btn:hover{border-color:var(--a);color:var(--t);background:var(--el)}
 .retake-link{display:block;text-align:center;font-size:13px;color:var(--d);cursor:pointer;padding:8px;transition:color .2s;background:none;border:none;font-family:var(--f);width:100%;margin-top:8px}
 .retake-link:hover{color:var(--m)}
+.video-module{margin:0 0 30px;padding:22px;background:var(--card);border:1px solid var(--b);border-radius:12px}
+.video-module__label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--a);margin-bottom:10px}
+.video-module__title{font-size:22px;line-height:1.25;letter-spacing:-.02em;margin-bottom:10px}
+.video-module__body{font-size:15px;color:var(--m);line-height:1.75;margin-bottom:14px}
+.video-shell{border:1px solid var(--bh);border-radius:10px;overflow:hidden;background:#000;margin-bottom:10px}
+.video-shell video{display:block;width:100%;height:auto}
+.video-module__meta{font-size:12px;color:var(--d);margin-bottom:14px}
+.video-module__actions{display:flex;gap:10px;flex-wrap:wrap}
 @media(max-width:520px){
   .cta-btns .btn{font-size:13px;padding:14px 16px}
   .email-form{flex-direction:column}
@@ -221,6 +229,21 @@ h1 em{font-style:normal;color:var(--a)}
         <h2 style="font-size:22px;line-height:1.25;letter-spacing:-.02em;margin-bottom:12px">Automation Readiness Assessment for Small Businesses</h2>
         <p style="font-size:15px;color:var(--m);line-height:1.8;margin-bottom:12px">If you run a small service business, agency, or consulting operation, AI automation only helps when the timing is right. This automation readiness assessment shows whether your business has the repeatability, operational drag, and workflow clarity needed to make automation pay off.</p>
         <p style="font-size:15px;color:var(--m);line-height:1.8">In a few minutes, you will get a score based on your systems, delivery model, tool stack, and founder dependency. You will also get a clearer next step: stay manual a bit longer, run a self-guided audit, or move into a higher-touch <a href="https://appliedleverage.io/diagnostic" style="color:var(--a)">automation audit</a>.</p>
+      </section>
+      <section class="video-module" aria-labelledby="assess-video-title">
+        <div class="video-module__label">Founder walkthrough</div>
+        <h2 id="assess-video-title" class="video-module__title">Watch Lucas break down what this assessment is actually for.</h2>
+        <p class="video-module__body">A short founder overview on who should take the assessment, what it measures, and why buying tools before diagnosis usually burns time twice.</p>
+        <div class="video-shell">
+          <video controls preload="metadata" playsinline poster="/media/assess-founder-clip-poster.jpg">
+            <source src="/media/assess-founder-clip-16x9.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="video-module__meta">Under 30 seconds • what this assessment is, who it's for, and what happens next</p>
+        <div class="video-module__actions">
+          <button class="btn btn-r" onclick="startAssessment()">Take the assessment →</button>
+        </div>
       </section>
       <button class="btn btn-r" onclick="startAssessment()">Start the assessment &#8594;</button>
     </div>
@@ -278,7 +301,7 @@ h1 em{font-style:normal;color:var(--a)}
       <div class="sh">Get Your Roadmap</div>
       <div class="email-block">
         <div class="email-hl">Get your personalized automation roadmap</div>
-        <div class="email-sub">We'll send your score breakdown and next-step summary. If the endpoint isn't wired yet, we'll open a prefilled email to Lucas so your result doesn't disappear into the void.</div>
+        <div class="email-sub">We'll push your score breakdown and next-step summary into the first-party intake queue. If the intake route fails, we'll open a prefilled email to Lucas so your result doesn't disappear into the void.</div>
         <form class="email-form" id="roadmap-form">
           <input type="email" class="email-input" id="email-input" placeholder="your@email.com" required>
           <button type="submit" class="btn btn-r">Send my roadmap</button>
@@ -314,7 +337,7 @@ h1 em{font-style:normal;color:var(--a)}
         </div>
         <div>
           <h3 style="font-size:18px;line-height:1.35;margin-bottom:8px">What Happens After You Get Your Score</h3>
-          <p style="font-size:15px;color:var(--m);line-height:1.8">You will see whether your business is early, emerging, ready, or primed for automation. From there, the next move is simple: fix the fundamentals, run a self-guided audit, or book a paid <a href="https://appliedleverage.io/diagnostic" style="color:var(--a)">automation audit</a> to prioritize the highest-leverage systems.</p>
+          <p style="font-size:15px;color:var(--m);line-height:1.8">You will see whether your business is early, emerging, ready, or primed for automation. From there, the next move is simple: fix the fundamentals, run a self-guided audit, or apply for a paid <a href="https://appliedleverage.io/diagnostic" style="color:var(--a)">automation audit</a> to prioritize the highest-leverage systems.</p>
         </div>
         <div>
           <h3 style="font-size:18px;line-height:1.35;margin-bottom:8px">Frequently Asked Questions</h3>
@@ -522,14 +545,14 @@ function showResults() {
   });
   
   const workbookCheckoutUrl = (window.WORKBOOK_CHECKOUT_URL || ``).trim();
-  const workbookCtaLabel = workbookCheckoutUrl ? `Buy the workbook — $47` : `Get the workbook`;
+  const workbookCtaLabel = workbookCheckoutUrl ? `Buy the workbook — $47` : `Request the workbook`;
   const workbookRoutingUrl = workbookCheckoutUrl || `https://appliedleverage.io/workbook`;
   const workbookRedSub = workbookCheckoutUrl
     ? `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure and instant access. If you want to understand the readiness logic first, read the guide before booking anything.`
-    : `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure before live help. Current access is manual while checkout goes live, but the product is ready. If you want to understand the readiness logic first, read the guide before booking anything.`;
+    : `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure before live help. If you want to understand the readiness logic first, read the guide before booking anything.`;
   const workbookYellowSub = workbookCheckoutUrl
-    ? `You have real operational drag, but the right move depends on how much support you want. Get the workbook if you want to work through it yourself with instant access. Book the diagnostic if you want expert judgment faster.`
-    : `You have real operational drag, but the right move depends on how much support you want. Get the workbook if you want to work through it yourself. Current access is manual while checkout goes live, but the product is ready. Book the diagnostic if you want expert judgment faster.`;
+    ? `You have real operational drag, but the right move depends on how much support you want. Buy the workbook if you want to work through it yourself with instant access. Apply for the diagnostic if you want expert judgment faster.`
+    : `You have real operational drag, but the right move depends on how much support you want. Request the workbook if you want to work through it yourself. Apply for the diagnostic if you want expert judgment faster.`;
 
   const ctaConfig = {
     red: {
@@ -551,7 +574,7 @@ function showResults() {
       pnote: `Same problem. Different level of support.`,
       btns: [
         {t:workbookCtaLabel, url:workbookRoutingUrl, primary:true},
-        {t:`Book the $297 diagnostic`, url:diagnosticUrl, primary:false}
+        {t:`Apply for the diagnostic`, url:diagnosticUrl, primary:false}
       ]
     },
     green: {
@@ -561,7 +584,7 @@ function showResults() {
       price: `$297`,
       pnote: `90-minute deep-dive audit. Custom roadmap included.`,
       btns: [
-        {t:`Book your diagnostic call`, url:diagnosticUrl, primary:true}
+        {t:`Apply for the diagnostic`, url:diagnosticUrl, primary:true}
       ]
     },
     blue: {
@@ -571,7 +594,7 @@ function showResults() {
       price: `Custom`,
       pnote: `Start with the diagnostic to scope the project.`,
       btns: [
-        {t:`Book a diagnostic call`, url:diagnosticUrl, primary:true},
+        {t:`Apply for the diagnostic`, url:diagnosticUrl, primary:true},
         {t:`Email us directly`, url:`mailto:lucas@appliedleverage.io`, primary:false}
       ]
     }
@@ -651,7 +674,7 @@ async function submitEmail(event) {
     topRecommendations: lowScores
   };
 
-  const endpoint = window.ASSESSMENT_ROADMAP_ENDPOINT;
+  const endpoint = (window.ASSESSMENT_ROADMAP_ENDPOINT || `/api/intake/assessment`).trim();
   button.disabled = true;
   button.textContent = `Sending...`;
   msg.textContent = `Submitting your roadmap request...`;
@@ -666,7 +689,11 @@ async function submitEmail(event) {
         body: JSON.stringify(payload)
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      msg.textContent = `Roadmap request received. Check your inbox.`;
+      const result = await response.json().catch(() => ({}));
+      const submissionId = typeof result?.submissionId === `string` ? result.submissionId : ``;
+      msg.textContent = submissionId
+        ? `Roadmap request received. Your result is now in the intake queue under ${submissionId}.`
+        : `Roadmap request received. Your result is now in the intake queue.`;
       msg.style.color = `var(--grn)`;
       input.value = ``;
       button.disabled = false;

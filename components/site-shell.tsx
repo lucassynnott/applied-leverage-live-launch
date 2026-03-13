@@ -5,11 +5,23 @@ import { MobileNav } from "@/components/mobile-nav";
 import { getNavigationPages } from "@/lib/site-content";
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const pages = getNavigationPages().map(({ navLabel, path, slug }) => ({
-    navLabel,
-    path,
-    slug
-  }));
+  const pages = [
+    {
+      navLabel: "Assessment",
+      path: "/assess",
+      slug: "assessment"
+    },
+    ...getNavigationPages().map(({ navLabel, path, slug }) => ({
+      navLabel,
+      path,
+      slug
+    })),
+    {
+      navLabel: "Workbook",
+      path: "/workbook",
+      slug: "workbook"
+    }
+  ];
 
   return (
     <div className="site-shell">
@@ -25,9 +37,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="header-actions header-actions--desktop">
-          <a className="button button-ghost header-cta" href="mailto:lucas@appliedleverage.io">
-            Email
-          </a>
+          <Link className="button button-ghost header-cta" href="/assess">
+            Start here
+          </Link>
           <Link className="button button-primary header-cta" href="/apply">
             Apply
           </Link>
@@ -48,6 +60,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="footer-columns">
             <div className="footer-links">
               <p className="footer-label">Services</p>
+              <Link href="/assess">Assessment</Link>
+              <Link href="/workbook">Workbook</Link>
               <Link href="/diagnostic">Diagnostic</Link>
               <Link href="/sprint">Sprint</Link>
               <Link href="/apply">Apply</Link>
@@ -56,6 +70,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <p className="footer-label">Company</p>
               <Link href="/why">The Problem</Link>
               <Link href="/about">About</Link>
+              <Link href="/blog">Blog</Link>
               <a href="mailto:lucas@appliedleverage.io">Contact</a>
             </div>
             <div className="footer-links">

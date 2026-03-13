@@ -10,7 +10,7 @@
 > Where do you want to start?
 
 **Subheadline:**
-> Most operators start with the Diagnostic. It gives you clarity before you commit to implementation.
+> You are not choosing between random products. You are choosing how much help you want right now.
 
 ---
 
@@ -23,11 +23,9 @@ You're making money. You're still doing too much by hand. You've looked at AI an
 
 The Diagnostic is 90 minutes. You leave with a 1-page Automation Priority Map: your top 3 highest-leverage automation moves, ranked by impact and effort.
 
-**$297 founding price** (first 10 clients — 6 spots remaining)
+**$297 diagnostic starting price** (availability confirmed after review)
 
 → **[Apply for the Diagnostic](#diagnostic-form)**
-
-*Not sure which path? Start here.*
 
 ---
 
@@ -36,9 +34,9 @@ The Diagnostic is 90 minutes. You leave with a 1-page Automation Priority Map: y
 
 The Sprint is 4 weeks of building together. Three dedicated AI agents, built and deployed — each one solving a specific business problem. Live working sessions, async feedback, and a running agents team on the other side.
 
-Waitlist only — first cohort limited to 3 clients.
+Waitlist only during soft launch. Applications are reviewed manually before space is opened.
 
-**$3,500 flat.** (Diagnostic credit: $297 applied if completed within 30 days)
+**$3,500 flat.** (If we decide to keep building together, the diagnostic may be applied to the follow-on engagement.)
 
 → **[Join the Sprint Waitlist](#sprint-form)**
 
@@ -46,13 +44,15 @@ Waitlist only — first cohort limited to 3 clients.
 
 ## NOT SURE WHICH ONE?
 
-**Start with the Diagnostic.**
+**Start where the drag is clear enough to act.**
 
-Here's why: the Sprint assumes you know what to build. The Diagnostic tells you what to build. If you're not certain what your highest-leverage automation moves are — and most operators aren't — the Diagnostic is step one.
+If you already know the bottleneck and need help building, the Sprint is the right move.
 
-The two are designed as a path. The map first. Then the build.
+If the bottleneck is still fuzzy, the Diagnostic helps you stop guessing and get a ranked map before you build anything.
 
-If you complete the Diagnostic and decide to do the Sprint within 30 days, the $297 is credited. You're not paying twice.
+If neither feels obvious yet, the lower-friction paths exist for that reason — the workbook and the email route are real options, not consolation prizes.
+
+If we decide to keep building together after the Diagnostic, the diagnostic may be applied to the follow-on engagement.
 
 ---
 
@@ -64,7 +64,7 @@ If you complete the Diagnostic and decide to do the Sprint within 30 days, the $
 - Where you spend the most time that doesn't require your judgment
 - What you've already tried with AI or automation
 
-Applications reviewed within 1 business day. If you're the right fit, you'll receive a payment link and calendar booking. If you're not, I'll tell you directly and point you to a better next step.
+Applications are reviewed personally. If there is a fit, you'll receive the next step after review. If not, I'll tell you directly and point you to a better next step.
 
 ---
 
@@ -75,7 +75,7 @@ Applications reviewed within 1 business day. If you're the right fit, you'll rec
 - Your current business model and revenue
 - What you're hoping to build
 
-No commitment at this stage. You'll be contacted when a cohort spot opens — before any public announcement.
+No commitment at this stage. You'll be contacted when space opens during soft launch — before any broader announcement.
 
 ---
 

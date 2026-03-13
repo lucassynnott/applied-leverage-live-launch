@@ -8,6 +8,9 @@ import {
   loadPageContent
 } from "@/lib/site-content";
 
+const siteUrl = "https://appliedleverage.io";
+const socialImage = `${siteUrl}/images/lucas-synnott.png`;
+
 type PageProps = {
   params: Promise<{
     slug: string;
@@ -29,9 +32,32 @@ export async function generateMetadata({
 
   const page = loadPageContent(slug);
 
+  const canonicalUrl = `${siteUrl}${page.definition.path}`;
+
   return {
     title: page.pageTitle,
-    description: page.definition.summary
+    description: page.definition.summary,
+    alternates: {
+      canonical: canonicalUrl
+    },
+    openGraph: {
+      title: page.pageTitle,
+      description: page.definition.summary,
+      url: canonicalUrl,
+      type: "website",
+      images: [
+        {
+          url: socialImage,
+          alt: page.pageTitle
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.pageTitle,
+      description: page.definition.summary,
+      images: [socialImage]
+    }
   };
 }
 

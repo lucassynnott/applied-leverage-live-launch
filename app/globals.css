@@ -567,6 +567,14 @@ a {
   color: var(--text-secondary);
 }
 
+.article-meta {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .hero-body,
 .page-band__header,
 .cta-copy,
@@ -846,6 +854,39 @@ a {
 .split-layout {
   display: grid;
   gap: 3rem;
+}
+
+/* ── Video Modules ────────────────────────────────────────── */
+
+
+.page-band--video {
+  gap: 1.5rem;
+}
+
+.video-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 0.25rem);
+  background: #050505;
+}
+
+.video-shell video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.video-card {
+  gap: 1.25rem;
+}
+
+.video-card__meta {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* ── Surface Cards ─────────────────────────────────────────── */

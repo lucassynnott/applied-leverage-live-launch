@@ -2,3 +2,5 @@ window.ASSESSMENT_ROADMAP_ENDPOINT =
   window.ASSESSMENT_ROADMAP_ENDPOINT || '/api/intake/assessment';
 window.DIAGNOSTIC_APPLICATION_ENDPOINT =
   window.DIAGNOSTIC_APPLICATION_ENDPOINT || '/api/intake/diagnostic';
+window.WORKBOOK_CHECKOUT_URL =
+  window.WORKBOOK_CHECKOUT_URL || '';

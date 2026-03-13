@@ -129,6 +129,14 @@ h1 em{font-style:normal;color:var(--a)}
 .btn-o{background:transparent;color:var(--m);border:1px solid var(--bh);padding:12px 20px;font-size:13px}
 .btn-o:hover{background:var(--el);border-color:var(--a);color:var(--t)}
 .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hero-video-module{margin-top:28px;max-width:620px}
+.hero-video-module__label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--a);margin-bottom:10px}
+.hero-video-module__title{font-size:22px;line-height:1.25;letter-spacing:-.02em;margin-bottom:10px}
+.hero-video-module__body{font-size:15px;color:var(--m);line-height:1.75;margin-bottom:14px}
+.hero-video-module__meta{font-size:12px;color:var(--d);margin:10px 0 14px}
+.hero-video-module__actions{display:flex;gap:10px;flex-wrap:wrap}
+.video-shell{border:1px solid var(--bh);border-radius:10px;overflow:hidden;background:#000}
+.video-shell video{display:block;width:100%;height:auto}
 section{padding:52px 0;border-top:1px solid var(--b)}
 .s-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--d);margin-bottom:14px}
 .s-h2{font-size:clamp(20px,4vw,30px);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:18px}
@@ -172,8 +180,8 @@ section{padding:52px 0;border-top:1px solid var(--b)}
 .inc-list{list-style:none;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--bh);padding-top:18px;margin-bottom:24px}
 .inc-list li{font-size:14px;color:var(--m);display:flex;align-items:center;gap:9px}
 .inc-list li::before{content:"✓";color:var(--grn);font-weight:700;flex-shrink:0}
-.guarantee{font-size:12px;color:var(--d);margin-top:14px;line-height:1.6}
-.guarantee strong{color:var(--m)}
+.terms-note{font-size:12px;color:var(--d);margin-top:14px;line-height:1.6}
+.terms-note strong{color:var(--m)}
 .about-block{display:flex;gap:22px;align-items:flex-start;margin:20px 0}
 @media(max-width:480px){.about-block{flex-direction:column}}
 .about-av{width:62px;height:62px;border-radius:50%;background:var(--bh);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px}
@@ -216,7 +224,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
 <div class="wrap">
   <header>
     <a href="https://appliedleverage.io" class="logo">Applied <em>Leverage</em></a>
-    <span class="hbadge">Founding Cohort — 10 spots</span>
+    <span class="hbadge">Applications reviewed personally</span>
   </header>
 </div>
 
@@ -234,6 +242,21 @@ section{padding:52px 0;border-top:1px solid var(--b)}
     <div class="cta-row">
       <a href="#apply" class="btn btn-r">Apply for a Diagnostic →</a>
       <a href="#what-you-get" class="btn btn-o">See what is included</a>
+    </div>
+    <div class="hero-video-module" aria-labelledby="diagnostic-video-title">
+      <div class="hero-video-module__label">Founder walkthrough</div>
+      <h2 id="diagnostic-video-title" class="hero-video-module__title">See what the Diagnostic actually gives you before you book it.</h2>
+      <p class="hero-video-module__body">Lucas explains why bad automation wastes time twice, what the Automation Priority Map does, and when to choose this instead of guessing or buying more tools.</p>
+      <div class="video-shell">
+        <video controls preload="metadata" playsinline poster="/media/diagnostic-founder-clip-poster.jpg">
+          <source src="/media/diagnostic-founder-clip-16x9.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p class="hero-video-module__meta">~22 seconds • silent autoplay-safe asset with burned-in captions • explains the map, not just the call</p>
+      <div class="hero-video-module__actions">
+        <a href="#apply" class="btn btn-r">Apply for a Diagnostic →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -285,7 +308,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
     </div>
     <div class="callout">
       <div class="callout-title">The Automation Priority Map</div>
-      <div class="callout-body">Delivered after the call, usually the same day. <strong>Three automations. Ranked. With reasoning.</strong> Not a list of things you could do — a specific starting sequence for your specific business. Some clients implement it themselves. Others come back for the Implementation Sprint to have it built.</div>
+      <div class="callout-body">Delivered after the call as quickly as possible, usually the same day. <strong>Three automations. Ranked. With reasoning.</strong> Not a list of things you could do — a specific starting sequence for your specific business. Some clients implement it themselves. Others come back for the Implementation Sprint to have it built.</div>
     </div>
   </section>
 </div>
@@ -389,7 +412,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
       <li class="tl-item">
         <div class="tl-dot">03</div>
         <div>
-          <div class="tl-lbl">Within 4 hours</div>
+          <div class="tl-lbl">Usually the same day</div>
           <div class="tl-title">Your Automation Priority Map</div>
           <div class="tl-body">Three moves. In order. With reasoning specific to your business. Delivered by email as a clean 1-page document.</div>
         </div>
@@ -417,12 +440,12 @@ section{padding:52px 0;border-top:1px solid var(--b)}
         <li>90-minute live working session</li>
         <li>Pre-call intake form review</li>
         <li>Custom Automation Priority Map (1-page document)</li>
-        <li>Delivered after the call, usually the same day</li>
+        <li>Delivered after the call as quickly as possible, usually the same day</li>
         <li>Optional 15-min async voice follow-up</li>
         <li>If we decide to keep building together, the diagnostic may be applied to the follow-on engagement</li>
       </ul>
       <a href="#apply" class="btn btn-r" style="width:100%;justify-content:center;margin-bottom:12px">Apply for a Diagnostic →</a>
-      <div class="guarantee"><strong>Booking terms:</strong> If you have refund or rescheduling questions, raise them before booking so the terms are explicit.</div>
+      <div class="terms-note"><strong>Booking note:</strong> If you have refund or rescheduling questions, raise them before booking so the terms are explicit.</div>
     </div>
   </section>
 </div>
@@ -455,7 +478,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
       <div class="card">
         <div class="card-icon">📘</div>
         <div class="card-title">Want to work through it yourself first?</div>
-        <div class="card-body">Get <a href="https://appliedleverage.io/workbook" style="color:var(--a);text-decoration:none">The Operator's Automation Audit</a> if you want the same decision structure in a self-guided format.</div>
+        <div class="card-body">Request <a href="https://appliedleverage.io/workbook" style="color:var(--a);text-decoration:none">The Operator's Automation Audit</a> if you want the same decision structure in a self-guided format.</div>
       </div>
       <div class="card">
         <div class="card-icon">🧭</div>
@@ -558,8 +581,8 @@ section{padding:52px 0;border-top:1px solid var(--b)}
         </div>
       </form>
       <div class="thanks" id="apply-thanks">
-        <h4>Application ready for review.</h4>
-        <p>Your email app should open with the full application draft.<br>If nothing opens, email <a href="mailto:lucas@appliedleverage.io">lucas@appliedleverage.io</a> with your answers and I’ll review them personally and send the next step if there is a fit.<br><br>Either way, this goes through direct review — not an auto-confirmation sequence.<br><br>— Lucas</p>
+        <h4 id="apply-thanks-title">Application ready for review.</h4>
+        <p id="apply-thanks-body">Your email app should open with the full application draft.<br>If nothing opens, email <a href="mailto:lucas@appliedleverage.io">lucas@appliedleverage.io</a> with your answers and I’ll review them personally and send the next step if there is a fit.<br><br>Either way, this goes through direct review — not an auto-confirmation sequence.<br><br>— Lucas</p>
       </div>
     </div>
   </section>
@@ -615,6 +638,7 @@ function toggleFaq(el) {
 }
 
 const APPLICATION_EMAIL = 'lucas@appliedleverage.io';
+const DIRECT_REVIEW_NOTE = 'Either way, this goes through direct review — not an auto-confirmation sequence.<br><br>— Lucas';
 
 function syncWorkbookPathState() {
   const workbookCheckoutUrl = (window.WORKBOOK_CHECKOUT_URL || '').trim();
@@ -637,6 +661,40 @@ function getApplicationEndpoint() {
   return window.DIAGNOSTIC_APPLICATION_ENDPOINT || '';
 }
 
+function getSubmitButton(form) {
+  return form.querySelector('button[type="submit"]');
+}
+
+function setSubmitState(form, isLoading) {
+  const submitButton = getSubmitButton(form);
+  if (!submitButton) return;
+
+  if (!submitButton.dataset.defaultLabel) {
+    submitButton.dataset.defaultLabel = submitButton.textContent;
+  }
+
+  submitButton.disabled = isLoading;
+  submitButton.textContent = isLoading ? 'Submitting…' : submitButton.dataset.defaultLabel;
+}
+
+function showThanks(mode, submissionId = '') {
+  const title = document.getElementById('apply-thanks-title');
+  const body = document.getElementById('apply-thanks-body');
+  const thanks = document.getElementById('apply-thanks');
+
+  if (mode === 'endpoint') {
+    title.textContent = 'Application submitted.';
+    body.innerHTML = submissionId
+      ? `Your application was submitted successfully and is now in the manual review queue under ${submissionId}. Lucas will review the business details and send the next step if there is a fit.<br><br>${DIRECT_REVIEW_NOTE}`
+      : 'Your application was submitted successfully and is now in the manual review queue. Lucas will review the business details and send the next step if there is a fit.<br><br>' + DIRECT_REVIEW_NOTE;
+  } else {
+    title.textContent = 'Application draft opened for review.';
+    body.innerHTML = 'Your email app should open with the full application draft.<br>If nothing opens, email <a href="mailto:lucas@appliedleverage.io">lucas@appliedleverage.io</a> with your answers and I’ll review them personally and send the next step if there is a fit.<br><br>' + DIRECT_REVIEW_NOTE;
+  }
+
+  thanks.style.display = 'block';
+}
+
 function submitApp(event) {
   event.preventDefault();
   const form = document.getElementById('apply-form');
@@ -652,18 +710,23 @@ function submitApp(event) {
   const applicationEndpoint = getApplicationEndpoint();
 
   if (applicationEndpoint) {
+    setSubmitState(form, true);
     fetch(applicationEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-      .then(res => {
+      .then(async res => {
+        const responseJson = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error('Request failed');
         form.style.display = 'none';
-        document.getElementById('apply-thanks').style.display = 'block';
+        showThanks('endpoint', responseJson.submissionId || '');
       })
       .catch(() => {
         fallbackToEmail(payload);
+      })
+      .finally(() => {
+        setSubmitState(form, false);
       });
     return;
   }
@@ -695,7 +758,7 @@ function fallbackToEmail(payload) {
 
   window.location.href = `mailto:${APPLICATION_EMAIL}?subject=${subject}&body=${body}`;
   document.getElementById('apply-form').style.display = 'none';
-  document.getElementById('apply-thanks').style.display = 'block';
+  showThanks('email');
 }
 
 document.getElementById('apply-form').addEventListener('submit', submitApp);

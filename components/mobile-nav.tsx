@@ -64,9 +64,9 @@ export function MobileNav({ pages }: { pages: readonly NavPage[] }) {
           ))}
         </nav>
         <div className="mobile-nav__actions">
-          <a className="button button-ghost" href="mailto:lucas@appliedleverage.io" onClick={close}>
-            Email
-          </a>
+          <Link className="button button-ghost" href="/assess" onClick={close}>
+            Start here
+          </Link>
           <Link className="button button-primary" href="/apply" onClick={close}>
             Apply
           </Link>

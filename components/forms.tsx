@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, type FormEvent, type ReactNode } from "react";
+import React, { useEffect, useState, type FormEvent, type ReactNode } from "react";
 
 import {
-  submitEmbeddedForm,
+  submitEmbeddedFormToIntakeRoute,
   type EmbeddedFormVariant
 } from "@/lib/intake-submissions";
 
@@ -63,7 +63,7 @@ function FormShell({
     setStatus(null);
 
     try {
-      await submitEmbeddedForm(variant, new FormData(form));
+      await submitEmbeddedFormToIntakeRoute(variant, new FormData(form));
       setStatus({
         tone: "success",
         message: successMessage
@@ -135,16 +135,38 @@ function Field({ id, label, required = false, children }: FieldProps) {
 }
 
 function DiagnosticForm() {
+  const [assessmentContext, setAssessmentContext] = useState({
+    score: "",
+    band: "",
+    topAreas: "",
+    source: ""
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    setAssessmentContext({
+      score: params.get("assessment_score") ?? "",
+      band: params.get("assessment_band") ?? "",
+      topAreas: params.get("assessment_top_areas") ?? "",
+      source: params.get("assessment_source") ?? ""
+    });
+  }, []);
+
   return (
     <FormShell
       actionLabel="Submit Diagnostic Application"
-      description="Answer a few questions so Lucas can review the business before the diagnostic call."
+      description="Answer a few questions so Lucas can review the business and decide the right next step based on fit."
       eyebrow="Diagnostic intake"
-      note="Submissions go straight to Lucas's intake inbox and get reviewed before the session."
-      successMessage="Application received. Lucas will review your diagnostic intake and reply at the email you submitted."
+      note="Submissions go straight into Lucas's review queue and get checked before any session is offered."
+      successMessage="Application received. Lucas will review it personally and reply at the email you submitted with the right next step."
       title="Apply for the Agent OS Diagnostic"
       variant="diagnostic"
     >
+      <input name="assessment_score" type="hidden" value={assessmentContext.score} readOnly />
+      <input name="assessment_band" type="hidden" value={assessmentContext.band} readOnly />
+      <input name="assessment_top_areas" type="hidden" value={assessmentContext.topAreas} readOnly />
+      <input name="assessment_source" type="hidden" value={assessmentContext.source} readOnly />
       <Field id="diagnostic-name" label="Name" required>
         <input
           autoComplete="name"
@@ -210,7 +232,7 @@ function SprintForm() {
       eyebrow="Sprint waitlist"
       note="Waitlist requests route into the same intake inbox, with replies sent directly by email."
       successMessage="Waitlist request received. Lucas will review your sprint fit and follow up by email."
-      title="Request an invite to the first sprint cohort"
+      title="Request an invite to the next sprint opening"
       variant="sprint"
     >
       <Field id="sprint-name" label="Name" required>

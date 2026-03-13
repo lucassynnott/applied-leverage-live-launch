@@ -33,7 +33,7 @@ const articles = {
     faqDescription:
       "Straight answers for service businesses trying to figure out whether they need better systems, better positioning, or actual automation.",
     nextStepDescription:
-      "If the article made the drag clearer but you do not need live judgment yet, the workbook is the clean self-guided next step. If the bottleneck is obvious and you want expert prioritization fast, book the diagnostic.",
+      "If the article made the drag clearer but you do not need live judgment yet, the workbook is the clean self-guided next step. If the bottleneck is obvious and you want expert prioritization fast, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
       "..",
@@ -89,7 +89,7 @@ const articles = {
     faqDescription:
       "Straight answers on what to automate first, what to leave human, and how to avoid automating a vague process into a faster mess.",
     nextStepDescription:
-      "If onboarding is obviously dragging but you still need a readiness signal, start with the assessment. If you want the self-serve version, work through the workbook. If you want expert prioritization on what to automate first, book the diagnostic.",
+      "If onboarding is obviously dragging but you still need a readiness signal, start with the assessment. If you want the self-serve version, work through the workbook. If you want expert prioritization on what to automate first, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
       "..",
@@ -140,7 +140,7 @@ const articles = {
     faqDescription:
       "Straight answers on the first workflows worth automating, the traps to avoid, and how to tell whether a process is ready for automation at all.",
     nextStepDescription:
-      "If this clarified the likely bottleneck but you still need a reality check, start with the assessment. If you want to work the audit yourself, use the workbook. If you want expert prioritization on what to automate first, book the diagnostic.",
+      "If this clarified the likely bottleneck but you still need a reality check, start with the assessment. If you want to work the audit yourself, use the workbook. If you want expert prioritization on what to automate first, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
       "..",
@@ -179,6 +179,15 @@ type ArticleSlug = keyof typeof articles;
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
 const workbookManualRequestHref =
   "mailto:lucas@appliedleverage.io?subject=Automation%20Audit%20Workbook&body=Hey%20Lucas%20%E2%80%94%20send%20me%20the%20current%20link%20for%20The%20Operator%E2%80%99s%20Automation%20Audit.%20I%E2%80%99m%20interested%20in%20the%20%2447%20workbook.";
+
+function formatPublishedDate(isoDate: string) {
+  return new Intl.DateTimeFormat("en-IE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(isoDate));
+}
 
 export function generateStaticParams() {
   return Object.keys(articles).map((slug) => ({ slug }));
@@ -231,6 +240,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
   }
 
   const article = articles[slug as ArticleSlug];
+  const publishedLabel = formatPublishedDate(article.publishedTime);
   const rawMarkdown = readFileSync(article.filePath, "utf8").replace(/\r\n/g, "\n");
   const body = rawMarkdown
     .replace(/^#\s+.*$/m, "")
@@ -272,6 +282,31 @@ export default async function BlogArticlePage({ params }: PageProps) {
     }))
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://appliedleverage.io/"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://appliedleverage.io/blog"
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: articleUrl
+      }
+    ]
+  };
+
   return (
     <main className="page-stack">
       <script
@@ -282,11 +317,16 @@ export default async function BlogArticlePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="hero hero--page">
         <div className="hero-copy">
           <p className="eyebrow">Applied Leverage / Article</p>
           <h1 className="hero-title">{article.title}</h1>
           <p className="hero-subheadline">{article.heroSubheadline}</p>
+          <p className="article-meta">By {article.authorName} · Published {publishedLabel}</p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/assess">
               Take the Free Assessment

@@ -44,9 +44,8 @@ const workbookPrimaryLabel = workbookCheckoutHref
   : "Request the workbook";
 const workbookSupportNote =
   "Start self-guided, then step up to the Diagnostic if you want expert judgment and faster prioritization.";
-const workbookAccessNote = workbookCheckoutHref
-  ? "Instant checkout is live now."
-  : "Manual fulfillment for now. The workbook is ready now. Request access and Lucas will send the current version directly while checkout is being finalized.";
+const workbookAccessNote =
+  "Manual delivery for now. Product is ready now. Request access and Lucas will send the current version directly.";
 
 export default function WorkbookPage() {
   const productSchema = {
@@ -254,6 +253,41 @@ export default function WorkbookPage() {
         </div>
       </section>
 
+
+      <section className="page-band page-band--video" id="workbook-walkthrough">
+        <div className="page-band__header">
+          <p className="eyebrow">Founder walkthrough</p>
+          <h2>See what the workbook helps you figure out before you buy more tools.</h2>
+          <p>
+            A short founder video on who the workbook is for, what gets audited, and when to stay
+            self-guided versus stepping up to the Diagnostic.
+          </p>
+        </div>
+        <article className="surface-card video-card">
+          <div className="video-shell">
+            <video controls preload="metadata" playsInline poster="/media/workbook-founder-clip-poster.jpg">
+              <source src="/media/workbook-founder-clip-16x9.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p className="video-card__meta">
+            Under 30 seconds • what's inside and how operators use it
+          </p>
+          <div className="cta-actions">
+            <WorkbookCtaLink
+              className="button button-primary"
+              liveHref={workbookCheckoutHref}
+              liveLabel="Buy the workbook — $47"
+              manualHref={manualWorkbookRequestHref}
+              manualLabel="Request the workbook"
+            />
+            <Link className="button button-secondary" href="/diagnostic">
+              Want expert judgment instead?
+            </Link>
+          </div>
+        </article>
+      </section>
+
       <section className="page-band" id="fit">
         <div className="page-band__header">
           <p className="eyebrow">Workbook or diagnostic?</p>
@@ -310,7 +344,7 @@ export default function WorkbookPage() {
           <aside className="card-stack">
             <article className="surface-card callout-card">
               <h3>Two clean next moves</h3>
-              <p>Want the self-guided path? {workbookPrimaryLabel}. Want expert judgment? Book the diagnostic.</p>
+              <p>Want the self-guided path? {workbookPrimaryLabel}. Want expert judgment? Apply for the diagnostic.</p>
               <div className="cta-actions">
                 <WorkbookCtaLink
                   className="button button-primary"
@@ -320,7 +354,7 @@ export default function WorkbookPage() {
                   manualLabel="Request the workbook"
                 />
                 <Link className="button button-secondary" href="/diagnostic">
-                  Book the diagnostic
+                  Apply for the diagnostic
                 </Link>
               </div>
               <p>{workbookSupportNote}</p>

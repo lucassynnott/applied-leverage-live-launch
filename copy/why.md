@@ -84,7 +84,7 @@ Every week you operate without leverage, you're choosing:
 - Manual delivery over scalable delivery
 - Founder-dependent revenue over a real business
 
-The Diagnostic is $297. At $5K/month revenue, that's three days of running your current system. If the map saves you 5 hours a week — which is the low end — you've paid for it the first week.
+The Diagnostic is $297. If it helps you remove a recurring manual bottleneck, the value can outweigh the cost fast. The point is not abstract strategy. It is clearer action on the highest-leverage operational problem.
 
 The only question is whether this is the right moment.
 
@@ -96,7 +96,7 @@ The only question is whether this is the right moment.
 
 → [Apply for the Agent OS Diagnostic — $297](/diagnostic)
 
-*Application-based. 90 minutes. You receive your 1-page Automation Priority Map within 4 hours of the call.*
+*Application-based. 90 minutes. You receive your 1-page Automation Priority Map after the call as quickly as possible, usually the same day.*
 
 ---
 

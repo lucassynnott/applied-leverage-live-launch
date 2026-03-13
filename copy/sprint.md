@@ -10,14 +10,14 @@
 > Your AI agents team. Built in 4 weeks.
 
 **Subheadline:**
-> The Implementation Sprint is how operators who already have the map get the work done. We build together. In 4 weeks, you have three dedicated AI agents — each one solving a specific business problem — running in your operation.
+> Once the right move is clear, the Sprint is where the machine gets built. In 4 weeks, we install the first agents and workflows that take recurring load off the founder.
 
 **Status badge:** 🔒 Soft Launch — Waitlist Only
 
 **CTA:**
 → [Join the Waitlist](#waitlist)
 
-*$3,500 flat. Limited to 3 clients per cohort.*
+*$3,500 flat. Soft launch waitlist only.*
 
 ---
 
@@ -110,9 +110,9 @@ No monthly fee. No "maintenance plan." You pay once, you get the sprint, you own
 
 ## SOFT LAUNCH — WAITLIST
 
-The Sprint is in soft launch. The first cohort is limited to **3 clients** to ensure quality.
+The Sprint is in soft launch. Applications are reviewed manually before space is opened.
 
-There's no firm launch date yet. Waitlist members will be contacted first — before any public announcement — when spots open.
+There's no firm launch date yet. Waitlist members will be contacted first — before any public announcement — when space opens.
 
 → [Join the Waitlist](#waitlist)
 
@@ -151,9 +151,9 @@ If you complete week 1 and decide the Sprint isn't right for you, I'll refund th
 
 ## WAITLIST {#waitlist}
 
-Join the waitlist for the first Sprint cohort.
+Join the waitlist for the next Sprint opening.
 
-You'll be contacted when spots open — before any public announcement.
+You'll be contacted when space opens — before any public announcement.
 
 ---
 

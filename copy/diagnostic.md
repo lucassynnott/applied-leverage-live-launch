@@ -18,7 +18,7 @@ The Diagnostic gives you that map.
 Not a list of ideas. Not a generic AI recommendation. A 1-page document with your top 3 highest-leverage automation moves — ranked by impact and effort — built specifically for your business.
 
 **Founding price: $297**
-*First 10 diagnostics only. Price goes to $497 after that.*
+*Founding price currently available. Confirm current pricing and availability at application.*
 
 **Primary CTA:**
 → [Apply for a Diagnostic](#apply)
@@ -68,9 +68,9 @@ You leave the call knowing exactly where to start.
 
 **The call:** 90 minutes, structured. I ask, you answer. We map your operating system together in real time.
 
-**After the call:** Within 4 hours, you receive your 1-page Automation Priority Map by email.
+**After the call:** You receive your 1-page Automation Priority Map by email as quickly as possible, usually the same day.
 
-**Optional:** A 15-minute async voice follow-up from me 48 hours later if you have questions after sitting with the map.
+**Optional:** A 15-minute async voice follow-up from me after you've had time to review the map.
 
 ---
 
@@ -94,13 +94,13 @@ You leave the call knowing exactly where to start.
 
 ## WHAT HAPPENS AFTER
 
-The Diagnostic is designed to be immediately actionable.
+The Diagnostic is designed to be actionable without extra guesswork.
 
 Some clients implement the map themselves. Some come back for the [Implementation Sprint](/sprint) — 4 weeks of building together.
 
-**If you decide to do the Sprint within 30 days of your Diagnostic, the $297 applies as a full credit toward the $3,500.**
+**If we decide to keep building together, the diagnostic may be applied to the follow-on engagement.**
 
-You're not paying twice. The Diagnostic is step one of the same path.
+The Diagnostic stands on its own. If there is a fit to keep building together, it can become step one of the same path.
 
 ---
 
@@ -108,9 +108,9 @@ You're not paying twice. The Diagnostic is step one of the same path.
 
 **Founding price: $297**
 
-First 10 diagnostics only. Price increases to $497 after that.
+Current diagnostic price: $297.
 
-*6 founding spots remaining as of March 2026.*
+*Confirm pricing and availability at application.*
 
 → [Apply for a Diagnostic](#apply)
 
@@ -129,7 +129,7 @@ The Diagnostic is how he audits your business the same way he audited his own: w
 ## FAQ
 
 **How long does it take?**
-The call is 90 minutes. The map arrives within 4 hours of the call ending.
+The call is 90 minutes. The map arrives after the call as quickly as possible, usually the same day.
 
 **Is this a sales call for a bigger program?**
 No. It's a paid diagnostic. The map is the deliverable. The Sprint is mentioned because it exists and some people want it — but there's no pitch on the call. You decide afterward.
@@ -144,10 +144,10 @@ Yes — if you're making $5K+ a month and running a real workload, the Diagnosti
 Fill out the intake form honestly. That's it. I do the heavy lifting.
 
 **What's the refund policy?**
-If you complete the call and feel the map isn't useful, I'll refund you. No questions. This has never happened, but the guarantee stands.
+If you have refund or rescheduling questions, raise them before booking so the terms are explicit.
 
-**Does the $297 apply to the Sprint?**
-Yes. If you book the Sprint within 30 days of your Diagnostic, $297 is credited toward the $3,500 total.
+**Does the diagnostic fee apply to later implementation work?**
+If we decide to keep building together, the diagnostic may be applied to the follow-on engagement.
 
 ---
 
@@ -155,11 +155,11 @@ Yes. If you book the Sprint within 30 days of your Diagnostic, $297 is credited 
 
 This is application-based. Not everyone is the right fit.
 
-Fill out the form below. I review every application personally. If you're accepted, you'll receive a payment link and calendar booking within 24 hours.
+Fill out the form below. I review every application personally. If there is a fit, I will send the next step after review.
 
 *If you're not the right fit, I'll tell you directly.*
 
-*Applications reviewed within 1 business day.*
+*Applications are reviewed personally before the next step is sent.*
 
 ---
 

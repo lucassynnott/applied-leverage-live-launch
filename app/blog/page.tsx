@@ -175,6 +175,56 @@ export default function BlogIndexPage() {
           </div>
         </div>
       </section>
+
+      <section className="page-band page-band--muted">
+        <div className="page-band__inner">
+          <div className="page-band__header">
+            <p className="eyebrow">Next step / don&apos;t overbuy</p>
+            <h2>Use the blog to clarify the drag. Then take the right next step.</h2>
+            <p>
+              Content should route people deeper into the funnel without pretending every reader needs live help
+              right now. Start with the level of certainty and support you actually need.
+            </p>
+          </div>
+
+          <div className="feature-grid">
+            <article className="feature-card">
+              <h3>Need a fast readiness signal?</h3>
+              <p>
+                Start with the free assessment if you are still figuring out whether the problem is real enough to
+                justify a build.
+              </p>
+              <Link className="button button-secondary" href="/assess">
+                Take the Free Assessment
+              </Link>
+            </article>
+            <article className="feature-card">
+              <h3>Want the self-guided path?</h3>
+              <p>
+                Use the workbook if the drag is clear and you want to audit the operation yourself before paying for
+                live help.
+              </p>
+              <WorkbookCtaLink
+                className="button button-secondary"
+                liveHref={workbookCheckoutHref}
+                liveLabel="Buy the workbook — $47"
+                manualHref={workbookManualRequestHref}
+                manualLabel="Request the workbook"
+              />
+            </article>
+            <article className="feature-card">
+              <h3>Need expert prioritization?</h3>
+              <p>
+                Apply for the diagnostic if the bottleneck is already expensive and you want a ranked Automation
+                Priority Map instead of more reading.
+              </p>
+              <Link className="button button-secondary" href="/diagnostic">
+                Apply for the Diagnostic
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

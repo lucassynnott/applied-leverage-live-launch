@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
-import { useCallback, useState } from "react";
 
 /* ─────────────────────────────────────────────
    Quiz data
@@ -40,7 +40,7 @@ const areaDescriptions: Record<AutomationArea, string> = {
   "follow-up":
     "You're manually chasing leads and following up with prospects. An automated follow-up sequence could recover hours every week and stop deals from slipping through the cracks.",
   onboarding:
-    "Every new client means the same manual setup — welcome emails, access provisioning, kickoff scheduling. This is one of the easiest and highest-ROI things to automate.",
+    "Every new client means the same manual setup — welcome emails, access provisioning, kickoff scheduling. This is one of the easiest and highest-impact things to automate.",
   reporting:
     "You're pulling data, building reports, and sending updates by hand. Automated dashboards and scheduled reports would free up significant weekly time.",
   scheduling:
@@ -236,6 +236,22 @@ function computeResults(selections: Record<number, number>) {
   return { totalPoints, topAreas };
 }
 
+function getBand(points: number) {
+  if (points >= 16) {
+    return "manual-heavy";
+  }
+
+  if (points >= 10) {
+    return "automation-gaps";
+  }
+
+  if (points >= 5) {
+    return "partly-automated";
+  }
+
+  return "architectural-bottleneck";
+}
+
 function getVerdict(points: number): { headline: string; body: string } {
   if (points >= 16) {
     return {
@@ -317,6 +333,7 @@ export function AutomationQuiz() {
   if (phase === "results") {
     const { totalPoints, topAreas } = computeResults(selections);
     const verdict = getVerdict(totalPoints);
+    const band = getBand(totalPoints);
 
     return (
       <div className={`quiz-step-wrapper ${fading ? "quiz-step--fading" : "quiz-step--visible"}`}>
@@ -349,7 +366,18 @@ export function AutomationQuiz() {
               to your specific business.
             </p>
             <div className="quiz-cta-row">
-              <Link className="button button-primary" href="#apply">
+              <Link
+                className="button button-primary"
+                href={{
+                  pathname: "/diagnostic",
+                  query: {
+                    assessment_score: String(totalPoints),
+                    assessment_band: band,
+                    assessment_top_areas: topAreas.join(", "),
+                    assessment_source: "assessment_quiz"
+                  }
+                }}
+              >
                 Book Your Diagnostic — $297 →
               </Link>
               <button

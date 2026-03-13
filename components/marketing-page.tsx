@@ -452,7 +452,7 @@ function renderHomePage(page: SitePage) {
       {/* CTA */}
       <PromoPanel
         body={ctaCopy.body || cta.body}
-        eyebrow="Founding cohort"
+        eyebrow="Applications reviewed personally"
         id={cta.id}
         notes={[
           "Applications are reviewed personally before the next step is sent",
@@ -642,7 +642,7 @@ function renderDiagnosticPage(page: SitePage) {
             </video>
           </div>
           <p className="video-card__meta">
-            ~22 seconds • silent autoplay-safe asset with burned-in captions • focused on the Automation Priority Map and fit
+            Under 30 seconds • what the Diagnostic outputs and when it fits
           </p>
           <div className="cta-actions">
             <Link className="button button-primary" href="#apply">
@@ -901,7 +901,7 @@ function renderSprintPage(page: SitePage) {
               <li><Link href="/diagnostic">Diagnostic</Link> for expert prioritization</li>
               <li><strong>Sprint</strong> for build</li>
             </ul>
-            <p>If you already know what to build, the Sprint is the right move. If you do not, start with the Diagnostic first.</p>
+            <p>If the build target is already clear, the Sprint is the right move. If it is not, use the earlier stages to get clarity before paying for implementation.</p>
             <p><strong>You are not buying more advice. You are moving from prioritization into installation.</strong></p>
           </article>
           <aside className="card-stack">
@@ -988,7 +988,7 @@ function renderSprintPage(page: SitePage) {
       <section className="page-band" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Decision block</p>
-          <h2>$3,500 flat. First soft-launch cohort only.</h2>
+          <h2>$3,500 flat. Soft launch waitlist only.</h2>
         </div>
         <p className="page-band__intro">
           <strong>The sprint is not discovery. It is implementation once the highest-leverage move is already clear.</strong>
@@ -1034,8 +1034,8 @@ function renderSprintPage(page: SitePage) {
       {/* Waitlist form */}
       <FormSection
         notes={[
-          "Waitlist is for the first soft-launch cohort only",
-          "Diagnostic clients get priority when spots open",
+          "Waitlist is open during soft launch while capacity is reviewed manually",
+          "Diagnostic clients get priority when space opens",
           "No commitment is required to join the list"
         ]}
         page={page}
@@ -1153,10 +1153,11 @@ function renderAboutPage(page: SitePage) {
           </article>
           <aside className="card-stack">
             <article className="surface-card callout-card">
-              <h3>Where to start</h3>
+              <h3>How to choose</h3>
               <p>
-                If the work is still unclear, start with the diagnostic. If the
-                map already exists, the sprint is the execution path.
+                If the map already exists, the Sprint is the execution path. If
+                the highest-leverage move is still fuzzy, use the earlier stages
+                to get clarity before committing to implementation.
               </p>
               <div className="cta-actions">
                 <Link className="button button-primary" href="/apply">
@@ -1269,7 +1270,7 @@ function renderApplyPage(page: SitePage) {
         notes={[
           "Whether the diagnostic is already complete",
           "What the operator wants to build first",
-          "Why waitlist members get first cohort access"
+          "Why the waitlist is reviewed manually before space is opened"
         ]}
         page={page}
         section={sprintForm}

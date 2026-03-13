@@ -8,7 +8,7 @@
 > You're already making money. You're still doing too much by hand.
 
 **Subheadline:**
-> Applied Leverage builds the operating system that runs your business without you running it.
+> Applied Leverage builds the operating system that runs your business without you running it — starting with a clear answer on what to automate first.
 
 **Body:**
 Map your leverage. Sequence the build.
@@ -22,7 +22,7 @@ This is different. We audit your actual workflow, map your real leverage points,
 **Primary CTA:**
 → [Get Your Automation Map — $297](/diagnostic)
 
-*First 10 diagnostics at founding price. 6 spots remaining.*
+*Founding price currently available. Confirm current availability at application.*
 
 ---
 
@@ -34,7 +34,7 @@ This is different. We audit your actual workflow, map your real leverage points,
 >
 > "I stopped being the bottleneck in my own business." — Consultant, London
 >
-> "The map paid for itself the first week." — Operator, New York
+> "The map gave us a much clearer order of operations." — Operator, New York
 
 ---
 
@@ -95,11 +95,11 @@ Three dedicated AI agents. Four weeks. Your business runs differently on the oth
 
 **Ready to find out where your leverage is?**
 
-The Diagnostic is application-based. It's not for everyone. If you're the right fit, you'll know within 24 hours.
+The Diagnostic is application-based. It's not for everyone. If you're the right fit, I’ll get back to you quickly with the next step.
 
 → [Apply for Your Automation Map](/diagnostic)
 
-*$297 founding price. First 10 clients only.*
+*$297 founding price.*
 
 ---
 
