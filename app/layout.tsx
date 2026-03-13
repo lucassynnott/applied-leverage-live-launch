@@ -4,6 +4,7 @@ import {
   Instrument_Serif,
   Space_Grotesk
 } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 
 import { SiteShell } from "@/components/site-shell";
@@ -52,6 +53,7 @@ export default function RootLayout({
       lang="en"
     >
       <body>
+        <Script src="/funnel-config.js" strategy="beforeInteractive" />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
