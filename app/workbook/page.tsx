@@ -1,25 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const socialImage = "https://appliedleverage.io/og/automation-audit-workbook.png";
+
 export const metadata: Metadata = {
-  title: "The Operator's Automation Audit | Applied Leverage",
+  title: "Automation Audit Workbook for Small Businesses | Applied Leverage",
   description:
-    "A self-guided 90-minute workbook for operators who want to find their top automation opportunities before booking live help.",
+    "A $47 self-guided automation audit workbook for small businesses, agencies, and consultants who want to find what to automate first before booking live help.",
   alternates: {
     canonical: "https://appliedleverage.io/workbook"
   },
   openGraph: {
-    title: "The Operator's Automation Audit",
+    title: "Automation Audit Workbook for Small Businesses | Applied Leverage",
     description:
-      "A self-guided 90-minute workbook for operators who want to find their top automation opportunities before booking live help.",
+      "A $47 self-guided automation audit workbook for small businesses, agencies, and consultants who want to find what to automate first before booking live help.",
     type: "website",
-    url: "https://appliedleverage.io/workbook"
+    url: "https://appliedleverage.io/workbook",
+    images: [
+      {
+        url: socialImage,
+        alt: "The Operator's Automation Audit"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Operator's Automation Audit",
+    title: "Automation Audit Workbook for Small Businesses | Applied Leverage",
     description:
-      "A self-guided 90-minute workbook for operators who want to find their top automation opportunities before booking live help."
+      "A $47 self-guided automation audit workbook for small businesses, agencies, and consultants who want to find what to automate first before booking live help.",
+    images: [socialImage]
   }
 };
 
@@ -28,10 +37,14 @@ const manualWorkbookRequestHref =
 
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
 const workbookPrimaryHref = workbookCheckoutHref || manualWorkbookRequestHref;
-const workbookPrimaryLabel = workbookCheckoutHref ? "Get the workbook" : "Request the workbook";
+const workbookOfferUrl = workbookCheckoutHref || "https://appliedleverage.io/workbook";
+const workbookPrimaryLabel = workbookCheckoutHref ? "Buy the workbook — $47" : "Request the workbook";
 const workbookSupportNote = workbookCheckoutHref
   ? "Instant checkout is live. Start self-guided, then step up to the Diagnostic if you want expert judgment."
-  : "Manual delivery stays in place until the direct checkout goes live.";
+  : "Delivered manually right now while instant checkout is being finalized.";
+const workbookManualTrustLine = workbookCheckoutHref
+  ? ""
+  : "You get the current version directly — this is not a waitlist.";
 
 export default function WorkbookPage() {
   const productSchema = {
@@ -43,14 +56,14 @@ export default function WorkbookPage() {
     },
     category: "Business workflow workbook",
     description:
-      "A self-guided 90-minute workbook for operators who want to find their top automation opportunities before booking live help.",
+      "A $47 self-guided automation audit workbook for small businesses, agencies, and consultants who want to find what to automate first before booking live help.",
     name: "The Operator's Automation Audit",
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       price: "47",
       priceCurrency: "USD",
-      url: "https://appliedleverage.io/workbook"
+      url: workbookOfferUrl
     },
     url: "https://appliedleverage.io/workbook"
   };
@@ -63,11 +76,11 @@ export default function WorkbookPage() {
       />
       <section className="page-hero workbook-hero">
         <div className="hero-centered">
-          <p className="eyebrow">Self-guided audit</p>
-          <h1 className="hero-title">Find your top 3 automation opportunities in 90 minutes.</h1>
+          <p className="eyebrow">Automation audit workbook</p>
+          <h1 className="hero-title">Find what to automate first before you pay for live help.</h1>
           <p className="hero-subheadline">
-            The Operator&apos;s Automation Audit is the low-friction entry point for operators who
-            want clarity before they book live help.
+            This is the self-guided option for operators who know there is drag in the business
+            but want to diagnose it themselves before booking a live automation audit.
           </p>
           <div className="hero-stats-bar">
             <article className="hero-metric">
@@ -80,7 +93,7 @@ export default function WorkbookPage() {
             </article>
             <article className="hero-metric">
               <span className="hero-metric__value">Top 3</span>
-              <span className="hero-metric__label">priorities ranked by ROI</span>
+              <span className="hero-metric__label">priorities ranked by impact</span>
             </article>
           </div>
           <div className="hero-actions">
@@ -91,7 +104,25 @@ export default function WorkbookPage() {
               Need expert judgment instead?
             </Link>
           </div>
+          <div className="card-grid card-grid--two">
+            <article className="surface-card icon-card">
+              <h3>What you actually get</h3>
+              <p>
+                A structured audit across delivery, follow-up, admin overhead, and the Priority
+                Map that turns the mess into a ranked top 3.
+              </p>
+            </article>
+            <article className="surface-card icon-card">
+              <h3>Priority Map preview</h3>
+              <p>
+                1. Lead follow-up automation — High ROI / Low effort<br />
+                2. Client onboarding system — High ROI / Medium effort<br />
+                3. Weekly reporting cleanup — Medium ROI / Low effort
+              </p>
+            </article>
+          </div>
           <p className="hero-supporting-note">{workbookSupportNote}</p>
+          {workbookManualTrustLine ? <p className="hero-supporting-note">{workbookManualTrustLine}</p> : null}
         </div>
       </section>
 
@@ -117,6 +148,36 @@ export default function WorkbookPage() {
         </article>
       </section>
 
+      <section className="page-band" id="what-you-leave-with">
+        <div className="page-band__header">
+          <p className="eyebrow">What you leave with</p>
+          <h2>After 90 minutes, you should have a clearer answer — not just more notes.</h2>
+        </div>
+        <div className="card-grid card-grid--two">
+          <article className="surface-card icon-card">
+            <h3>A clearer picture of the drag</h3>
+            <p>
+              You surface where delivery, follow-up, and admin are actually wasting time instead
+              of blaming generic busyness.
+            </p>
+          </article>
+          <article className="surface-card icon-card">
+            <h3>A ranked top 3 shortlist</h3>
+            <p>
+              You narrow the real automation opportunities down to the few moves worth acting on
+              now.
+            </p>
+          </article>
+          <article className="surface-card icon-card">
+            <h3>A cleaner next decision</h3>
+            <p>
+              You know whether to self-implement, step up to the Diagnostic, or hold off until the
+              fundamentals are tighter.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section className="page-band" id="whats-inside">
         <div className="page-band__header">
           <p className="eyebrow">What&apos;s inside</p>
@@ -137,7 +198,7 @@ export default function WorkbookPage() {
           </article>
           <article className="surface-card icon-card">
             <h3>Priority Map synthesis</h3>
-            <p>Rank the real opportunities by ROI and effort so you leave with a top 3, not a graveyard of 27 ideas.</p>
+            <p>Rank the real opportunities by impact and effort so you leave with a top 3, not a graveyard of 27 ideas.</p>
           </article>
         </div>
       </section>
@@ -198,7 +259,7 @@ export default function WorkbookPage() {
           <aside className="card-stack">
             <article className="surface-card callout-card">
               <h3>Two clean next moves</h3>
-              <p>Want the self-guided audit? Request the workbook. Want expert judgment? Book the diagnostic.</p>
+              <p>Want the self-guided path? {workbookPrimaryLabel}. Want expert judgment? Book the diagnostic.</p>
               <div className="cta-actions">
                 <a className="button button-primary" href={workbookPrimaryHref}>
                   {workbookPrimaryLabel}
