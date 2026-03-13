@@ -115,9 +115,9 @@ export default function WorkbookPage() {
             <article className="surface-card icon-card">
               <h3>Priority Map preview</h3>
               <p>
-                1. Lead follow-up automation — High ROI / Low effort<br />
-                2. Client onboarding system — High ROI / Medium effort<br />
-                3. Weekly reporting cleanup — Medium ROI / Low effort
+                1. Lead follow-up automation — High impact / Low effort<br />
+                2. Client onboarding system — High impact / Medium effort<br />
+                3. Weekly reporting cleanup — Medium impact / Low effort
               </p>
             </article>
           </div>
