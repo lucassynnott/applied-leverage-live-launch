@@ -512,7 +512,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
   <section>
     <div class="apply-block">
       <h3>Apply for a Diagnostic</h3>
-      <p class="apply-sub">Short application. About 2 minutes. Every submission is reviewed personally so the next step is based on fit, not form completion. If it is a match, you will get the booking path. If it is not, you will get a direct answer and a better next move.</p>
+      <p class="apply-sub">Short application. About 2 minutes. This is a paid diagnostic, not a discovery call. The form is here so Lucas can review the business before the session, spot obvious fit issues early, and route you to a better first step if the diagnostic is not the right move yet.</p>
       <form id="apply-form">
         <div class="fg">
           <label for="apply-business">What do you do, and who do you do it for?</label>
@@ -578,7 +578,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
       <div class="card">
         <div class="card-icon">📘</div>
         <div class="card-title">Want to work through it yourself first?</div>
-        <div class="card-body" id="workbook-path-copy">Start with the workbook if you want the same decision structure in a lower-cost, self-guided format. Current access is manual while direct checkout goes live, but the product is ready now.</div>
+        <div class="card-body" id="workbook-path-copy">Start with the workbook if you want the same decision structure in a lower-cost, self-guided format.</div>
       </div>
       <div class="card">
         <div class="card-icon">🧭</div>
@@ -593,7 +593,7 @@ section{padding:52px 0;border-top:1px solid var(--b)}
     </div>
     <div class="cta-row" style="justify-content:center">
       <a href="https://appliedleverage.io/assess" class="btn btn-o">Take the free assessment →</a>
-      <a href="https://appliedleverage.io/workbook" class="btn btn-o" id="workbook-path-cta">Get the workbook →</a>
+      <a href="https://appliedleverage.io/workbook" class="btn btn-o" id="workbook-path-cta">Request the workbook →</a>
       <a href="#apply" class="btn btn-r">Apply for the Diagnostic →</a>
     </div>
     <p style="margin-top:18px;font-size:13px;color:var(--d);max-width:560px;">If implementation is probably the next move, the diagnostic is the fastest way to avoid building the wrong system first.</p>
@@ -624,11 +624,11 @@ function syncWorkbookPathState() {
   if (workbookPathCopy) {
     workbookPathCopy.textContent = workbookCheckoutUrl
       ? 'Start with the workbook if you want the same decision structure in a lower-cost, self-guided format with instant checkout.'
-      : 'Start with the workbook if you want the same decision structure in a lower-cost, self-guided format. Current access is manual while direct checkout goes live, but the product is ready now.';
+      : 'Start with the workbook if you want the same decision structure in a lower-cost, self-guided format.';
   }
 
   if (workbookPathCta) {
-    workbookPathCta.textContent = workbookCheckoutUrl ? 'Buy the workbook — $47 →' : 'Get the workbook →';
+    workbookPathCta.textContent = workbookCheckoutUrl ? 'Buy the workbook — $47 →' : 'Request the workbook →';
     workbookPathCta.href = workbookCheckoutUrl || 'https://appliedleverage.io/workbook';
   }
 }

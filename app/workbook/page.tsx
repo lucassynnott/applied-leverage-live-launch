@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { WorkbookCtaLink } from "@/components/workbook-cta-link";
+
 const socialImage = "https://appliedleverage.io/og/automation-audit-workbook.png";
 
 export const metadata: Metadata = {
@@ -36,15 +38,15 @@ const manualWorkbookRequestHref =
   "mailto:lucas@appliedleverage.io?subject=Automation%20Audit%20Workbook&body=Hey%20Lucas%20%E2%80%94%20send%20me%20the%20current%20link%20for%20The%20Operator%E2%80%99s%20Automation%20Audit.%20I%E2%80%99m%20interested%20in%20the%20%2447%20workbook.";
 
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
-const workbookPrimaryHref = workbookCheckoutHref || manualWorkbookRequestHref;
 const workbookOfferUrl = workbookCheckoutHref || "https://appliedleverage.io/workbook";
-const workbookPrimaryLabel = workbookCheckoutHref ? "Buy the workbook — $47" : "Get the workbook";
-const workbookSupportNote = workbookCheckoutHref
-  ? "Instant checkout is live. Start self-guided, then step up to the Diagnostic if you want expert judgment."
-  : "Current access is still handled manually while direct checkout goes live. The product itself is ready.";
-const workbookManualTrustLine = workbookCheckoutHref
-  ? ""
-  : "You get the current version directly — this is not a waitlist.";
+const workbookPrimaryLabel = workbookCheckoutHref
+  ? "Buy the workbook — $47"
+  : "Request the workbook";
+const workbookSupportNote =
+  "Start self-guided, then step up to the Diagnostic if you want expert judgment and faster prioritization.";
+const workbookAccessNote = workbookCheckoutHref
+  ? "Instant checkout is live now."
+  : "Manual fulfillment for now. The workbook is ready now. Request access and Lucas will send the current version directly while checkout is being finalized.";
 
 export default function WorkbookPage() {
   const productSchema = {
@@ -63,9 +65,46 @@ export default function WorkbookPage() {
       availability: "https://schema.org/InStock",
       price: "47",
       priceCurrency: "USD",
+      seller: {
+        "@type": "Organization",
+        name: "Applied Leverage"
+      },
       url: workbookOfferUrl
     },
     url: "https://appliedleverage.io/workbook"
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Automation Audit Workbook for Small Businesses | Applied Leverage",
+    description:
+      "A $47 self-guided automation audit workbook for small businesses, agencies, and consultants who want to find what to automate first before booking live help.",
+    url: "https://appliedleverage.io/workbook",
+    mainEntity: {
+      "@type": "Product",
+      name: "The Operator's Automation Audit",
+      url: "https://appliedleverage.io/workbook"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://appliedleverage.io/"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Workbook",
+        item: "https://appliedleverage.io/workbook"
+      }
+    ]
   };
 
   return (
@@ -73,6 +112,14 @@ export default function WorkbookPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <section className="page-hero workbook-hero">
         <div className="hero-centered">
@@ -97,9 +144,13 @@ export default function WorkbookPage() {
             </article>
           </div>
           <div className="hero-actions">
-            <a className="button button-primary" href={workbookPrimaryHref}>
-              {workbookPrimaryLabel}
-            </a>
+            <WorkbookCtaLink
+              className="button button-primary"
+              liveHref={workbookCheckoutHref}
+              liveLabel="Buy the workbook — $47"
+              manualHref={manualWorkbookRequestHref}
+              manualLabel="Request the workbook"
+            />
             <Link className="button button-secondary" href="/diagnostic">
               Need expert judgment instead?
             </Link>
@@ -122,7 +173,7 @@ export default function WorkbookPage() {
             </article>
           </div>
           <p className="hero-supporting-note">{workbookSupportNote}</p>
-          {workbookManualTrustLine ? <p className="hero-supporting-note">{workbookManualTrustLine}</p> : null}
+          <p className="hero-supporting-note">{workbookAccessNote}</p>
         </div>
       </section>
 
@@ -261,9 +312,13 @@ export default function WorkbookPage() {
               <h3>Two clean next moves</h3>
               <p>Want the self-guided path? {workbookPrimaryLabel}. Want expert judgment? Book the diagnostic.</p>
               <div className="cta-actions">
-                <a className="button button-primary" href={workbookPrimaryHref}>
-                  {workbookPrimaryLabel}
-                </a>
+                <WorkbookCtaLink
+                  className="button button-primary"
+                  liveHref={workbookCheckoutHref}
+                  liveLabel="Buy the workbook — $47"
+                  manualHref={manualWorkbookRequestHref}
+                  manualLabel="Request the workbook"
+                />
                 <Link className="button button-secondary" href="/diagnostic">
                   Book the diagnostic
                 </Link>

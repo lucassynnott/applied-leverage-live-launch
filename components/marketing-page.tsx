@@ -5,6 +5,7 @@ import React, { type ReactNode } from "react";
 import { AutomationQuiz } from "@/components/automation-quiz";
 import { EmbeddedForm } from "@/components/forms";
 import { RichMarkdown } from "@/components/rich-markdown";
+import { WorkbookCtaLink } from "@/components/workbook-cta-link";
 import type { PageSection, PageSlug, SitePage } from "@/lib/site-content";
 
 /* ─────────────────────────────────────────────
@@ -104,8 +105,8 @@ const heroStats: Record<PageSlug, Stat[]> = {
   ],
   diagnostic: [
     { value: "$297", label: "founding price" },
-    { value: "4 hrs", label: "turnaround after the call" },
-    { value: "30 days", label: "credit window into the sprint" }
+    { value: "Same day", label: "deliverable usually sent after the call" },
+    { value: "Applied if fit", label: "diagnostic may count toward follow-on work" }
   ],
   sprint: [
     { value: "$3.5K", label: "flat sprint fee" },
@@ -210,13 +211,13 @@ const aboutFitTitles = [
 ];
 
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
-const workbookEntryLabel = workbookCheckoutHref ? "Buy the workbook" : "Get the workbook";
-const workbookRoutingNote = workbookCheckoutHref
-  ? "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. Instant checkout is live if you want the self-guided path first."
-  : "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. Current access is manual while direct checkout goes live, but the product is ready now.";
-const workbookChooserNote = workbookCheckoutHref
-  ? "Choose the workbook if you want a lower-cost self-audit before you bring in expert help."
-  : "Choose the workbook if you want a lower-cost self-audit before you bring in expert help. Current access is manual while direct checkout goes live.";
+const workbookEntryLabel = "View the workbook";
+const workbookRoutingNote =
+  "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. It is the lower-cost self-guided path inside the same system.";
+const workbookChooserNote =
+  "Choose the workbook if you want a lower-cost self-audit before you bring in expert help.";
+const workbookManualRequestHref =
+  "mailto:lucas@appliedleverage.io?subject=Automation%20Audit%20Workbook&body=Hey%20Lucas%20%E2%80%94%20send%20me%20the%20current%20link%20for%20The%20Operator%E2%80%99s%20Automation%20Audit.%20I%E2%80%99m%20interested%20in%20the%20%2447%20workbook.";
 
 /* ─────────────────────────────────────────────
    Main export
@@ -379,9 +380,19 @@ function renderHomePage(page: SitePage) {
                 <h3>{offer.title}</h3>
                 <p>{offer.body}</p>
                 <div className="cta-actions">
-                  <Link className="button button-secondary" href={offer.cta.href}>
-                    {offer.cta.label}
-                  </Link>
+                  {offer.cta.href === "/workbook" ? (
+                    <WorkbookCtaLink
+                      className="button button-secondary"
+                      liveHref={workbookCheckoutHref}
+                      liveLabel="Buy the workbook — $47"
+                      manualHref={workbookManualRequestHref}
+                      manualLabel="Request the workbook"
+                    />
+                  ) : (
+                    <Link className="button button-secondary" href={offer.cta.href}>
+                      {offer.cta.label}
+                    </Link>
+                  )}
                 </div>
               </article>
             );
@@ -419,9 +430,19 @@ function renderHomePage(page: SitePage) {
               <h3>{path.title}</h3>
               <p>{path.body}</p>
               <div className="cta-actions">
-                <Link className="button button-secondary" href={path.cta.href}>
-                  {path.cta.label}
-                </Link>
+                {path.cta.href === "/workbook" ? (
+                  <WorkbookCtaLink
+                    className="button button-secondary"
+                    liveHref={workbookCheckoutHref}
+                    liveLabel="Buy the workbook — $47"
+                    manualHref={workbookManualRequestHref}
+                    manualLabel="Request the workbook"
+                  />
+                ) : (
+                  <Link className="button button-secondary" href={path.cta.href}>
+                    {path.cta.label}
+                  </Link>
+                )}
               </div>
             </article>
           ))}
@@ -688,8 +709,8 @@ function renderDiagnosticPage(page: SitePage) {
           <article className="surface-card callout-card">
             <h3>Start here</h3>
             <p>
-              Automate lead follow-up before reporting. It compounds faster, leaks less revenue,
-              and gives the rest of the system cleaner inputs.
+              Automate lead follow-up before reporting. It usually reduces avoidable lead loss
+              first and gives the rest of the system cleaner inputs.
             </p>
           </article>
         </article>
