@@ -100,7 +100,7 @@ const heroStats: Record<PageSlug, Stat[]> = {
   why: [
     { value: "1 map", label: "before any new software" },
     { value: "3 moves", label: "instead of 47 ideas" },
-    { value: "5+ hrs", label: "weekly time saved at the low end" }
+    { value: "Clearer", label: "priorities before implementation" }
   ],
   diagnostic: [
     { value: "$297", label: "founding price" },
@@ -119,8 +119,8 @@ const heroStats: Record<PageSlug, Stat[]> = {
   ],
   apply: [
     { value: "2 paths", label: "diagnostic or sprint" },
-    { value: "24 hrs", label: "application review target" },
-    { value: "$297", label: "credited into the sprint" }
+    { value: "Operator", label: "review before next step" },
+    { value: "$297", label: "diagnostic starting point" }
   ]
 };
 
@@ -150,6 +150,51 @@ const diagnosticDeliverableTitles = [
   "Top three automation moves"
 ];
 
+const diagnosticPriorityMapRows = [
+  {
+    effort: "Low effort",
+    impact: "High impact",
+    reason: "Revenue leakage gets fixed before more traffic is added.",
+    summary: "Stop warm leads leaking between inquiry, reply, and handoff.",
+    title: "Lead Follow-Up Automation",
+    whyNow: "Revenue leak and compounding speed win."
+  },
+  {
+    effort: "Medium effort",
+    impact: "High impact",
+    reason: "Once lead flow is cleaner, onboarding becomes the next compounding bottleneck.",
+    summary: "Standardize kickoff, intake, files, communication, and the first week of delivery.",
+    title: "Client Onboarding System",
+    whyNow: "Delivery drag shrinks after lead flow is cleaned up."
+  },
+  {
+    effort: "Low effort",
+    impact: "Medium impact",
+    reason: "Useful cleanup, but less urgent than revenue and onboarding drag.",
+    summary: "Remove recurring operator cleanup from reports, updates, and routine coordination.",
+    title: "Weekly Reporting + Admin Automation",
+    whyNow: "Useful cleanup, but less urgent than revenue and onboarding flow."
+  }
+] as const;
+
+const diagnosticProofCards = [
+  {
+    body:
+      "You leave with a clear diagnosis of the one operational constraint doing the most damage right now — not a vague list of everything that could be improved.",
+    title: "Primary bottleneck called out"
+  },
+  {
+    body:
+      "The deliverable forces order. Three moves, in sequence, based on leverage and implementation reality.",
+    title: "Top 3 priorities ranked"
+  },
+  {
+    body:
+      "At the end of the Diagnostic, it is obvious whether you should self-implement, use the workbook to keep working the plan, or move into an implementation sprint.",
+    title: "Next step gets clarified"
+  }
+] as const;
+
 const sprintIncludeTitles = [
   "Weekly build sessions",
   "Async review between calls",
@@ -163,6 +208,15 @@ const aboutFitTitles = [
   "Consultants with real workload",
   "Businesses with genuine drag"
 ];
+
+const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
+const workbookEntryLabel = workbookCheckoutHref ? "Buy the workbook" : "Get the workbook";
+const workbookRoutingNote = workbookCheckoutHref
+  ? "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. Instant checkout is live if you want the self-guided path first."
+  : "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. Current access is manual while direct checkout goes live, but the product is ready now.";
+const workbookChooserNote = workbookCheckoutHref
+  ? "Choose the workbook if you want a lower-cost self-audit before you bring in expert help."
+  : "Choose the workbook if you want a lower-cost self-audit before you bring in expert help. Current access is manual while direct checkout goes live.";
 
 /* ─────────────────────────────────────────────
    Main export
@@ -210,9 +264,8 @@ function renderHomePage(page: SitePage) {
       title: "Automation Readiness Assessment"
     },
     {
-      body:
-        "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book a call.",
-      cta: { href: "/workbook", label: "Get the workbook" },
+      body: workbookRoutingNote,
+      cta: { href: "/workbook", label: workbookEntryLabel },
       title: "The Operator's Automation Audit"
     },
     {
@@ -237,9 +290,8 @@ function renderHomePage(page: SitePage) {
       title: "Need a fast reality check?"
     },
     {
-      body:
-        "Choose the workbook if you want structure and self-audit clarity before you talk to anyone live.",
-      cta: { href: "/workbook", label: "Choose the workbook" },
+      body: workbookChooserNote,
+      cta: { href: "/workbook", label: workbookEntryLabel },
       title: "Want to figure it out yourself first?"
     },
     {
@@ -312,6 +364,9 @@ function renderHomePage(page: SitePage) {
           Not every business needs the same next move. Some need a reality check.
           Some need a self-audit. Some need expert prioritization. Some need the machine built.
         </p>
+        <p className="page-band__intro">
+          <strong>Each step buys a different level of certainty, speed, and support — not just more content.</strong>
+        </p>
         <div className="card-grid card-grid--two">
           {offerLadder.map((offer, index) => {
             const Icon = iconCycle[index % iconCycle.length];
@@ -379,8 +434,8 @@ function renderHomePage(page: SitePage) {
         eyebrow="Founding cohort"
         id={cta.id}
         notes={[
-          "Application reviewed within 1 business day",
-          "Diagnostic is credited into the sprint if you continue"
+          "Applications are reviewed personally before the next step is sent",
+          "If we decide to keep building together, the diagnostic may be applied to the follow-on engagement"
         ]}
         primary={primaryActions.home}
         secondary={secondaryActions.home}
@@ -504,7 +559,7 @@ function renderWhyPage(page: SitePage) {
             <RichMarkdown className="markdown" source={cost.body} />
           </article>
           <aside className="card-stack">
-            <StatCard label="Low-end upside" value="5 hours a week" />
+            <StatCard label="Value comes from removing the right bottleneck" value="Clearer build order" />
           </aside>
         </div>
       </section>
@@ -516,7 +571,7 @@ function renderWhyPage(page: SitePage) {
         id={cta.id}
         notes={[
           "90-minute working session",
-          "Priority map delivered within 4 hours"
+          "Priority map delivered after the call, usually the same day"
         ]}
         primary={primaryActions.why}
         secondary={secondaryActions.why}
@@ -592,11 +647,67 @@ function renderDiagnosticPage(page: SitePage) {
         </div>
       </section>
 
+      {/* Deliverable proof */}
+      <section className="page-band" id="deliverable-preview">
+        <div className="page-band__header">
+          <p className="eyebrow">Deliverable preview</p>
+          <h2>What you actually leave with.</h2>
+        </div>
+        <p className="page-band__intro">
+          The point of the Diagnostic is not more ideas. It is a ranked answer:
+          what to automate first, what can wait, and why.
+        </p>
+        <article className="surface-card priority-map-card">
+          <div className="priority-map-card__header">
+            <div>
+              <p className="eyebrow">Automation Priority Map</p>
+              <h3>Example output for an operator with growing demand, messy follow-up, and founder-heavy delivery.</h3>
+            </div>
+            <span className="path-chip">Ranked by impact and effort</span>
+          </div>
+          <div className="card-stack">
+            {diagnosticPriorityMapRows.map((item, index) => (
+              <article className="surface-card timeline-card" key={item.title}>
+                <span className="timeline-index">0{index + 1}</span>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+                <div className="trust-list">
+                  <div className="trust-list__item">
+                    <SignalIcon className="signal-icon" />
+                    <span>{item.impact}</span>
+                  </div>
+                  <div className="trust-list__item">
+                    <BuildIcon className="signal-icon" />
+                    <span>{item.effort}</span>
+                  </div>
+                </div>
+                <p><strong>Why now:</strong> {item.reason}</p>
+              </article>
+            ))}
+          </div>
+          <article className="surface-card callout-card">
+            <h3>Start here</h3>
+            <p>
+              Automate lead follow-up before reporting. It compounds faster, leaks less revenue,
+              and gives the rest of the system cleaner inputs.
+            </p>
+          </article>
+        </article>
+        <div className="card-grid card-grid--three">
+          {diagnosticProofCards.map((item) => (
+            <article className="surface-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* The Format — timeline steps */}
       <section className="page-band" id={format.id}>
         <div className="page-band__header">
           <p className="eyebrow">{format.heading}</p>
-          <h2>Ninety minutes. A map in your inbox within four hours.</h2>
+          <h2>Ninety minutes. A map in your inbox after the call, usually the same day.</h2>
         </div>
         <div className="timeline-grid">
           {formatSteps.map((step, index) => (
@@ -625,7 +736,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={pricing.id}>
         <div className="page-band__header">
           <p className="eyebrow">Offer detail</p>
-          <h2>$297 founding price, fully credited into the sprint if you continue.</h2>
+          <h2>$297 diagnostic. Clear next-step path if implementation support makes sense later.</h2>
         </div>
         <div className="card-grid card-grid--two">
           <article className="surface-card">
@@ -686,7 +797,7 @@ function renderDiagnosticPage(page: SitePage) {
       <FormSection
         notes={[
           "Every application is reviewed personally",
-          "Accepted operators get payment and booking inside 24 hours",
+          "Accepted operators get the next step after review",
           "If the fit is wrong, the answer is a direct no"
         ]}
         page={page}
@@ -723,6 +834,30 @@ function renderSprintPage(page: SitePage) {
   return (
     <main className="marketing-page marketing-page--sprint">
       <PageHero page={page} />
+
+      {/* Stage 4 framing */}
+      <section className="page-band" id="sprint-stage-four">
+        <div className="page-band__header">
+          <p className="eyebrow">System position</p>
+          <h2>This is stage 4 of the same system.</h2>
+        </div>
+        <div className="split-layout">
+          <article className="narrative-card">
+            <p>The Sprint is not a separate offer bolted onto the side of the business. It is the implementation layer of the same system:</p>
+            <ul>
+              <li><Link href="/assess">Assessment</Link> for readiness</li>
+              <li><Link href="/workbook">Workbook</Link> for self-audit</li>
+              <li><Link href="/diagnostic">Diagnostic</Link> for expert prioritization</li>
+              <li><strong>Sprint</strong> for build</li>
+            </ul>
+            <p>If you already know what to build, the Sprint is the right move. If you do not, start with the Diagnostic first.</p>
+            <p><strong>You are not buying more advice. You are moving from prioritization into installation.</strong></p>
+          </article>
+          <aside className="card-stack">
+            <StatCard label="Right use case" value="Implementation once the map is clear" />
+          </aside>
+        </div>
+      </section>
 
       {/* The Problem the Sprint Solves */}
       <section className="page-band" id={problem.id}>
@@ -804,6 +939,9 @@ function renderSprintPage(page: SitePage) {
           <p className="eyebrow">Decision block</p>
           <h2>$3,500 flat. First soft-launch cohort only.</h2>
         </div>
+        <p className="page-band__intro">
+          <strong>The sprint is not discovery. It is implementation once the highest-leverage move is already clear.</strong>
+        </p>
         <div className="card-grid card-grid--three">
           <article className="surface-card">
             <h3>{pricing.heading}</h3>
@@ -1004,12 +1142,38 @@ function renderApplyPage(page: SitePage) {
     <main className="marketing-page marketing-page--apply">
       <PageHero page={page} />
 
+      {/* Whole-system routing intro */}
+      <section className="page-band" id="apply-routing-intro">
+        <div className="page-band__header">
+          <p className="eyebrow">Start here</p>
+          <h2>Start with the level of certainty and support you need.</h2>
+        </div>
+        <div className="split-layout">
+          <article className="narrative-card">
+            <p>You are not choosing between random products. You are choosing how much help you want right now.</p>
+            <ul>
+              <li>If you need a fast signal, start with the <Link href="/assess">Assessment</Link>.</li>
+              <li>If you want to work through the framework yourself, start with the <Link href="/workbook">Workbook</Link>.</li>
+              <li>If you want expert judgment, start with the <Link href="/diagnostic">Diagnostic</Link>.</li>
+              <li>If the map is already clear and you want to build, apply for the <Link href="/sprint">Sprint</Link>.</li>
+            </ul>
+            <p><strong>Each step buys a different level of certainty, speed, and support — not just more content.</strong></p>
+          </article>
+          <aside className="card-stack">
+            <StatCard label="Commercial frame" value="Support level, not product shopping" />
+          </aside>
+        </div>
+      </section>
+
       {/* Two Paths — side by side cards */}
       <section className="page-band" id={paths.id}>
         <div className="page-band__header">
           <p className="eyebrow">{paths.heading}</p>
-          <h2>Two paths. One right starting point for you.</h2>
+          <h2>If you already know you need live help, there are two main paths.</h2>
         </div>
+        <p className="page-band__intro">
+          Expert prioritization or implementation. Too early for live help? Start with the free assessment or the self-guided workbook instead.
+        </p>
         <div className="card-grid card-grid--two">
           {pathCards.items.map((item, index) => (
             <article className="surface-card path-card" key={item.title}>
@@ -1032,7 +1196,7 @@ function renderApplyPage(page: SitePage) {
             <RichMarkdown className="markdown" source={notSure.body} />
           </article>
           <aside className="card-stack">
-            <StatCard label="Default recommendation" value="Start with the diagnostic" />
+            <StatCard label="Default recommendation" value="Start where the drag is clear enough to act" />
           </aside>
         </div>
       </section>

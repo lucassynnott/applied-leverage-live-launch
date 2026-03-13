@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Automation Readiness Assessment for Small Businesses | Applied Leverage</title>
 <meta name="description" content="Take a free automation readiness assessment to see if your business is ready for AI automation, where your operational bottlenecks are, and what to automate first.">
+<link rel="canonical" href="https://appliedleverage.io/assess">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Automation Readiness Assessment for Small Businesses | Applied Leverage">
+<meta property="og:description" content="Take a free automation readiness assessment to see if your business is ready for AI automation, where your operational bottlenecks are, and what to automate first.">
+<meta property="og:url" content="https://appliedleverage.io/assess">
+<meta property="og:image" content="https://appliedleverage.io/og/automation-readiness-assessment.png">
+<meta property="og:image:alt" content="Automation Readiness Assessment for Small Businesses">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Automation Readiness Assessment for Small Businesses | Applied Leverage">
+<meta name="twitter:description" content="Take a free automation readiness assessment to see if your business is ready for AI automation, where your operational bottlenecks are, and what to automate first.">
+<meta name="twitter:image" content="https://appliedleverage.io/og/automation-readiness-assessment.png">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -289,7 +300,7 @@ const RECS = {
   1:{low:{t:"Audit delivery hours — find your first delegation",b:"Track where your 30+ hours go. Find one 5+ hour task that's documentable. That's your first automation target."},mid:{t:"Build a delivery tracker",b:"Create a dashboard showing which clients need what this week. Spot tasks that don't need you."}},
   2:{low:{t:"Build a Business Continuity SOP this week",b:"Write everything that needs to happen in a week. If it can't be documented, it can't be delegated."},mid:{t:"Stress-test with a vacation simulation",b:"Block 2 days next month with zero business contact. Document every fire. Those are your automation priorities."}},
   3:{low:{t:"Build a client onboarding sequence this week",b:"Map every step when a client signs. Automate welcome email, create self-serve intake form, template kickoff agenda."},mid:{t:"Add automation to your onboarding checklist",b:"Automate the trigger: payment → onboarding sequence starts. Make or Zapier handles this in an afternoon."}},
-  4:{low:{t:"Build a 5-touch follow-up sequence",b:"Most sales happen on touch 5–12. If you're not following up systematically, you're leaving 60–80% of revenue on the table."},mid:{t:"Upgrade follow-up from manual to triggered",b:"Set up CRM sequence that triggers when a lead doesn't convert within 48 hours. Same messages, zero manual effort."}},
+  4:{low:{t:"Build a 5-touch follow-up sequence",b:"If follow-up only happens when you remember to do it, warm leads leak. Build a repeatable sequence so revenue does not depend on memory."},mid:{t:"Upgrade follow-up from manual to triggered",b:"Set up CRM sequence that triggers when a lead doesn't convert within 48 hours. Same messages, zero manual effort."}},
   5:{low:{t:"Do a tool audit and kill half your stack",b:"List every tool from last month. Does it duplicate something you already use? Can it be replaced by one integration?"},mid:{t:"Connect your top 3 tools with one integration",b:"Pick Make or Zapier. Connect CRM, email, payment processor. Eliminates 80% of manual data entry."}},
   6:{low:{t:"Build a post-delivery referral system",b:"At the end of every engagement, send structured ask for referral + testimonial. Automate the timing."},mid:{t:"Launch a client nurture sequence",b:"Stay in front of past clients with monthly value email. Referrals need consistent presence, not just good work."}},
   7:{low:{t:"Set up a weekly revenue and pipeline report",b:"Even a Notion page that pulls from Stripe weekly beats flying blind. Start simple: revenue, leads in, conversion rate."},mid:{t:"Automate your monthly report",b:"Connect tools to a dashboard and let numbers update themselves. No more manual spreadsheet work."}},
@@ -364,6 +375,30 @@ function prevQ() {
   if (currentQ > 0) renderQuestion(currentQ - 1);
 }
 
+function getAssessmentSummary(total, band) {
+  const lowScores = QUESTIONS.filter(q => answers[q.id] <= 2)
+    .sort((a, b) => answers[a.id] - answers[b.id])
+    .slice(0, 3);
+
+  return {
+    total,
+    band,
+    lowScores,
+    topAreas: lowScores.map(item => item.cat)
+  };
+}
+
+function buildDiagnosticUrl(summary) {
+  const params = new URLSearchParams({
+    assessment_score: String(summary.total),
+    assessment_band: summary.band,
+    assessment_top_areas: summary.topAreas.join(` | `),
+    assessment_source: `assessment_quiz_static`
+  });
+
+  return `https://appliedleverage.io/diagnostic?${params.toString()}`;
+}
+
 function showResults() {
   showScreen(`results`);
   const total = Object.values(answers).reduce((a, b) => a + b, 0);
@@ -412,7 +447,9 @@ function showResults() {
     `;
   });
   
-  const lowScores = QUESTIONS.filter(q => answers[q.id] <= 2).sort((a, b) => answers[a.id] - answers[b.id]).slice(0, 3);
+  const summary = getAssessmentSummary(total, band);
+  const lowScores = summary.lowScores;
+  const diagnosticUrl = buildDiagnosticUrl(summary);
   const recslist = document.getElementById(`recs-list`);
   recslist.innerHTML = ``;
   lowScores.forEach((q, idx) => {
@@ -426,27 +463,37 @@ function showResults() {
     `;
   });
   
+  const workbookCheckoutUrl = (window.WORKBOOK_CHECKOUT_URL || ``).trim();
+  const workbookCtaLabel = workbookCheckoutUrl ? `Buy the workbook — $47` : `Get the workbook`;
+  const workbookRoutingUrl = workbookCheckoutUrl || `https://appliedleverage.io/workbook`;
+  const workbookRedSub = workbookCheckoutUrl
+    ? `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure and instant access. If you want to understand the readiness logic first, read the guide before booking anything.`
+    : `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure before live help. Current access is manual while checkout goes live, but the product is ready. If you want to understand the readiness logic first, read the guide before booking anything.`;
+  const workbookYellowSub = workbookCheckoutUrl
+    ? `You have real operational drag, but the right move depends on how much support you want. Get the workbook if you want to work through it yourself with instant access. Book the diagnostic if you want expert judgment faster.`
+    : `You have real operational drag, but the right move depends on how much support you want. Get the workbook if you want to work through it yourself. Current access is manual while checkout goes live, but the product is ready. Book the diagnostic if you want expert judgment faster.`;
+
   const ctaConfig = {
     red: {
       lbl: `Recommended Next Step`,
       hl: `Strengthen the system before you buy more complexity`,
-      sub: `You do not need a bigger build yet. You need clearer process, better follow-up discipline, and one honest self-audit. Start with the workbook if you want structure. If you want to understand the readiness logic first, read the guide before booking anything.`,
+      sub: workbookRedSub,
       price: `$0 – $47`,
       pnote: `Best next move: systems first, then automation.`,
       btns: [
-        {t:`Get the $47 workbook`, url:`https://appliedleverage.io/workbook`, primary:true},
+        {t:workbookCtaLabel, url:workbookRoutingUrl, primary:true},
         {t:`Read: 5 signs you're ready for AI automation`, url:`https://appliedleverage.io/blog/5-signs-ready-for-automation`, primary:false}
       ]
     },
     yellow: {
       lbl: `Choose Your Path`,
       hl: `Start with the workbook or jump to expert prioritization`,
-      sub: `You have real operational drag, but the right move depends on how much support you want. Use the workbook if you want to work through it yourself. Book the diagnostic if you want expert judgment faster.`,
+      sub: workbookYellowSub,
       price: `$47 – $297`,
       pnote: `Same problem. Different level of support.`,
       btns: [
-        {t:`Get the $47 workbook`, url:`https://appliedleverage.io/workbook`, primary:true},
-        {t:`Book the $297 diagnostic`, url:`https://appliedleverage.io/diagnostic`, primary:false}
+        {t:workbookCtaLabel, url:workbookRoutingUrl, primary:true},
+        {t:`Book the $297 diagnostic`, url:diagnosticUrl, primary:false}
       ]
     },
     green: {
@@ -456,7 +503,7 @@ function showResults() {
       price: `$297`,
       pnote: `90-minute deep-dive audit. Custom roadmap included.`,
       btns: [
-        {t:`Book your diagnostic call`, url:`https://appliedleverage.io/diagnostic`, primary:true}
+        {t:`Book your diagnostic call`, url:diagnosticUrl, primary:true}
       ]
     },
     blue: {
@@ -466,7 +513,7 @@ function showResults() {
       price: `Custom`,
       pnote: `Start with the diagnostic to scope the project.`,
       btns: [
-        {t:`Book a diagnostic call`, url:`https://appliedleverage.io/diagnostic`, primary:true},
+        {t:`Book a diagnostic call`, url:diagnosticUrl, primary:true},
         {t:`Email us directly`, url:`mailto:lucas@appliedleverage.io`, primary:false}
       ]
     }
@@ -604,5 +651,6 @@ function retake() {
 
 document.getElementById(`roadmap-form`).addEventListener(`submit`, submitEmail);
 </script>
+<script src="/funnel-config.js"></script>
 </body>
 </html>

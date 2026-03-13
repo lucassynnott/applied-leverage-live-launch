@@ -38,10 +38,10 @@ const manualWorkbookRequestHref =
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
 const workbookPrimaryHref = workbookCheckoutHref || manualWorkbookRequestHref;
 const workbookOfferUrl = workbookCheckoutHref || "https://appliedleverage.io/workbook";
-const workbookPrimaryLabel = workbookCheckoutHref ? "Buy the workbook — $47" : "Request the workbook";
+const workbookPrimaryLabel = workbookCheckoutHref ? "Buy the workbook — $47" : "Get the workbook";
 const workbookSupportNote = workbookCheckoutHref
   ? "Instant checkout is live. Start self-guided, then step up to the Diagnostic if you want expert judgment."
-  : "Delivered manually right now while instant checkout is being finalized.";
+  : "Current access is still handled manually while direct checkout goes live. The product itself is ready.";
 const workbookManualTrustLine = workbookCheckoutHref
   ? ""
   : "You get the current version directly — this is not a waitlist.";
