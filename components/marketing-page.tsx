@@ -211,7 +211,7 @@ const aboutFitTitles = [
 ];
 
 const workbookCheckoutHref = process.env.NEXT_PUBLIC_WORKBOOK_CHECKOUT_URL?.trim() || "";
-const workbookEntryLabel = "View the workbook";
+const workbookEntryLabel = "Request the workbook";
 const workbookRoutingNote =
   "Use the workbook to audit delivery, follow-up, admin, and operations yourself before you book live help. It is the lower-cost self-guided path inside the same system.";
 const workbookChooserNote =
@@ -271,8 +271,8 @@ function renderHomePage(page: SitePage) {
     },
     {
       body:
-        "Book the paid diagnostic if you want Lucas to pressure-test the business and hand you the top three moves in order.",
-      cta: { href: "/diagnostic", label: "Book the diagnostic" },
+        "Apply for the paid diagnostic if you want Lucas to pressure-test the business and hand you the top three moves in order.",
+      cta: { href: "/diagnostic", label: "Apply for the diagnostic" },
       title: "Agent OS Diagnostic"
     },
     {
@@ -297,7 +297,7 @@ function renderHomePage(page: SitePage) {
     },
     {
       body:
-        "Book the diagnostic if you want expert prioritization instead of another month of guessing.",
+        "Apply for the diagnostic if you want expert prioritization instead of another month of guessing.",
       cta: { href: "/diagnostic", label: "Get expert prioritization" },
       title: "Want the sharpest answer fastest?"
     }
@@ -592,7 +592,7 @@ function renderWhyPage(page: SitePage) {
         id={cta.id}
         notes={[
           "90-minute working session",
-          "Priority map delivered after the call, usually the same day"
+          "Priority map delivered after the call as quickly as possible, usually the same day"
         ]}
         primary={primaryActions.why}
         secondary={secondaryActions.why}
@@ -624,6 +624,36 @@ function renderDiagnosticPage(page: SitePage) {
   return (
     <main className="marketing-page marketing-page--diagnostic">
       <PageHero page={page} />
+
+      <section className="page-band page-band--video" id="diagnostic-walkthrough">
+        <div className="page-band__header">
+          <p className="eyebrow">Founder walkthrough</p>
+          <h2 id="diagnostic-video-title">See how the Diagnostic turns messy automation ideas into a ranked next move.</h2>
+          <p>
+            A short founder video on who the Diagnostic is for, what the Automation Priority Map
+            clarifies, and when to stay self-guided versus stepping into implementation help.
+          </p>
+        </div>
+        <article className="surface-card video-card">
+          <div className="video-shell">
+            <video controls preload="metadata" playsInline poster="/media/diagnostic-founder-clip-poster.jpg">
+              <source src="/media/diagnostic-founder-clip-16x9.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p className="video-card__meta">
+            ~22 seconds • silent autoplay-safe asset with burned-in captions • focused on the Automation Priority Map and fit
+          </p>
+          <div className="cta-actions">
+            <Link className="button button-primary" href="#apply">
+              Apply for the Diagnostic
+            </Link>
+            <Link className="button button-secondary" href="/apply">
+              Compare both paths
+            </Link>
+          </div>
+        </article>
+      </section>
 
       {/* The Problem */}
       <section className="page-band" id={problem.id}>
@@ -728,7 +758,7 @@ function renderDiagnosticPage(page: SitePage) {
       <section className="page-band" id={format.id}>
         <div className="page-band__header">
           <p className="eyebrow">{format.heading}</p>
-          <h2>Ninety minutes. A map in your inbox after the call, usually the same day.</h2>
+          <h2>Ninety minutes. A map in your inbox after the call as quickly as possible, usually the same day.</h2>
         </div>
         <div className="timeline-grid">
           {formatSteps.map((step, index) => (
