@@ -256,7 +256,7 @@ function getVerdict(points: number): { headline: string; body: string } {
   if (points >= 16) {
     return {
       headline: "You're running a manual operation.",
-      body: "Almost every major area of your business has automation potential. You're probably spending 10–15+ hours a week on things a system could handle. The good news: you have massive upside waiting. The Diagnostic will show you exactly where to start.",
+      body: "Almost every major area of your business has automation potential. There's likely significant time each week going to things a system could handle — the Diagnostic will show you exactly where the leverage is.",
     };
   }
   if (points >= 10) {
