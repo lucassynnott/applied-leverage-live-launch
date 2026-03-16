@@ -30,6 +30,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://os.appliedleverage.io"),
   title: {
     default: "Applied Leverage",
     template: "%s | Applied Leverage"
