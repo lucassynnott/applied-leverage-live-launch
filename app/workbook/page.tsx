@@ -271,7 +271,7 @@ export default function WorkbookPage() {
             </video>
           </div>
           <p className="video-card__meta">
-            Under 30 seconds • what's inside and how operators use it
+            Under 30 seconds • what&apos;s inside and how operators use it
           </p>
           <div className="cta-actions">
             <WorkbookCtaLink

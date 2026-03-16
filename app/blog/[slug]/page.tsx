@@ -36,9 +36,6 @@ const articles = {
       "If the article made the drag clearer but you do not need live judgment yet, the workbook is the clean self-guided next step. If the bottleneck is obvious and you want expert prioritization fast, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
-      "..",
-      "ventures",
-      "active",
       "content",
       "blog-5-signs-ready-for-automation.md"
     ),
@@ -92,9 +89,6 @@ const articles = {
       "If onboarding is obviously dragging but you still need a readiness signal, start with the assessment. If you want the self-serve version, work through the workbook. If you want expert prioritization on what to automate first, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
-      "..",
-      "ventures",
-      "active",
       "content",
       "client-onboarding-automation-for-small-service-businesses.md"
     ),
@@ -143,9 +137,6 @@ const articles = {
       "If this clarified the likely bottleneck but you still need a reality check, start with the assessment. If you want to work the audit yourself, use the workbook. If you want expert prioritization on what to automate first, apply for the diagnostic.",
     filePath: path.join(
       process.cwd(),
-      "..",
-      "ventures",
-      "active",
       "content",
       "what-to-automate-first-in-a-small-service-business.md"
     ),
