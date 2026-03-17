@@ -1180,7 +1180,7 @@ function renderApplyPage(page: SitePage) {
           <h2>If you already know you need live help, there are two main paths.</h2>
         </div>
         <p className="page-band__intro">
-          Expert prioritization or implementation. Too early for live help? Start with the free assessment or the self-guided workbook instead.
+          Expert prioritization or implementation. Too early for live help? Start with the self-guided workbook instead.
         </p>
         <div className="card-grid card-grid--two">
           {pathCards.items.map((item, index) => (
