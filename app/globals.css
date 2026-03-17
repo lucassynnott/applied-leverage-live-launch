@@ -390,18 +390,26 @@ a {
 }
 
 .mobile-nav.is-open .mobile-nav__panel {
-  max-height: 32rem;
+  max-height: calc(100dvh - 5rem);
   margin-top: 0.35rem;
   padding-top: 1rem;
   border-top-color: var(--border);
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.mobile-nav__links,
+.mobile-nav__links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
 .mobile-nav__actions {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 }
 
