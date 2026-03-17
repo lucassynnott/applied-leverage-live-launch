@@ -375,8 +375,10 @@ a {
   max-height: 0;
   margin-top: 0;
   padding-top: 0;
+  padding-bottom: 0;
   overflow: hidden;
   border-top: 1px solid transparent;
+  background: var(--bg, #000);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-0.35rem);
@@ -393,6 +395,7 @@ a {
   max-height: calc(100dvh - 5rem);
   margin-top: 0.35rem;
   padding-top: 1rem;
+  padding-bottom: 1.5rem;
   border-top-color: var(--border);
   opacity: 1;
   pointer-events: auto;
@@ -416,6 +419,8 @@ a {
 .mobile-nav__link {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   min-height: 2.75rem;
   padding: 0.85rem 1rem;
   border: 1px solid var(--border);
