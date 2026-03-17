@@ -54,7 +54,7 @@ async function sendDownloadEmail(email: string): Promise<ResendEmailResponse> {
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
           <p style="color: #999; font-size: 12px;">
-            Applied Leverage — Applied Leverage — lucas@appliedleverage.io
+            Applied Leverage — lucas@appliedleverage.io
           </p>
         </div>
       `
