@@ -67,8 +67,8 @@ const primaryActions: Record<PageSlug, ActionLink> = {
 
 const secondaryActions: Record<PageSlug, ActionLink> = {
   home: {
-    label: "Take the Free Assessment",
-    href: "/assess"
+    label: "Get the Workbook",
+    href: "/workbook"
   },
   why: {
     label: "Compare Both Offers",
@@ -259,12 +259,6 @@ function renderHomePage(page: SitePage) {
 
   const offerLadder = [
     {
-      body:
-        "Answer 10 questions, get an instant readiness score, and see whether you need systems work, a self-audit, expert diagnosis, or implementation.",
-      cta: { href: "/assess", label: "Take the free assessment" },
-      title: "Automation Readiness Assessment"
-    },
-    {
       body: workbookRoutingNote,
       cta: { href: "/workbook", label: workbookEntryLabel },
       title: "The Operator's Automation Audit"
@@ -284,12 +278,6 @@ function renderHomePage(page: SitePage) {
   ];
 
   const chooserPaths = [
-    {
-      body:
-        "Start with the assessment if you still need a reality check on whether automation is even the right move.",
-      cta: { href: "/assess", label: "Start with the assessment" },
-      title: "Need a fast reality check?"
-    },
     {
       body: workbookChooserNote,
       cta: { href: "/workbook", label: workbookEntryLabel },
@@ -625,36 +613,6 @@ function renderDiagnosticPage(page: SitePage) {
     <main className="marketing-page marketing-page--diagnostic">
       <PageHero page={page} />
 
-      <section className="page-band page-band--video" id="diagnostic-walkthrough">
-        <div className="page-band__header">
-          <p className="eyebrow">Founder walkthrough</p>
-          <h2 id="diagnostic-video-title">See how the Diagnostic turns messy automation ideas into a ranked next move.</h2>
-          <p>
-            A short founder video on who the Diagnostic is for, what the Automation Priority Map
-            clarifies, and when to stay self-guided versus stepping into implementation help.
-          </p>
-        </div>
-        <article className="surface-card video-card">
-          <div className="video-shell">
-            <video controls preload="metadata" playsInline poster="/media/diagnostic-founder-clip-poster.jpg">
-              <source src="/media/diagnostic-founder-clip-16x9.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <p className="video-card__meta">
-            Under 30 seconds • what the Diagnostic outputs and when it fits
-          </p>
-          <div className="cta-actions">
-            <Link className="button button-primary" href="#apply">
-              Apply for the Diagnostic
-            </Link>
-            <Link className="button button-secondary" href="/apply">
-              Compare both paths
-            </Link>
-          </div>
-        </article>
-      </section>
-
       {/* The Problem */}
       <section className="page-band" id={problem.id}>
         <div className="page-band__header">
@@ -896,7 +854,6 @@ function renderSprintPage(page: SitePage) {
           <article className="narrative-card">
             <p>The Sprint is not a separate offer bolted onto the side of the business. It is the implementation layer of the same system:</p>
             <ul>
-              <li><Link href="/assess">Assessment</Link> for readiness</li>
               <li><Link href="/workbook">Workbook</Link> for self-audit</li>
               <li><Link href="/diagnostic">Diagnostic</Link> for expert prioritization</li>
               <li><strong>Sprint</strong> for build</li>
@@ -1204,7 +1161,6 @@ function renderApplyPage(page: SitePage) {
           <article className="narrative-card">
             <p>You are not choosing between random products. You are choosing how much help you want right now.</p>
             <ul>
-              <li>If you need a fast signal, start with the <Link href="/assess">Assessment</Link>.</li>
               <li>If you want to work through the framework yourself, start with the <Link href="/workbook">Workbook</Link>.</li>
               <li>If you want expert judgment, start with the <Link href="/diagnostic">Diagnostic</Link>.</li>
               <li>If the map is already clear and you want to build, apply for the <Link href="/sprint">Sprint</Link>.</li>

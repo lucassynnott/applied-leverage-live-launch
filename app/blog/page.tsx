@@ -127,8 +127,8 @@ export default function BlogIndexPage() {
             buying tools before the bottleneck is clear.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/assess">
-              Take the Free Assessment
+            <Link className="button button-primary" href="/diagnostic">
+              Get Your Automation Map
             </Link>
             <WorkbookCtaLink
               className="button button-ghost"
@@ -189,13 +189,12 @@ export default function BlogIndexPage() {
 
           <div className="feature-grid">
             <article className="feature-card">
-              <h3>Need a fast readiness signal?</h3>
+              <h3>Need expert prioritization?</h3>
               <p>
-                Start with the free assessment if you are still figuring out whether the problem is real enough to
-                justify a build.
+                Start with the diagnostic if you want to know exactly what to automate first instead of guessing.
               </p>
-              <Link className="button button-secondary" href="/assess">
-                Take the Free Assessment
+              <Link className="button button-secondary" href="/diagnostic">
+                Apply for the Diagnostic
               </Link>
             </article>
             <article className="feature-card">

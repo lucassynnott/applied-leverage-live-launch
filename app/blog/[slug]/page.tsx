@@ -319,8 +319,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
           <p className="hero-subheadline">{article.heroSubheadline}</p>
           <p className="article-meta">By {article.authorName} · Published {publishedLabel}</p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/assess">
-              Take the Free Assessment
+            <Link className="button button-primary" href="/diagnostic">
+              Get Your Automation Map
             </Link>
             <WorkbookCtaLink
               className="button button-ghost"

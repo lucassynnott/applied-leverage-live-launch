@@ -6,11 +6,6 @@ import { getNavigationPages } from "@/lib/site-content";
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const pages = [
-    {
-      navLabel: "Assessment",
-      path: "/assess",
-      slug: "assessment"
-    },
     ...getNavigationPages().map(({ navLabel, path, slug }) => ({
       navLabel,
       path,
@@ -37,9 +32,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="header-actions header-actions--desktop">
-          <Link className="button button-ghost header-cta" href="/assess">
-            Start here
-          </Link>
           <Link className="button button-primary header-cta" href="/apply">
             Apply
           </Link>
@@ -60,7 +52,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="footer-columns">
             <div className="footer-links">
               <p className="footer-label">Services</p>
-              <Link href="/assess">Assessment</Link>
               <Link href="/workbook">Workbook</Link>
               <Link href="/diagnostic">Diagnostic</Link>
               <Link href="/sprint">Sprint</Link>

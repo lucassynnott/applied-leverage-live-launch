@@ -5,7 +5,6 @@ const baseUrl = "https://appliedleverage.io";
 const routeEntries = [
   { route: "", lastModified: "2026-03-13T14:44:00Z", changeFrequency: "weekly", priority: 1 },
   { route: "/why", lastModified: "2026-03-12T23:52:00Z", changeFrequency: "monthly", priority: 0.8 },
-  { route: "/assess", lastModified: "2026-03-13T12:26:00Z", changeFrequency: "weekly", priority: 0.9 },
   {
     route: "/diagnostic",
     lastModified: "2026-03-13T12:26:00Z",
