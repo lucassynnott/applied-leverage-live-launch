@@ -77,7 +77,7 @@ export default function MemoryStackPage() {
                   </button>
                 </div>
                 <p className="form-note">
-                  I&apos;ll email you the download link. No spam, ever.
+                  By entering your email you agree it may be used to send you updates and useful content from Applied Leverage. We will never spam you or sell your data. Unsubscribe any time.
                 </p>
               </form>
               <div id="success-message" className="success-message" style={{ display: "none" }}>
@@ -187,7 +187,9 @@ export default function MemoryStackPage() {
                 Send me the link
               </button>
             </div>
-            <p className="form-note">No spam. Just the download link.</p>
+            <p className="form-note">
+              By entering your email you agree it may be used to send you updates and useful content from Applied Leverage. We will never spam you or sell your data. Unsubscribe any time.
+            </p>
           </form>
         </div>
       </section>
