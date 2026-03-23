@@ -11,10 +11,6 @@ interface ResendEmailResponse {
   error?: { message: string };
 }
 
-interface ResendAudienceResponse {
-  data?: { id: string }[];
-  error?: { message: string };
-}
 
 async function sendDownloadEmail(email: string): Promise<ResendEmailResponse> {
   const response = await fetch("https://api.resend.com/emails", {
@@ -64,50 +60,11 @@ async function sendDownloadEmail(email: string): Promise<ResendEmailResponse> {
   return response.json();
 }
 
+// Memory System Giveaway audience ID (Resend)
+const AUDIENCE_ID = "e37ae485-e4ef-4fad-8618-13d735304777";
+
 async function addToAudience(email: string): Promise<void> {
-  // First, get or create an audience for memory-stack downloads
-  const audiencesRes = await fetch("https://api.resend.com/audiences", {
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`
-    }
-  });
-
-  const audiencesData = (await audiencesRes.json()) as ResendAudienceResponse;
-  let audienceId: string | undefined;
-
-  // Look for existing "memory-stack" audience
-  if (audiencesData.data) {
-    const existing = audiencesData.data.find(
-      (a: { id: string }) => (a as { id: string; name?: string }).name === "memory-stack"
-    );
-    if (existing) {
-      audienceId = existing.id;
-    }
-  }
-
-  // Create audience if it doesn't exist
-  if (!audienceId) {
-    const createRes = await fetch("https://api.resend.com/audiences", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name: "memory-stack" })
-    });
-    const createData = (await createRes.json()) as { data?: { id: string } };
-    if (createData.data) {
-      audienceId = createData.data.id;
-    }
-  }
-
-  if (!audienceId) {
-    console.error("Could not get or create audience");
-    return;
-  }
-
-  // Add contact to audience
-  await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+  const res = await fetch(`https://api.resend.com/audiences/${AUDIENCE_ID}/contacts`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -118,6 +75,11 @@ async function addToAudience(email: string): Promise<void> {
       unsubscribed: false
     })
   });
+
+  if (!res.ok) {
+    const err = await res.text();
+    console.error(`Failed to add ${email} to audience: ${err}`);
+  }
 }
 
 export async function POST(request: Request) {
