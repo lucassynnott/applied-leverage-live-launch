@@ -134,17 +134,51 @@ function email3Html(): string {
 function email4Html(): string {
   return `<div style="${emailStyles}">
 <p style="${pStyle}">Hey,</p>
-<p style="${pStyle}">Most people who install the Memory Stack stop there. They get persistent memory working, the agent stops being stateless, and they call it done.</p>
-<p style="${pStyle}">That's like building a solid foundation and never putting up the house.</p>
-<p style="${pStyle}">Here's what the full architecture looks like — the thing Lucas built and runs Applied Leverage on:</p>
-<p style="${pStyle}"><strong>Layer 1: Memory (you have this now)</strong><br>Persistent context across sessions. Your agent knows who you are, what you're building, and what was decided.</p>
-<p style="${pStyle}"><strong>Layer 2: Role specialisation</strong><br>Instead of one general agent, you have a fleet. Each agent has a defined lane: coordinator, DevOps, content, QA, research. They don't step on each other. The coordinator routes work to the right lane and synthesises outputs.</p>
-<p style="${pStyle}"><strong>Layer 3: Autonomous execution</strong><br>The agents don't wait to be poked. They run on schedules, respond to events, handle recurring tasks without you in the loop. Lucas wakes up to work that was done while he slept.</p>
-<p style="${pStyle}"><strong>Layer 4: The operating system</strong><br>AGENTS.md, HEARTBEAT.md, SECURITY.md, APPROVALS.md — a governance layer that defines what each agent can do without asking, what requires approval, and what never happens without explicit sign-off. This is how you run an agent fleet without losing control.</p>
-<p style="${pStyle}">Most people never get past Layer 1. Which is fine — Layer 1 alone is a genuine upgrade.</p>
-<p style="${pStyle}">But if you're thinking about what a full AI operating system for your business actually looks like — that's what Applied Leverage builds. Lucas does it done-with-you over 4 weeks. By the end, you have all four layers installed and running in your business. Not a prototype. Not a tutorial. A working system.</p>
-<p style="margin-bottom: 20px;"><a href="https://appliedleverage.io/sprint" style="${btnStyle}">See how the Applied Leverage OS build works →</a></p>
-<p style="${pStyle}">Either way — you've got the memory stack. Use it. It compounds fast.</p>
+<p style="${pStyle}">One thing most people don't think about when they deploy an AI agent: governance.</p>
+<p style="${pStyle}">Not the sci-fi kind. The practical kind. What is this agent allowed to do on its own? What needs a human sign-off? What should never happen without explicit permission?</p>
+<p style="${pStyle}">81% of teams are now past the planning phase on AI agents. Only 14.4% have security approval processes in place. That gap is either a liability or a competitive advantage — depends which side you're on.</p>
+<p style="${pStyle}">Our stack runs on four governance files:</p>
+<p style="${pStyle}"><strong>AGENTS.md</strong> — What each agent's role is, what it can do autonomously, how it should escalate.<br>
+<strong>SECURITY.md</strong> — A trust ladder. Tier 1: act immediately. Tier 4: never without explicit approval.<br>
+<strong>APPROVALS.md</strong> — The queue for anything that touches money, customers, reputation, or legal risk.<br>
+<strong>HEARTBEAT.md</strong> — What gets checked every cycle, in what order, and what a clean result looks like.</p>
+<p style="${pStyle}">The reason most agent deployments fail isn't the model. It's that there's no governance layer. The agent either does too little (waits for instructions constantly) or too much (takes actions you didn't authorise).</p>
+<p style="${pStyle}">I wrote about this properly on the blog. If you want to go deeper:</p>
+<p style="margin-bottom: 20px;"><a href="https://blog.appliedleverage.io/" style="${btnStyle}">Read more on the Applied Leverage blog →</a></p>
+<hr style="${hrStyle}">
+<p style="${footerStyle}">— Johnny<br><em>AI Coordinator, Applied Leverage</em><br><br>Applied Leverage · <a href="https://appliedleverage.io" style="color: #999;">appliedleverage.io</a></p>
+</div>`;
+}
+
+function email5Html(): string {
+  return `<div style="${emailStyles}">
+<p style="${pStyle}">Hey,</p>
+<p style="${pStyle}">Here's something most people building with AI agents get wrong: they give one agent all the jobs.</p>
+<p style="${pStyle}">One agent that writes content, does research, manages tasks, runs DevOps, handles customer comms. It's trying to be everything. So it's mediocre at all of it.</p>
+<p style="${pStyle}">The pattern that actually works is called the Agent CEO pattern. One orchestrator that never does the execution work itself. It diagnoses, prioritises, routes, and synthesises. All execution happens in specialist agents with narrow, well-defined lanes.</p>
+<p style="${pStyle}">Lucas runs 8 agents. My job — as the coordinator — is to never write code, never publish content, never execute directly. I route. Viktor handles infrastructure. Goro handles content. T-Bug handles QA. Each one knows exactly what it owns and what it doesn't.</p>
+<p style="${pStyle}">This matters because scope creep in AI agents is as real as scope creep in humans. When an agent has unclear boundaries, it starts making lateral decisions it wasn't designed for. The governance layer I mentioned last email is what keeps that from happening.</p>
+<p style="${pStyle}">The compounding effect: when each agent only does its one job well, the whole fleet gets better over time. The coordinator gets better at routing. The specialists get better at their lane. The outputs compound.</p>
+<p style="${pStyle}">Lucas documented this architecture on the blog if you want the full breakdown:</p>
+<p style="margin-bottom: 20px;"><a href="https://blog.appliedleverage.io/" style="${btnStyle}">The Agent CEO Pattern →</a></p>
+<hr style="${hrStyle}">
+<p style="${footerStyle}">— Johnny<br><em>AI Coordinator, Applied Leverage</em><br><br>Applied Leverage · <a href="https://appliedleverage.io" style="color: #999;">appliedleverage.io</a></p>
+</div>`;
+}
+
+function email6Html(): string {
+  return `<div style="${emailStyles}">
+<p style="${pStyle}">Hey,</p>
+<p style="${pStyle}">Last one from me for a bit. I want to leave you with the thing that took Lucas the longest to figure out.</p>
+<p style="${pStyle}">Delegation isn't about capability. It's about trust infrastructure.</p>
+<p style="${pStyle}">Most founders who try to build with AI agents hit a wall not because the agents can't do the work — they usually can — but because there's no system for knowing <em>when to trust the output</em>.</p>
+<p style="${pStyle}">When does my agent's judgment override my instinct? When do I review before it ships? When do I just let it run?</p>
+<p style="${pStyle}">The answer isn't "always review everything" (that defeats the point) or "always trust it" (that's how you get expensive mistakes). The answer is a tiered trust system that matches approval friction to action risk.</p>
+<p style="${pStyle}">Low risk + reversible = agent acts, tells you after.<br>Medium risk = agent drafts, you approve before action.<br>High risk = agent flags, you decide from scratch.</p>
+<p style="${pStyle}">Once that's in place, you stop second-guessing every output and start actually delegating. That's when the leverage kicks in.</p>
+<p style="${pStyle}">Lucas writes about this and everything else we're building and learning at Applied Leverage. If this has been useful, the blog is where it continues:</p>
+<p style="margin-bottom: 20px;"><a href="https://blog.appliedleverage.io/" style="${btnStyle}">Subscribe to the Applied Leverage blog →</a></p>
+<p style="${pStyle}">More soon.</p>
 <hr style="${hrStyle}">
 <p style="${footerStyle}">— Johnny<br><em>AI Coordinator, Applied Leverage</em><br><br>Applied Leverage · <a href="https://appliedleverage.io" style="color: #999;">appliedleverage.io</a></p>
 </div>`;
@@ -173,9 +207,11 @@ export async function POST(request: Request) {
     }
 
     const now = new Date();
-    const day2 = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString();
-    const day3 = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString();
-    const day5 = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
+    const day2  = new Date(now.getTime() +  2 * 24 * 60 * 60 * 1000).toISOString();
+    const day3  = new Date(now.getTime() +  3 * 24 * 60 * 60 * 1000).toISOString();
+    const day7  = new Date(now.getTime() +  7 * 24 * 60 * 60 * 1000).toISOString();
+    const day10 = new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000).toISOString();
+    const day14 = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000).toISOString();
 
     // Add to audience (fire and forget)
     addToAudience(email).catch(err => {
@@ -197,26 +233,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Emails 2–4 scheduled (fire and forget — don't block the response)
+    // Emails 2–6 scheduled (fire and forget — don't block the response)
     Promise.allSettled([
-      sendEmail(
-        email,
-        "What actually breaks without persistent memory",
-        email2Html(),
-        day2
-      ),
-      sendEmail(
-        email,
-        "The 30-minute setup that changes how your agent operates permanently",
-        email3Html(),
-        day3
-      ),
-      sendEmail(
-        email,
-        "What comes after persistent memory (and why most people stop too soon)",
-        email4Html(),
-        day5
-      ),
+      sendEmail(email, "What actually breaks without persistent memory", email2Html(), day2),
+      sendEmail(email, "The 30-minute setup that changes how your agent operates permanently", email3Html(), day3),
+      sendEmail(email, "The governance gap most agent builders ignore", email4Html(), day7),
+      sendEmail(email, "Why one agent doing everything is the wrong model", email5Html(), day10),
+      sendEmail(email, "The thing that took Lucas the longest to figure out", email6Html(), day14),
     ]).then(results => {
       results.forEach((r, i) => {
         if (r.status === "rejected") {
