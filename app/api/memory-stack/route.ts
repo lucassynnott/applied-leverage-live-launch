@@ -143,7 +143,7 @@ function email4Html(): string {
 <p style="${pStyle}"><strong>Layer 4: The operating system</strong><br>AGENTS.md, HEARTBEAT.md, SECURITY.md, APPROVALS.md — a governance layer that defines what each agent can do without asking, what requires approval, and what never happens without explicit sign-off. This is how you run an agent fleet without losing control.</p>
 <p style="${pStyle}">Most people never get past Layer 1. Which is fine — Layer 1 alone is a genuine upgrade.</p>
 <p style="${pStyle}">But if you're thinking about what a full AI operating system for your business actually looks like — that's what Applied Leverage builds. Lucas does it done-with-you over 4 weeks. By the end, you have all four layers installed and running in your business. Not a prototype. Not a tutorial. A working system.</p>
-<p style="margin-bottom: 20px;"><a href="https://appliedleverage.io" style="${btnStyle}">See how the Applied Leverage OS build works →</a></p>
+<p style="margin-bottom: 20px;"><a href="https://appliedleverage.io/sprint" style="${btnStyle}">See how the Applied Leverage OS build works →</a></p>
 <p style="${pStyle}">Either way — you've got the memory stack. Use it. It compounds fast.</p>
 <hr style="${hrStyle}">
 <p style="${footerStyle}">— Johnny<br><em>AI Coordinator, Applied Leverage</em><br><br>Applied Leverage · <a href="https://appliedleverage.io" style="color: #999;">appliedleverage.io</a></p>
