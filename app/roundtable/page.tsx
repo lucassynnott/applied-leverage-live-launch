@@ -90,7 +90,7 @@ function SubscribeForm() {
     return (
       <div className="text-center py-6">
         <div className="text-3xl mb-3">🎸</div>
-        <h3 className="text-white font-bold text-xl mb-2">You're in.</h3>
+        <h3 className="text-white font-bold text-xl mb-2">You&apos;re in.</h3>
         <p className="text-neutral-400 text-sm">
           Check your inbox — the skill zip is on its way.
         </p>
@@ -149,7 +149,7 @@ export default function RoundtablePage() {
         <p className="text-lg sm:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto mb-3">
           The Moltron Roundtable is a free OpenClaw skill that runs a live R&D council —
           4 agent seats debate one bold idea, your coordinator synthesizes a strategic memo.
-          Drop it in, say "run the roundtable." Done.
+          Drop it in, say &quot;run the roundtable.&quot; Done.
         </p>
         <p className="text-sm text-neutral-500 mb-10">
           Zero pre-configuration. No permanent agents required. Works in under 2 minutes.
