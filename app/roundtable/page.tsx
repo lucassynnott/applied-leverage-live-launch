@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Moltron Roundtable — Free OpenClaw Skill | Applied Leverage",
   description:
-    "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo. Drop it in, run it instantly.",
+    "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo. Drop it in and run.",
   alternates: {
     canonical: "https://appliedleverage.io/roundtable"
   },
   openGraph: {
     title: "Moltron Roundtable — Free OpenClaw Skill | Applied Leverage",
     description:
-      "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo.",
+      "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo. Drop it in and run.",
     type: "website",
     url: "https://appliedleverage.io/roundtable",
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moltron Roundtable — Free OpenClaw Skill | Applied Leverage",
     description:
-      "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo.",
+      "A free OpenClaw skill that runs a live AI R&D council. 4 agent seats debate one bold idea, your coordinator synthesises a strategic memo. Drop it in and run.",
   }
 };
 
@@ -28,14 +28,14 @@ export default function RoundtablePage() {
       <section className="page-hero">
         <div className="hero-two-column">
           <div className="hero-two-column__left">
-            <p className="eyebrow">Free skill · Instant download</p>
+            <p className="eyebrow">Free skill</p>
             <h1 className="hero-title">
-              Give your AI agents a war room.
+              Give your AI agents a boardroom.
             </h1>
             <p className="hero-subheadline">
-              The Moltron Roundtable is a free OpenClaw skill that runs a live R&amp;D council —
-              4 agent seats debate one bold idea, your coordinator synthesises a strategic memo.
-              Drop it in your workspace. Say &quot;run the roundtable.&quot; Done.
+              The Moltron Roundtable is a free OpenClaw skill that runs a live R&amp;D council.
+              Four agent seats debate one bold idea. Your coordinator synthesises a strategic memo.
+              Zero pre-configuration. Works in under 2 minutes.
             </p>
             <div className="hero-stats-bar">
               <article className="hero-metric">
@@ -44,11 +44,11 @@ export default function RoundtablePage() {
               </article>
               <article className="hero-metric">
                 <span className="hero-metric__value">4 seats</span>
-                <span className="hero-metric__label">Provocateur, Operator, Skeptic, Customer</span>
+                <span className="hero-metric__label">spawn on demand</span>
               </article>
               <article className="hero-metric">
                 <span className="hero-metric__value">&lt;2 min</span>
-                <span className="hero-metric__label">memo in hand</span>
+                <span className="hero-metric__label">to a decision memo</span>
               </article>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function RoundtablePage() {
                 </p>
               </form>
               <div id="success-message" className="success-message" style={{ display: "none" }}>
-                <p>Check your inbox — the skill is on its way.</p>
+                <p>Check your inbox — the download link is on its way.</p>
               </div>
               <div id="error-message" className="error-message" style={{ display: "none" }}>
                 <p>Something went wrong. Try again or email lucas@appliedleverage.io directly.</p>
@@ -83,127 +83,94 @@ export default function RoundtablePage() {
         </div>
       </section>
 
-      <section className="page-band" id="how-it-works">
-        <div className="page-band__header">
-          <p className="eyebrow">How it works</p>
-          <h2>One skill. Zero setup. Strategic clarity in under 2 minutes.</h2>
-        </div>
-        <div className="card-grid card-grid--three">
-          <article className="surface-card icon-card">
-            <h3>1. Drop it in</h3>
-            <p>
-              Copy the skill folder into your OpenClaw workspace. That&apos;s the install.
-              No config file required on first run.
-            </p>
-          </article>
-          <article className="surface-card icon-card">
-            <h3>2. Say &quot;run the roundtable&quot;</h3>
-            <p>
-              First run detects no config, pulls from your memory, asks 2-3 questions about
-              your business goals, writes the config, and runs immediately.
-            </p>
-          </article>
-          <article className="surface-card icon-card">
-            <h3>3. Get your memo</h3>
-            <p>
-              4 seat agents spawn, debate, and dissolve. Your coordinator synthesises a
-              strategic memo with top 3 actions.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="page-band" id="the-seats">
-        <div className="page-band__header">
-          <p className="eyebrow">The 4 seats</p>
-          <h2>Every angle covered. Every session fresh.</h2>
-        </div>
-        <div className="card-grid card-grid--two">
-          <article className="surface-card icon-card">
-            <h3>🔴 Provocateur</h3>
-            <p>Generates bold, non-obvious ideas. The one who says what others won&apos;t.</p>
-          </article>
-          <article className="surface-card icon-card">
-            <h3>🔵 Operator</h3>
-            <p>Hard execution focus. Evaluates shippability, first steps, hidden complexity.</p>
-          </article>
-          <article className="surface-card icon-card">
-            <h3>🟡 Skeptic</h3>
-            <p>Analytical critic. Finds real weaknesses and failure modes before you ship.</p>
-          </article>
-          <article className="surface-card icon-card">
-            <h3>🟢 Customer</h3>
-            <p>Voice of your ICP. Reacts like a buyer, not a builder.</p>
-          </article>
-        </div>
-        <article className="narrative-card markdown" style={{ marginTop: "2rem" }}>
-          <p>
-            Seats spawn as one-shot agents per session — no permanent agents, no pre-configuration.
-            The coordinator (your main agent) synthesises the debate into a memo with clear decisions
-            and next steps.
-          </p>
-        </article>
-      </section>
-
-      <section className="page-band" id="whats-inside">
+      <section className="page-band" id="what-it-is">
         <div className="page-band__header">
           <p className="eyebrow">What&apos;s inside</p>
-          <h2>A complete, self-bootstrapping skill you can drop into any OpenClaw workspace.</h2>
+          <h2>A self-bootstrapping skill you drop into any OpenClaw workspace.</h2>
         </div>
         <div className="card-grid card-grid--three">
           <article className="surface-card icon-card">
             <h3>SKILL.md</h3>
             <p>
-              Full self-bootstrapping skill instructions. Detects no config, asks 2-3 questions,
-              writes your setup, runs immediately.
+              Full self-bootstrapping skill instructions. First run detects no config, asks
+              2-3 questions about your business, writes config, and runs immediately.
             </p>
           </article>
           <article className="surface-card icon-card">
             <h3>README.md</h3>
             <p>
-              Plain-English setup guide. No jargon, no prerequisites. Copy folder, start talking.
+              Plain-English setup guide. No jargon. Covers install, first run,
+              customising seat personas, and saving memos to Obsidian or Slack.
             </p>
           </article>
           <article className="surface-card icon-card">
             <h3>config.example.json</h3>
             <p>
-              All configurable fields documented. Agent IDs, business context, Slack channel,
-              vault path — everything optional.
+              All configurable fields documented and explained. Seat agent IDs, business context,
+              vault path, Slack channel. Change what you need, leave the rest.
             </p>
           </article>
         </div>
       </section>
 
-      <section className="page-band" id="sample-output">
+      <section className="page-band" id="how-it-works">
         <div className="page-band__header">
-          <p className="eyebrow">Sample output</p>
-          <h2>What a session memo looks like.</h2>
+          <p className="eyebrow">How it works</p>
+          <h2>Four agents. One question. One memo.</h2>
         </div>
         <article className="narrative-card markdown">
-          <pre style={{ whiteSpace: "pre-wrap", fontSize: "0.85rem", lineHeight: "1.6", overflowX: "auto" }}>{`# 🧠 R&D Council — Session #3
-2026-03-24 09:00 | morning | Proposer: 🔴 Provocateur
-
-## 💡 The Idea
-Launch a "one-hour agency audit" as a $97 async offer — founder records
-a 10-min Loom walkthrough, agent fleet diagnoses bottlenecks, delivers
-a written report with 3 immediate actions.
-
-🔵 Operator: Shippable in 48h. First constraint is intake form UX.
-
-🟡 Skeptic: Who decides the 3 actions are right? Needs at least one
-sync touchpoint or the report feels generic.
-
-🟢 Customer: I'd pay $97 for a diagnosis that doesn't require an hour
-of my time. Price it at $147 and it signals seriousness.
-
-## 📋 Strategic Memo
-The async audit idea is sound. The risk isn't execution — it's trust.
-
-Top 3 Actions:
-1. Build intake form this week (30 min, Tally + Notion)
-2. Run 2 beta audits free, collect testimonials
-3. Launch at $147 with a 48h turnaround guarantee`}</pre>
+          <p>
+            You drop the skill folder into your OpenClaw workspace and say &quot;run the roundtable.&quot;
+            That&apos;s the install and the first run in one step.
+          </p>
+          <p>
+            Four seat agents spawn as one-shot instances — Provocateur, Operator, Skeptic, Customer.
+            Each one takes a position on your question. Your coordinator agent reads all four responses
+            and synthesises a strategic memo with the top 3 actions.
+          </p>
+          <p>
+            The seats dissolve when the session ends. No permanent agents, no setup overhead.
+            The rotating proposer seat means a different agent leads each session — you get
+            different frames on the same problem over time.
+          </p>
         </article>
+      </section>
+
+      <section className="page-band" id="the-seats">
+        <div className="page-band__header">
+          <p className="eyebrow">The 4 seats</p>
+          <h2>Four angles on every decision.</h2>
+        </div>
+        <div className="card-grid card-grid--two">
+          <article className="surface-card icon-card">
+            <h3>🔴 Provocateur</h3>
+            <p>
+              Generates bold, non-obvious ideas. The one who says what others won&apos;t.
+              Breaks anchoring bias on safe options.
+            </p>
+          </article>
+          <article className="surface-card icon-card">
+            <h3>🔵 Operator</h3>
+            <p>
+              Hard execution focus. Evaluates shippability, first steps, and hidden complexity.
+              Forces the question: can you actually build this?
+            </p>
+          </article>
+          <article className="surface-card icon-card">
+            <h3>🟡 Skeptic</h3>
+            <p>
+              Analytical critic. Finds real weaknesses and failure modes before you ship.
+              Not to block — to stress-test.
+            </p>
+          </article>
+          <article className="surface-card icon-card">
+            <h3>🟢 Customer</h3>
+            <p>
+              Voice of your ICP. Reacts like a buyer, not a builder. Catches the things
+              that feel obvious internally and land wrong externally.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section className="page-band page-band--cta" id="get-it">
@@ -235,13 +202,13 @@ Top 3 Actions:
       <script
         dangerouslySetInnerHTML={{
           __html: `
-            function handleRoundtableSubmit(e) {
+            function handleFormSubmit(e) {
               e.preventDefault();
-              const form = e.target;
-              const email = form.querySelector('input[name="email"]').value;
-              const submitBtn = form.querySelector('button[type="submit"]');
-              const successMsg = document.getElementById('success-message');
-              const errorMsg = document.getElementById('error-message');
+              var form = e.target;
+              var email = form.querySelector('input[name="email"]').value;
+              var submitBtn = form.querySelector('button[type="submit"]');
+              var successMsg = document.getElementById('success-message');
+              var errorMsg = document.getElementById('error-message');
 
               submitBtn.disabled = true;
               submitBtn.textContent = 'Sending...';
@@ -249,15 +216,15 @@ Top 3 Actions:
               fetch('/api/roundtable', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ email: email })
               })
-              .then(r => r.json())
-              .then(data => {
+              .then(function(r) { return r.json(); })
+              .then(function(data) {
                 if (data.success) {
                   form.style.display = 'none';
                   if (successMsg) successMsg.style.display = 'block';
-                  document.querySelectorAll('#roundtable-form-footer').forEach(f => {
-                    f.innerHTML = '<p class="success-text">Check your inbox — the skill is on its way.</p>';
+                  document.querySelectorAll('#roundtable-form-footer').forEach(function(f) {
+                    f.innerHTML = '<p class="success-text">You already got the link. Check your inbox.</p>';
                   });
                 } else {
                   if (errorMsg) errorMsg.style.display = 'block';
@@ -265,15 +232,15 @@ Top 3 Actions:
                   submitBtn.textContent = 'Send me the skill';
                 }
               })
-              .catch(() => {
+              .catch(function() {
                 if (errorMsg) errorMsg.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send me the skill';
               });
             }
 
-            document.getElementById('roundtable-form')?.addEventListener('submit', handleRoundtableSubmit);
-            document.getElementById('roundtable-form-footer')?.addEventListener('submit', handleRoundtableSubmit);
+            document.getElementById('roundtable-form')?.addEventListener('submit', handleFormSubmit);
+            document.getElementById('roundtable-form-footer')?.addEventListener('submit', handleFormSubmit);
           `
         }}
       />
