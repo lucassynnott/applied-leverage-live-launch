@@ -13,7 +13,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .hero{padding:60px 20px 40px;text-align:center;border-bottom:1px solid var(--border)}
 .badge{display:inline-block;background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.1;margin-bottom:16px}
-.hero h1 span{color:var(--green)}
+.hero h1 em{color:var(--green);font-style:normal}
 .hero p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 28px}
 .hero-meta{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 .prog-wrap{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:100}
@@ -41,8 +41,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .sub-btn.ready{opacity:1;pointer-events:auto}
 .sub-btn.ready:hover{opacity:.9;transform:translateY(-1px)}
 .sub-hint{font-size:13px;color:var(--muted);margin-top:12px}
-
-/* RESULTS */
 #results{display:none}
 .r-hero{padding:60px 20px 40px;text-align:center;border-bottom:1px solid var(--border)}
 .score-big{font-size:clamp(72px,15vw,120px);font-weight:900;line-height:1;margin-bottom:8px}
@@ -92,7 +90,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
 footer a{color:var(--muted);text-decoration:none}
 footer a:hover{color:var(--text)}
-@media(max-width:600px){.hero{padding:40px 16px 32px}.quiz-body{padding:24px 16px}.a-btn{padding:8px 14px;font-size:12px}}
+@media(max-width:600px){.hero{padding:40px 16px 32px}.quiz-body{padding:24px 16px}.a-btn{padding:8px 12px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -100,13 +98,14 @@ footer a:hover{color:var(--text)}
 <div id="quiz">
   <div class="hero">
     <div class="wrap">
-      <div class="badge">Free Assessment</div>
-      <h1>The <span>Founder Dependency</span> Map</h1>
-      <p>36 questions. 8 minutes. Find out exactly how trapped you are in your own business — and what to fix first.</p>
+      <div class="badge">Free Self-Assessment</div>
+      <h1>The <em>Founder Dependency</em> Map</h1>
+      <p>36 questions. 8 minutes. Find out exactly how trapped you are in your own business &#8212; and what to fix first.</p>
       <div class="hero-meta">
-        <span>⏱ 8 minutes</span>
-        <span>📊 36 questions</span>
-        <span>🎯 6 categories</span>
+        <span>&#9200; 8 minutes</span>
+        <span>&#128202; 36 questions</span>
+        <span>&#127919; 6 categories</span>
+        <span>&#128274; Instant results</span>
       </div>
     </div>
   </div>
@@ -122,11 +121,11 @@ footer a:hover{color:var(--text)}
   </div>
 
   <div class="quiz-body">
-    <div class="wrap" id="questions-container"></div>
+    <div class="wrap" id="qcontainer"></div>
   </div>
 
   <div class="submit-wrap">
-    <button class="sub-btn" id="submit-btn" onclick="showResults()">See My Founder Dependency Score →</button>
+    <button class="sub-btn" id="sub-btn" onclick="showResults()">See My Score &#8594;</button>
     <p class="sub-hint" id="sub-hint">Answer all 36 questions to unlock your score</p>
   </div>
 </div>
@@ -135,40 +134,331 @@ footer a:hover{color:var(--text)}
   <div class="r-hero">
     <div class="wrap">
       <div class="score-lbl">Your Founder Dependency Score</div>
-      <div class="score-big" id="r-score">—</div>
+      <div class="score-big" id="r-score">0</div>
       <div class="score-lbl">out of 72</div>
-      <div class="band-pill" id="r-band">—</div>
-      <p class="assess" id="r-assess">—</p>
+      <div class="band-pill" id="r-band"></div>
+      <p class="assess" id="r-assess"></p>
     </div>
   </div>
 
   <div class="breakdown">
     <div class="wrap">
       <h2>Score Breakdown by Category</h2>
-      <div id="bars-container"></div>
+      <div id="bars"></div>
     </div>
   </div>
 
   <div class="prios">
     <div class="wrap">
       <h2>Your Top 3 Priorities</h2>
-      <div id="prios-container"></div>
+      <div id="prios"></div>
     </div>
   </div>
 
   <div class="email-sec">
     <div class="email-in">
       <h2>Get Your Personalized Action Plan</h2>
-      <p>Enter your email and we'll send you a custom breakdown based on your score — including the exact steps to reduce your dependency in the next 90 days.</p>
-      <form class="e-form" id="email-form" onsubmit="submitEmail(event)">
+      <p>Enter your email and we'll send you a custom breakdown based on your score &#8212; with the exact steps to reduce your dependency in the next 90 days.</p>
+      <form class="e-form" id="eform" onsubmit="submitEmail(event)">
         <input type="text" name="name" placeholder="Your name (optional)" autocomplete="name">
         <input type="email" name="email" placeholder="Your email address" required autocomplete="email">
         <input type="hidden" name="score" id="f-score">
         <input type="hidden" name="band" id="f-band">
-        <button type="submit">Send Me the Action Plan →</button>
+        <button type="submit">Send Me the Action Plan &#8594;</button>
+
       </form>
-      <p class="e-sent" id="e-sent">✓ Sent! Check your inbox in the next few minutes.</p>
+      <p class="e-sent" id="e-sent">&#10003; Sent! Check your inbox shortly.</p>
     </div>
   </div>
 
-  <div class="
+  <div class="cta-sec">
+    <div class="wrap">
+      <h2>Ready to Fix This?</h2>
+      <p>Two ways to go deeper with Applied Leverage.</p>
+      <div class="cta-cards">
+        <a href="https://buy.stripe.com/fZu8wR0nUd2Zfjwbh52ZO06" class="cta-card prime" target="_blank" rel="noopener">
+          <div class="cta-price">$997 ONE-TIME</div>
+          <h3>Bottleneck Audit Call</h3>
+          <p>90-minute working session. We map your highest-leverage removal points and leave you with a custom 90-day extraction plan. No fluff &#8212; just the exact moves, in order.</p>
+          <div class="cta-arrow">Book Your Call &#8594;</div>
+        </a>
+        <a href="https://buy.stripe.com/28E00l4Ea9QN9Zc70P2ZO07" class="cta-card" target="_blank" rel="noopener">
+          <div class="cta-price">$97 ONE-TIME</div>
+          <h3>Full Founder Dependency Map Worksheet</h3>
+          <p>The complete self-guided workbook. 40+ pages covering all 6 categories with frameworks, templates, and step-by-step action plans for each bottleneck you uncovered.</p>
+          <div class="cta-arrow">Get the Worksheet &#8594;</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&#169; <a href="https://appliedleverage.io" target="_blank" rel="noopener">Applied Leverage</a> &nbsp;|&nbsp; <a href="https://appliedleverage.io" target="_blank" rel="noopener">appliedleverage.io</a></p>
+  </footer>
+</div>
+
+<script>
+const CATEGORIES = [
+  {
+    id: 'decisions',
+    title: 'Decisions',
+    subtitle: 'Can the business make decisions without you?',
+    questions: [
+      'Does work stop when you\'re unavailable for more than 2 hours?',
+      'Do team members regularly ask you to make decisions they could make themselves?',
+      'Are you the final approver on things under $500?',
+      'Do clients expect to hear from you personally on every issue?',
+      'Is there no written decision framework your team uses?',
+      'Would a new hire be unable to onboard without you guiding them personally?'
+    ],
+    fix: 'Build a simple decision matrix your team can follow without you. Document what requires your sign-off and what doesn\'t. Start with a $500 delegation threshold and expand it over 90 days.',
+    fix_title: 'Install a Decision Framework'
+  },
+  {
+    id: 'delivery',
+    title: 'Delivery',
+    subtitle: 'Can the business deliver without you?',
+    questions: [
+      'Are you personally doing work that a trained person or system could do?',
+      'Do you hold critical knowledge about client accounts that isn\'t documented?',
+      'Is there no standard operating procedure for your core service?',
+      'Would client quality noticeably drop if you took 2 weeks off?',
+      'Do you review and approve most client deliverables before they go out?',
+      'Does your name appear on most proposals and client-facing documents?'
+    ],
+    fix: 'Document your top 3 delivery processes this week. Record a Loom walkthrough of each one. Then hand one off to a team member or VA and watch them execute it before you step back further.',
+    fix_title: 'Systemize Your Delivery'
+  },
+  {
+    id: 'sales',
+    title: 'Sales',
+    subtitle: 'Can the business sell without you?',
+    questions: [
+      'Are you the only person who closes deals?',
+      'Is your pipeline invisible to anyone but you?',
+      'Does your sales process live in your head rather than a CRM or playbook?',
+      'Do prospects specifically ask to speak with you before buying?',
+      'Have you never trained anyone else to deliver your sales pitch?',
+      'Would your close rate drop significantly if you weren\'t on calls?'
+    ],
+    fix: 'Record your next 3 sales calls and transcribe the patterns. Build a 1-page sales playbook from them. Move your pipeline into a CRM (even a free one) so it\'s visible to someone other than you.',
+    fix_title: 'Build a Repeatable Sales System'
+  },
+  {
+    id: 'operations',
+    title: 'Operations',
+    subtitle: 'Can the business run without you?',
+    questions: [
+      'Are there recurring tasks you do every week that no one else can do?',
+      'Do you manage vendor or supplier relationships personally?',
+      'Are your logins and access credentials only known to you?',
+      'Is there no backup plan if you got sick for 2 weeks?',
+      'Do financial decisions require your direct involvement?',
+      'Does your team have no access to operational dashboards or metrics?'
+    ],
+    fix: 'Create a shared password vault and document your top 5 recurring weekly tasks. Build a simple 1-page "business continuation plan" &#8212; who does what if you\'re out for 2 weeks. Start there.',
+    fix_title: 'Operationalize the Basics'
+  },
+  {
+    id: 'relationships',
+    title: 'Relationships',
+    subtitle: 'Are key relationships tied to you personally?',
+    questions: [
+      'Are your top 3 clients loyal to you personally rather than your company?',
+      'Would clients leave if you sold the business?',
+      'Do partners and key contacts have your personal number but not your team\'s?',
+      'Are referrals driven by your personal reputation rather than your company brand?',
+      'Is there no one else at your company who has strong relationships with key clients?',
+      'Would your revenue drop significantly if you stopped being visible on social media?'
+    ],
+    fix: 'Introduce a team member to your top 3 clients this month. Make that introduction look like a service upgrade, not a handoff. Build the brand so it doesn\'t live in your face.',
+    fix_title: 'Transfer Relationships to the Brand'
+  },
+  {
+    id: 'systems',
+    title: 'Systems',
+    subtitle: 'Does the business have working systems?',
+    questions: [
+      'Does your business have no documented core workflows?',
+      'Is your team using spreadsheets or manual processes for things that should be automated?',
+      'Have you never used AI or software to replace a task you used to do manually?',
+      'Is there no recurring reporting or metrics review process?',
+      'Would you describe your business as "it runs on me, not on systems"?',
+      'Has no one on your team ever suggested a process improvement that you actually implemented?'
+    ],
+    fix: 'Pick your single most repetitive manual task and automate it this week. Then implement a weekly 15-minute metrics review so you stop flying blind. Systems compound. Start one.',
+    fix_title: 'Build Your First Machine'
+  }
+];
+
+const answers = {};
+let total = 0;
+
+function buildQuiz() {
+  const container = document.getElementById('qcontainer');
+  let qIndex = 0;
+  CATEGORIES.forEach((cat, ci) => {
+    const block = document.createElement('div');
+    block.className = 'cat-block';
+    block.innerHTML = `
+      <div class="cat-head">
+        <div class="cat-num">${ci+1}</div>
+        <div>
+          <div class="cat-title">${cat.title}</div>
+          <div class="cat-sub">${cat.subtitle}</div>
+        </div>
+      </div>
+    `;
+    cat.questions.forEach((q, qi) => {
+      const idx = ci * 6 + qi;
+      const row = document.createElement('div');
+      row.className = 'q-row';
+      row.id = `q${idx}`;
+      row.innerHTML = `
+        <div class="q-text">${q}</div>
+        <div class="a-btns">
+          <button class="a-btn" onclick="answer(${idx}, 2, this)">Yes</button>
+          <button class="a-btn" onclick="answer(${idx}, 1, this)">Sometimes</button>
+          <button class="a-btn" onclick="answer(${idx}, 0, this)">No</button>
+        </div>
+      `;
+      block.appendChild(row);
+      qIndex++;
+    });
+    container.appendChild(block);
+  });
+}
+
+function answer(idx, val, btn) {
+  const row = document.getElementById('q' + idx);
+  const prev = answers[idx];
+  answers[idx] = val;
+  row.classList.add('done');
+  row.querySelectorAll('.a-btn').forEach(b => b.classList.remove('sy','ss','sn'));
+  if(val===2) btn.classList.add('sy');
+  else if(val===1) btn.classList.add('ss');
+  else btn.classList.add('sn');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = Object.keys(answers).length;
+  const pct = Math.round(answered/36*100);
+  document.getElementById('prog-text').textContent = answered + ' of 36 answered';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  const btn = document.getElementById('sub-btn');
+  if(answered===36){
+    btn.classList.add('ready');
+    document.getElementById('sub-hint').textContent = 'All done. Click to see your score.';
+  } else {
+    btn.classList.remove('ready');
+    document.getElementById('sub-hint').textContent = (36-answered) + ' questions remaining';
+  }
+}
+
+function getBandInfo(score) {
+  if(score<=18) return {
+    cls:'bl', label:'Low Dependency',
+    text:'You\'ve built real leverage. Most of the critical systems are in place. The risk now isn\'t collapse &#8212; it\'s complacency. Keep systematizing. The businesses that scale cleanly are the ones that never stop removing founder bottlenecks, even when things are going well.'
+  };
+  if(score<=36) return {
+    cls:'bm', label:'Moderate Dependency',
+    text:'You have some genuine systems, but there are dangerous single points of failure in the mix. The good news: this is fixable in 90 days if you attack the right things in the right order. Your highest-scoring categories are where the leverage lives.'
+  };
+  if(score<=54) return {
+    cls:'bh', label:'High Dependency',
+    text:'The business can\'t run without you right now. You\'re not just the owner &#8212; you\'re the operating system. This isn\'t a productivity problem. It\'s a structural problem. Fixing it requires pulling specific threads, not just working harder or smarter.'
+  };
+  return {
+    cls:'bc', label:'Critical Dependency',
+    text:'You ARE the business. One illness, one holiday, one bad month, and revenue stalls. You\'re one step away from a forced exit with nothing to exit to. This is survivable, but it requires an honest reckoning and systematic intervention &#8212; not incremental fixes.'
+  };
+}
+
+function getBarColor(pct) {
+  if(pct < 40) return '#22c55e';
+  if(pct < 65) return '#f59e0b';
+  return '#ef4444';
+}
+
+function showResults() {
+  if(Object.keys(answers).length < 36) return;
+  let total = 0;
+  const catScores = CATEGORIES.map((cat, ci) => {
+    let s = 0;
+    for(let qi=0;qi<6;qi++) s += (answers[ci*6+qi]||0);
+    total += s;
+    return {cat, score: s, max: 12, pct: Math.round(s/12*100)};
+  });
+
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('results').style.display='block';
+  window.scrollTo(0,0);
+
+  const band = getBandInfo(total);
+  const scoreEl = document.getElementById('r-score');
+  scoreEl.textContent = total;
+  scoreEl.style.color = band.cls==='bl'?'#22c55e':band.cls==='bm'?'#f59e0b':'#ef4444';
+  const bandEl = document.getElementById('r-band');
+  bandEl.className = 'band-pill ' + band.cls;
+  bandEl.textContent = band.label;
+  document.getElementById('r-assess').innerHTML = band.text;
+
+  document.getElementById('f-score').value = total;
+  document.getElementById('f-band').value = band.label;
+
+  const barsEl = document.getElementById('bars');
+  barsEl.innerHTML = '';
+  catScores.forEach(({cat,score,pct}) => {
+    const color = getBarColor(pct);
+    barsEl.innerHTML += `
+      <div class="bar-row">
+        <div class="bar-head">
+          <span class="bar-name">${cat.title}</span>
+          <span class="bar-score">${score}/12 (${pct}%)</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:0%;background:${color}" data-w="${pct}"></div></div>
+      </div>
+    `;
+  });
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(el => el.style.width = el.dataset.w + '%');
+  },100);
+
+  const sorted = [...catScores].sort((a,b)=>b.score-a.score).slice(0,3);
+  const priosEl = document.getElementById('prios');
+  priosEl.innerHTML = '';
+  sorted.forEach(({cat},i) => {
+    priosEl.innerHTML += `
+      <div class="prio-card">
+        <div class="prio-n">${i+1}</div>
+        <div class="prio-c">
+          <h3>${cat.fix_title}</h3>
+          <p>${cat.fix}</p>
+        </div>
+      </div>
+    `;
+  });
+}
+
+async function submitEmail(e) {
+  e.preventDefault();
+  const form = document.getElementById('eform');
+  const data = new FormData(form);
+  try {
+    await fetch('https://formspree.io/f/xqaqrjqj', {
+      method: 'POST',
+      body: data,
+      headers: {Accept: 'application/json'}
+    });
+  } catch(err){}
+  form.style.display='none';
+  document.getElementById('e-sent').style.display='block';
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
+
