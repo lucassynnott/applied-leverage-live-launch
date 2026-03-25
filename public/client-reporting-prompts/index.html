@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 AI Prompts for Client Reporting — Applied Leverage</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.6; }
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 40px 0 16px; border-left: 3px solid #7c3aed; padding-left: 12px; }
+  h3 { font-size: 1rem; font-weight: 700; color: #a78bfa; margin: 24px 0 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .subtitle { color: #9ca3af; font-size: 1.1rem; margin-bottom: 32px; }
+  .intro { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 40px; color: #d1d5db; }
+  .intro strong { color: #fff; }
+  .prompt-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px; margin-bottom: 12px; }
+  .prompt-num { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .prompt-text { color: #e8e8e8; font-size: 0.95rem; margin-bottom: 10px; background: #0d0d0d; border: 1px solid #1f1f1f; border-radius: 6px; padding: 12px 14px; font-family: 'Courier New', monospace; white-space: pre-wrap; }
+  .prompt-use { font-size: 0.85rem; color: #9ca3af; font-style: italic; }
+  .section-label { display: inline-block; background: #1e1b4b; color: #a78bfa; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tip { background: #0f172a; border: 1px solid #1e3a5f; border-radius: 8px; padding: 16px 20px; color: #93c5fd; margin: 32px 0; font-size: 0.9rem; }
+  .tip strong { color: #bfdbfe; }
+  footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid #1f1f1f; color: #4b5563; font-size: 0.85rem; text-align: center; }
+  a { color: #7c3aed; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>30 AI Prompts for Client Reporting</h1>
+<p class="subtitle">Turn raw data into polished client reports in minutes — not hours.</p>
+
+<div class="intro">
+  <p><strong>How to use this pack:</strong> Copy any prompt into Claude, ChatGPT, or your preferred AI. Replace the bracketed placeholders with your actual data. Each prompt is designed to produce client-ready output — not a rough draft you need to rewrite.</p>
+  <br>
+  <p>These prompts are organized by report type. Use them end-to-end for a full report, or pick individual prompts when you need one section fast.</p>
+</div>
+
+<div class="tip">
+  <strong>💡 Pro tip:</strong> Paste your raw data (spreadsheet export, GA4 screenshot description, or ad platform summary) directly into the prompt. The more specific your input, the cleaner the output. Use [BRACKETS] as your fill-in markers.
+</div>
+
+<!-- SECTION 1 -->
+<h2>Section 1: Executive Summary Prompts</h2>
+<span class="section-label">5 prompts</span>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 01 — Monthly Executive Summary</div>
+  <div class="prompt-text">Write a concise executive summary for a client report for [CLIENT NAME], a [INDUSTRY] business. This month's results: [KEY METRIC 1], [KEY METRIC 2], [KEY METRIC 3]. The main win was [WIN]. The main challenge was [CHALLENGE]. Keep it to 4–5 sentences. Tone: professional, direct, no jargon. Avoid starting with "This month" or "We are pleased."</div>
+  <div class="prompt-use">Use when: Opening a monthly performance report.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 02 — Quarter-in-Review Summary</div>
+  <div class="prompt-text">Write a 3-paragraph quarterly summary for [CLIENT NAME]. Q[NUMBER] highlights: [LIST 3–5 KEY RESULTS]. Compared to last quarter: [WHAT IMPROVED], [WHAT DECLINED]. Strategic context: [WHAT WAS THE QUARTER'S FOCUS]. Paragraph 1: results. Paragraph 2: what drove performance. Paragraph 3: what this sets up for Q[NEXT QUARTER]. Tone: confident, analytical, not sales-y.</div>
+  <div class="prompt-use">Use when: Quarterly business reviews.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 03 — Metrics-to-Story Converter</div>
+  <div class="prompt-text">I have a list of raw metrics from this month for client [CLIENT NAME]. Transform these into a clear narrative that explains what happened, why it matters, and what it means for the client's business. Raw metrics: [PASTE METRICS]. Output: 2–3 short paragraphs. No bullet points. No percentages without context. Make it readable by a non-technical business owner.</div>
+  <div class="prompt-use">Use when: You have data but no story yet.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 04 — Good News Framing</div>
+  <div class="prompt-text">Rewrite this performance summary to lead with the wins before addressing the challenges. Current draft: [PASTE DRAFT]. Keep all the facts accurate. Don't spin or obscure the challenges — just sequence them after establishing momentum. Tone: honest and confident, not defensive.</div>
+  <div class="prompt-use">Use when: A report leads with a problem and needs reframing.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 05 — TL;DR One-Liner</div>
+  <div class="prompt-text">Summarize this client's month in a single sentence that a CEO would say to their board. The sentence must include the primary outcome and one reason why. Context: [PASTE REPORT SUMMARY OR KEY METRICS]. No more than 25 words. Avoid the words "leverage," "synergy," "robust," or "impressive."</div>
+  <div class="prompt-use">Use when: You need a subject line, slide header, or Slack summary.</div>
+</div>
+
+<!-- SECTION 2 -->
+<h2>Section 2: Channel Performance Prompts</h2>
+<span class="section-label">6 prompts</span>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 06 — Paid Ads Performance Narrative</div>
+  <div class="prompt-text">Write a performance narrative for [CLIENT NAME]'s paid advertising this month. Data: Spend: $[AMOUNT]. Impressions: [NUMBER]. Clicks: [NUMBER]. CTR: [%]. Conversions: [NUMBER]. CPA: $[AMOUNT]. ROAS: [NUMBER]. Compare to last month: [WHAT CHANGED]. Explain what the numbers mean in plain English for a business owner who doesn't know advertising. 3–4 sentences max.</div>
+  <div class="prompt-use">Use when: Reporting on Google/Meta/LinkedIn ads.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 07 — SEO Monthly Update</div>
+  <div class="prompt-text">Write a client-facing SEO update for [CLIENT NAME]. This month: Organic sessions: [NUMBER] ([CHANGE %] vs last month). Top performing pages: [PAGE 1], [PAGE 2]. Keyword rankings movement: [KEY CHANGES]. New content published: [PIECES]. Technical issues addressed: [LIST]. Keep it in plain language — no SEO jargon unless explained. Format: short paragraph summary + 3 bullet points with context.</div>
+  <div class="prompt-use">Use when: Monthly SEO reporting.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 08 — Social Media Performance Report</div>
+  <div class="prompt-text">Write a social media performance section for [CLIENT NAME]'s report. Platforms: [LIST PLATFORMS]. Key metrics this month: [PASTE METRICS]. Compare to last month: [CHANGES]. Top performing content: [DESCRIBE 1–2 POSTS]. What this tells us about the audience: [YOUR OBSERVATION]. Format: 2 paragraphs — what happened, then what it means for content strategy going forward.</div>
+  <div class="prompt-use">Use when: Social reporting across multiple platforms.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 09 — Email Marketing Results</div>
+  <div class="prompt-text">Summarize this month's email marketing performance for [CLIENT NAME]. Emails sent: [NUMBER]. Open rate: [%] (industry avg: [%]). Click rate: [%] (industry avg: [%]). Unsubscribes: [NUMBER]. Revenue attributed: $[AMOUNT] (if available). Best performing subject line: [SUBJECT]. What worked: [YOUR NOTES]. Write 3 short paragraphs: performance vs benchmarks, what drove results, one recommendation for next month.</div>
+  <div class="prompt-use">Use when: Reporting on Klaviyo, Mailchimp, or similar.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 10 — Multi-Channel Rollup</div>
+  <div class="prompt-text">Write a multi-channel performance rollup for [CLIENT NAME] for [MONTH]. Channels: [LIST CHANNELS]. Each channel's standout metric: [CHANNEL 1]: [METRIC]. [CHANNEL 2]: [METRIC]. [CHANNEL 3]: [METRIC]. Overall theme across channels: [YOUR OBSERVATION]. Write one paragraph per channel (3 sentences max each), then a 2-sentence "what this all means" conclusion. No filler language.</div>
+  <div class="prompt-use">Use when: Client has 3+ active marketing channels.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 11 — Underperformance Explanation</div>
+  <div class="prompt-text">Write a professional explanation for why [CHANNEL/METRIC] underperformed this month for client [CLIENT NAME]. Actual result: [RESULT]. Expected result: [EXPECTED]. Likely causes: [CAUSE 1], [CAUSE 2]. What we're doing about it: [ACTION 1], [ACTION 2]. Tone: accountable without being defensive. Don't make excuses. Don't catastrophize. Make the client feel informed and confident the team has a handle on it.</div>
+  <div class="prompt-use">Use when: You need to explain a miss without losing client confidence.</div>
+</div>
+
+<!-- SECTION 3 -->
+<h2>Section 3: Insights & Recommendations</h2>
+<span class="section-label">6 prompts</span>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 12 — Top 3 Insights Generator</div>
+  <div class="prompt-text">Review this month's data for [CLIENT NAME] and generate 3 non-obvious insights. Data: [PASTE DATA OR SUMMARY]. An insight is not a metric restatement ("traffic went up 12%"). An insight explains WHY something happened or WHAT IT IMPLIES for the business. Format each insight as: [OBSERVATION] → [WHY IT MATTERS] → [WHAT TO DO ABOUT IT]. Keep each to 2 sentences.</div>
+  <div class="prompt-use">Use when: You want to look like a strategist, not a data monkey.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 13 — Next Month Recommendations</div>
+  <div class="prompt-text">Based on this month's results for [CLIENT NAME], write 3 concrete recommendations for next month. Results summary: [PASTE SUMMARY]. Each recommendation must be: specific (not "improve SEO"), actionable (something the team can do), and tied to a result from this month. Format: Recommendation → Rationale → Expected outcome. No more than 3 sentences per recommendation.</div>
+  <div class="prompt-use">Use when: Closing out a monthly report with forward momentum.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 14 — Opportunity Spotter</div>
+  <div class="prompt-text">Look at this data from [CLIENT NAME] and identify one overlooked opportunity. Data: [PASTE DATA]. An opportunity is something performing above average that isn't getting proportional attention or investment. Explain: what the opportunity is, what the evidence shows, what would happen if we doubled down, and what the first move would be. 3 short paragraphs.</div>
+  <div class="prompt-use">Use when: You want to bring something proactive to the report.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 15 — A/B Test Results Summary</div>
+  <div class="prompt-text">Write a clear summary of an A/B test for [CLIENT NAME]. Test: [WHAT WAS TESTED]. Variant A: [DESCRIPTION] — Result: [METRIC]. Variant B: [DESCRIPTION] — Result: [METRIC]. Winner: [VARIANT]. Statistical confidence: [%] (if known). What this tells us: [YOUR INTERPRETATION]. What we'll implement: [DECISION]. Format: 4 short paragraphs. Client doesn't need to understand statistics — explain in business terms.</div>
+  <div class="prompt-use">Use when: Reporting on landing page, ad, or email tests.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 16 — Trend Analysis</div>
+  <div class="prompt-text">Analyze this 3-month trend for [CLIENT NAME] and explain what it means. Month 1: [KEY METRICS]. Month 2: [KEY METRICS]. Month 3: [KEY METRICS]. What's the direction? Is it a trend or a spike? What's likely causing it? What should the client expect if this continues? Write 2–3 paragraphs. Use plain language. If the trend is concerning, say so plainly without alarming them unnecessarily.</div>
+  <div class="prompt-use">Use when: Showing 90-day performance patterns.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 17 — Competitive Context Framing</div>
+  <div class="prompt-text">Write a brief competitive context note for [CLIENT NAME]'s report. Their result: [RESULT]. Industry benchmark: [BENCHMARK]. Closest competitor performance (if known): [DATA]. Help the client understand whether their performance is strong, average, or lagging relative to what's normal in their space. 2 sentences max. Don't be falsely reassuring — be accurate.</div>
+  <div class="prompt-use">Use when: Adding market context to raw numbers.</div>
+</div>
+
+<!-- SECTION 4 -->
+<h2>Section 4: Goal Tracking & OKR Reporting</h2>
+<span class="section-label">5 prompts</span>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 18 — Goal Progress Update</div>
+  <div class="prompt-text">Write a goal progress update for [CLIENT NAME]. Goal: [GOAL]. Target: [TARGET]. Current progress: [CURRENT]. Timeline: [START DATE] to [END DATE]. At current pace, will they hit the goal? [YES/NO/MAYBE]. If yes: what's driving it. If no: what needs to change. Format: 3 sentences — where we are, trajectory, action required. Tone: direct, not alarm, not cheerleading.</div>
+  <div class="prompt-use">Use when: Tracking quarterly or annual goals.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 19 — OKR Status Table</div>
+  <div class="prompt-text">Convert these OKR updates into a clean status table with a written summary. OKRs: [PASTE OKR LIST WITH CURRENT STATUS]. For each key result, assign a RAG status (Red/Amber/Green) based on the data. After the table, write a 2-sentence summary: overall health of the OKRs, one thing that needs immediate attention. Format the table in plain text with | separators.</div>
+  <div class="prompt-use">Use when: Client uses OKRs or quarterly targets.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 20 — Milestone Celebration Note</div>
+  <div class="prompt-text">Write a short milestone acknowledgment for [CLIENT NAME]. Milestone achieved: [MILESTONE]. What it took to get there: [CONTEXT]. Why it matters for their business: [SIGNIFICANCE]. Keep it genuine — 3 sentences. Don't be sycophantic. Don't pad it. Just mark the moment clearly and connect it to what it means going forward.</div>
+  <div class="prompt-use">Use when: A significant goal is reached and deserves recognition.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 21 — Off-Track Goal Plan</div>
+  <div class="prompt-text">Write a recovery plan section for [CLIENT NAME]'s report. Goal: [GOAL]. Current status: behind target by [AMOUNT/PERCENTAGE]. Root cause: [CAUSE]. Recovery plan: [STEPS]. Revised expectation: [NEW TARGET OR TIMELINE]. Tone: accountable, solution-focused, not apologetic. The client needs to trust you have a plan — make that clear in the writing.</div>
+  <div class="prompt-use">Use when: A goal is off track and needs a clear response.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 22 — Annual Review Setup</div>
+  <div class="prompt-text">Write an annual performance narrative for [CLIENT NAME] using this data: [PASTE FULL YEAR SUMMARY]. Structure: Year in one sentence → 3 biggest wins → 2 biggest challenges and what we learned → What this sets up for next year. Length: 4 short paragraphs. Tone: reflective and forward-looking. This will be read by the client's leadership team — make it worth their 90 seconds.</div>
+  <div class="prompt-use">Use when: Preparing a year-end executive summary.</div>
+</div>
+
+<!-- SECTION 5 -->
+<h2>Section 5: Report Polish & Communication</h2>
+<span class="section-label">8 prompts</span>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 23 — Report Introduction</div>
+  <div class="prompt-text">Write an opening paragraph for [CLIENT NAME]'s [MONTH/QUARTER] report. This period's overall theme: [THEME]. Tone I want: [PROFESSIONAL / WARM / DIRECT]. Don't use "we're excited to share" or similar empty phrases. Start with the most important thing that happened. 3 sentences max. The client should know what to expect from the report by the time they finish the first paragraph.</div>
+  <div class="prompt-use">Use when: Opening any structured performance report.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 24 — Report Closing & Next Steps</div>
+  <div class="prompt-text">Write a closing section for [CLIENT NAME]'s report. Include: 3 priority actions for next month (specific, numbered), the date of the next check-in, and a one-sentence forward momentum statement. Keep the actions genuinely actionable — not "continue to monitor." Sign off with confidence, not deference. No "please don't hesitate to reach out" language.</div>
+  <div class="prompt-use">Use when: Closing a monthly or quarterly report.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 25 — Plain English Translator</div>
+  <div class="prompt-text">Rewrite this section of a client report in plain English. The client is a business owner who is not a marketer. Remove all jargon. Explain any technical terms the first time they appear. Keep all the facts intact. Current text: [PASTE TEXT]. Target: a 45-year-old founder who understands business but not digital marketing. If a sentence takes more than one read to understand, rewrite it.</div>
+  <div class="prompt-use">Use when: Your report has too much marketing speak.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 26 — Email Subject Line for Report Delivery</div>
+  <div class="prompt-text">Write 5 subject lines for an email delivering [CLIENT NAME]'s [MONTH] performance report. The main result this month: [RESULT]. Make 2 of them data-led, 2 narrative-led, and 1 that creates mild curiosity. No clickbait. Avoid "Your [Month] Report is Ready." Each subject line max 60 characters.</div>
+  <div class="prompt-use">Use when: Emailing the report to a client.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 27 — Slack Message Summary</div>
+  <div class="prompt-text">Summarize [CLIENT NAME]'s performance report into a Slack message. Key results: [PASTE SUMMARY]. Format: 3 bullets (top win, main challenge, one thing happening next) + a single sentence overall. Keep it under 100 words. This will be read on mobile — short sentences, no walls of text.</div>
+  <div class="prompt-use">Use when: Sharing a report update in a client Slack channel.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 28 — Presentation Speaker Notes</div>
+  <div class="prompt-text">Write speaker notes for a 10-minute client report presentation for [CLIENT NAME]. Slides outline: [PASTE SLIDE TITLES OR TOPICS]. For each slide, write 2–3 sentences the presenter should say — not read from the slide, but expand on it. Transition lines between slides. Keep the overall arc: context → results → insights → what's next. Conversational, not scripted.</div>
+  <div class="prompt-use">Use when: Presenting a report live or via Loom.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 29 — Client Question Response</div>
+  <div class="prompt-text">A client asked this question about their report: "[CLIENT QUESTION]." The data that's relevant: [PASTE DATA]. Write a response that: answers the question directly in the first sentence, explains the why behind the answer, and ends with what we're doing about it (if action is needed). Tone: expert, confident, not defensive. Max 5 sentences.</div>
+  <div class="prompt-use">Use when: A client pushes back or asks a pointed question.</div>
+</div>
+
+<div class="prompt-card">
+  <div class="prompt-num">Prompt 30 — Report Quality Checker</div>
+  <div class="prompt-text">Review this client report draft and identify: (1) any claims made without supporting data, (2) any sections that are vague or could be misread, (3) any overpromises in the recommendations, (4) any jargon a non-marketer wouldn't understand. Report draft: [PASTE FULL DRAFT]. For each issue found, quote the problematic text and suggest a fix. Be direct — this is going to a paying client.</div>
+  <div class="prompt-use">Use when: Doing a final QA pass before sending.</div>
+</div>
+
+<div class="tip">
+  <strong>Want the full Applied Leverage system?</strong> These prompts are part of how we build AI-assisted ops for agency owners. If you want the whole stack — SOPs, automation templates, and the operating system framework — explore the other resources at <a href="https://appliedleverage.io">appliedleverage.io</a>.
+</div>
+
+<footer>
+  <p>© Applied Leverage — <a href="https://appliedleverage.io">appliedleverage.io</a></p>
+  <p style="margin-top:8px;">You purchased lifetime access. Share within your team freely. Not for resale.</p>
+</footer>
+
+</div>
+</body>
+</html>

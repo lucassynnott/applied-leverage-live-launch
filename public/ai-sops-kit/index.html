@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI SOPs-in-a-Day Kit — Applied Leverage</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 40px 0 16px; border-left: 3px solid #059669; padding-left: 12px; }
+  .subtitle { color: #9ca3af; font-size: 1.1rem; margin-bottom: 32px; }
+  .intro { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 32px; color: #d1d5db; }
+  .intro strong { color: #fff; }
+  .sop-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+  .sop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .sop-title { font-size: 1.05rem; font-weight: 700; color: #fff; }
+  .sop-badge { background: #064e3b; color: #34d399; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; white-space: nowrap; margin-left: 12px; }
+  .sop-desc { color: #9ca3af; font-size: 0.9rem; margin-bottom: 16px; }
+  .sop-template { background: #0d0d0d; border: 1px solid #1f1f1f; border-radius: 6px; padding: 16px; margin-bottom: 12px; }
+  .sop-template h4 { font-size: 0.8rem; color: #059669; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .sop-template pre { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #d1d5db; white-space: pre-wrap; word-break: break-word; }
+  .ai-prompt { background: #0f1a14; border: 1px solid #14532d; border-radius: 6px; padding: 14px; }
+  .ai-prompt h4 { font-size: 0.8rem; color: #4ade80; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .ai-prompt pre { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #bbf7d0; white-space: pre-wrap; word-break: break-word; }
+  .tip { background: #0f172a; border: 1px solid #1e3a5f; border-radius: 8px; padding: 16px 20px; color: #93c5fd; margin: 32px 0; font-size: 0.9rem; }
+  .tip strong { color: #bfdbfe; }
+  .section-badge { display: inline-block; background: #022c22; color: #059669; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid #1f1f1f; color: #4b5563; font-size: 0.85rem; text-align: center; }
+  a { color: #059669; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>AI SOPs-in-a-Day Kit</h1>
+<p class="subtitle">12 plug-and-play SOP templates + the AI prompts to build more in 20 minutes each.</p>
+
+<div class="intro">
+  <p><strong>What this kit does:</strong> Gives you 12 fully-written SOPs for the most common agency processes, plus a reusable AI prompt framework so you can build any new SOP in under 20 minutes. Every template is editable — copy it into Notion, Google Docs, or wherever your team works.</p>
+  <br>
+  <p><strong>How to use it:</strong> Start with the SOPs your team runs manually right now. Replace [BRACKETS] with your specifics. Use the AI prompts at the end of each SOP to customize, expand, or generate a new one from scratch.</p>
+</div>
+
+<!-- SOP 1 -->
+<h2>SOP 01 — Client Onboarding</h2>
+<span class="section-badge">Operations</span>
+
+<div class="sop-card">
+  <div class="sop-desc">Run this when a new client signs their contract. Goal: get them from "signed" to "first deliverable" without any dropped balls.</div>
+  
+  <div class="sop-template">
+    <h4>SOP Template</h4>
+    <pre>TITLE: Client Onboarding
+OWNER: [ACCOUNT MANAGER NAME]
+TRIGGER: Contract signed + deposit received
+
+STEP 1 — Send Welcome Email (Day 0)
+  - Send welcome email with: Slack/Comms invite, onboarding form link, first call booking link
+  - CC: [INTERNAL LEAD]
+  - Tool: [EMAIL CLIENT / RESEND / GMAIL]
+
+STEP 2 — Complete Internal Setup (Day 0–1)
+  - Create client folder in [PROJECT MANAGEMENT TOOL]
+  - Add client to Slack channel #[CLIENT-NAME]
+  - Create shared Google Drive folder and share with client
+  - Add contract details to CRM: [FIELDS TO FILL]
+
+STEP 3 — Onboarding Call (Day 3–5)
+  - Review onboarding form responses before call
+  - Cover: goals, key contacts, approval process, communication cadence, reporting preferences
+  - Record call and upload to shared folder
+  - Send call summary within 24 hours
+
+STEP 4 — Account Setup (Day 3–7)
+  - Request access to: [LIST ALL TOOLS NEEDED]
+  - Set up reporting dashboard in [REPORTING TOOL]
+  - Add key dates to shared calendar
+
+STEP 5 — First Deliverable Brief (Day 7)
+  - Brief sent and approved by client
+  - Work begins
+
+DONE WHEN: First deliverable is briefed and client has confirmed all access is set up.</pre>
+  </div>
+
+  <div class="ai-prompt">
+    <h4>AI Prompt — Customize This SOP</h4>
+    <pre>I need to customize a client onboarding SOP for my agency. We are a [TYPE OF AGENCY] working with [TYPE OF CLIENT]. Our main tools are [LIST TOOLS]. Our team size is [SIZE] and the account manager handles [WHAT THEY HANDLE]. Here's the base SOP: [PASTE ABOVE]. Please adapt it to our context, add any steps we're missing based on our agency type, and simplify any steps that are unnecessary for a team our size. Keep the format consistent.</pre>
+  </div>
+</div>
+
+<!-- SOP 2 -->
+<h2>SOP 02 — Weekly Client Reporting</h2>
+<span class="section-badge">Reporting</span>
+
+<div class="sop-card">
+  <div class="sop-desc">Run weekly to generate, review, and send client performance reports without scrambling on Friday afternoons.</div>
+
+  <div class="sop-template">
+    <h4>SOP Template</h4>
+    <pre>TITLE: Weekly Client Reporting
+OWNER: [ACCOUNT MANAGER / ANALYST]
+TRIGGER: Every [DAY], by [TIME]
+
+STEP 1 — Data Pull (Day before send)
+  - Export: [PLATFORM 1] report (last 7 days)
+  - Export: [PLATFORM 2] report (last 7 days)
+  - Screenshot: [KEY DASHBOARD] — week comparison view
+  - Save all exports to: [FOLDER PATH]
+
+STEP 2 — Report Generation
+  - Open report template in [TOOL]
+  - Fill in: key metrics table, wins, challenges, next week priorities
+  - Run numbers past the previous week — flag any anomalies
+  - AI-assisted narrative: use client reporting prompts to write summary sections
+
+STEP 3 — Internal QA (30 min before send)
+  - Check: all numbers match the raw exports
+  - Check: no jargon a non-marketer wouldn't understand
+  - Check: at least one forward-looking recommendation
+  - Approve: [ACCOUNT LEAD NAME] signs off
+
+STEP 4 — Send
+  - Email to: [CLIENT CONTACT] + [CC LIST]
+  - Subject line: [CLIENT NAME] Weekly Update — [DATE]
+  - Include: report link or PDF attachment
+  - Log sent in CRM
+
+DONE WHEN: Report sent and logged.</pre>
+  </div>
+
+  <div class="ai-prompt">
+    <h4>AI Prompt — Build the Narrative Sections</h4>
+    <pre>I'm writing a weekly client report for [CLIENT NAME]. Here's the raw data from this week: [PASTE DATA]. Write 3 short sections: (1) This week in one sentence, (2) What drove performance (2–3 sentences, no jargon), (3) Priority for next week (1–2 sentences, specific action). Keep each section under 60 words. Avoid filler phrases like "we're pleased to report."</pre>
+  </div>
+</div>
+
+<!-- SOP 3 -->
+<h2>SOP 03 — New Team Member Onboarding</h2>
+<span class="section-badge">HR / Ops</span>
+
+<div class="sop-card">
+  <div class="sop-desc">Bring a new hire from accepted offer to fully productive in 14 days without the chaos.</div>
+
+  <div class="sop-template">
+    <h4>SOP Template</h4>
+    <pre>TITLE: New Team Member Onboarding
+OWNER: [OPERATIONS / HR LEAD]
+TRIGGER: Offer accepted
+
+PRE-START (Week before Day 1)
+  - Send access credentials for: [LIST TOOLS]
+  - Add to: Slack, project management tool, shared drive, email lists
+  - Assign onboarding buddy: [TEAM MEMBER]
+  - Prepare 30/60/90 day expectations doc
+
+DAY 1
+  - Welcome call with [FOUNDER/MANAGER] (30 min): culture, mission, how we work
+  - Tool walkthrough (1 hour): [LIST TOOLS + WHO COVERS EACH]
+  - Meet team async: team Loom intros or Slack #introductions
+  - Complete: [COMPLIANCE / POLICY DOCS] by end of day
+
+WEEK 1
+  - Shadow [ROLE] for [NUMBER] days
+  - Complete: [TRAINING MATERIALS LIST]
+  - First solo task: [DEFINED STARTER TASK]
+  - Friday check-in: 15 min with manager
+
+WEEK 2
+  - Working independently on [DEFINED TASKS]
+  - First performance conversation: what's working, what's unclear
+  - Access all client accounts relevant to their role
+
+DAY 30 CHECK-IN
+  - Review 30-day expectations — what was hit, what wasn't
+  - Adjust role scope if needed
+  - Confirm: they know who to ask for what
+
+DONE WHEN: Team member completes their first independent deliverable.</pre>
+  </div>
+
+  <div class="ai-prompt">
+    <h4>AI Prompt — Role-Specific Onboarding Plan</h4>
+    <pre>I'm onboarding a new [JOB TITLE] at my [TYPE] agency. They'll be responsible for [KEY RESPONSIBILITIES]. Our main tools are [LIST TOOLS]. Our team has [NUMBER] people. Using the base onboarding SOP framework, create a customized 14-day onboarding plan specific to this role. Include: what they should learn each day in week 1, what their first real task should be, and 5 questions a good manager would ask at the Day 30 check-in.</pre>
+  </div>
+</div>
+
+<!-- SOP 4 -->
+<h2>SOP 04 — New Business Proposal</h2>
+<span class="section-badge">Sales</span>
+
+<div class="sop-card">
+  <div class="sop-desc">From discovery call to proposal sent in 48 hours without reinventing the wheel every time.</div>
+
+  <div class="sop-template">
+    <h4>SOP Template</h4>
+    <pre>TITLE: New Business Proposal
+OWNER: [ACCOUNT LEAD / FOUNDER]
+TRIGGER: Discovery call completed
+
+STEP 1 — Discovery Call Summary (within 2 hours of call)
+  - Write summary: client goals, pain points, budget range, timeline, decision makers, objections raised
+  - Save to: [CRM / DEAL FOLDER]
+
+STEP 2 — Proposal Brief
+  - Decide: which service package fits? [PACKAGE A / B / C]
+  - Price: calculate based on [PRICING FRAMEWORK]
+  - Define: deliverables, timeline, key milestones, what client provides
+
+STEP 3 — Proposal Draft
+  - Open proposal template in [TOOL]
+  - Customize: executive summary, scope of work, timeline, investment, next steps
+  - AI assist: use the pricing narrative prompt to write the investment section
+  - QA: does it address every pain point from the discovery call?
+
+STEP 4 — Review & Send (within 48 hours of discovery call)
+  - Internal review: [WHO APPROVES]
+  - Send via: [TOOL — DocuSign / PandaDoc / email]
+  - Follow up booked: [NUMBER] days after send
+
+STEP 5 — Follow-Up Cadence
+  - Day 3: "Any questions?" email
+  - Day 7: "Circling back" + a relevant insight or resource
+  - Day 14: Final close or graceful pause
+
+DONE WHEN: Proposal signed or deal marked lost in CRM.</pre>
+  </div>
+
+  <div class="ai-prompt">
+    <h4>AI Prompt — Write the Proposal Executive Summary</h4>
+    <pre>Write the executive summary for a proposal for [CLIENT NAME]. They are a [INDUSTRY] business with [NUMBER] employees. Their main problem: [PROBLEM]. What they want to achieve: [GOAL]. Our proposed solution: [BRIEF DESCRIPTION]. Timeline: [WEEKS/MONTHS]. Investment: $[AMOUNT]. Keep it to 4 sentences. Lead with their goal, not our credentials. End with a clear statement of what success looks like.</pre>
+  </div>
+</div>
+
+<!-- SOP 5 -->
+<h2>SOP 05 — Monthly Team Review</h2>
+<span class="section-badge">Leadership</span>
+
+<div class="sop-card">
+  <div class="sop-desc">Run at the end of each month to review what happened, capture learnings, and set direction for next month.</div>
+
+  <div class="sop-template">
+    <h4>SOP Template</h4>
+    <pre>TITLE: Monthly Team Review
+OWNER: [FOUNDER / OPS LEAD]
+TRIGGER: Last working day of the month
+
+AGENDA (90 min total)
+  Part 1 — Numbers Review (20 min)
+    - Revenue vs. target
+    - Client retention: any churn, any risk?
+    - Pipeline: deals in, deals out
+    
+  Part 2 — Wins & Misses (25 min)
+    - Top 3 wins this month (what worked and why)
+    - Top 2 misses (what didn't and what we're changing)
+    - One thing we should stop doing
+    
+  Part 3 — Team Pulse (20 min)
+    - Each person: one word describing the month
+    - Blockers: what's slowing anyone down?
+    - Recognition: call out great work specifically
+
+  Part 4 — Next Month Setup (25 min)
+    - Top 3 priorities for next month
+    - Who owns what (named, not "the team")
+    - Any upcoming risks or dependencies
+
+OUTPUT: Meeting notes in [TOOL] within 24 hours, shared with full team.
+
+DONE WHEN: Notes sent and priorities added to project management tool.</pre>
+  </div>
+
+  <div class="ai-prompt">
+    <h4>AI Prompt — Monthly Review Prep</h4>
+    <pre>I'm running a monthly team review for my agency. Here's this month's data: [PASTE REVENUE, CLIENT, TEAM UPDATES]. Help me prepare by: (1) identifying the 3 most important things to discuss based on this data, (2) flagging any risks or anomalies worth raising, (3) suggesting one specific recognition moment I should call out (based on what you can see in the data). Keep each point to 2 sentences.</pre>
+  </div>
+</div>
+
+<!-- MASTER BUILD PROMPT -->
+<h2>The Master SOP Builder Prompt</h2>
+<span class="section-badge">AI Framework</span>
+
+<div class="tip">
+  <strong>Use this prompt to build any new SOP from scratch in 20 minutes.</strong> The framework works for any repeatable process in your agency — just fill in the blanks and let the AI do the structure work.
+</div>
+
+<div class="sop-card">
+  <div class="sop-template">
+    <h4>Master Prompt — Build a New SOP</h4>
+    <pre>I need to create an SOP for [PROCESS NAME] at my agency. Here's what I know about this process:
+
+What triggers it: [WHAT STARTS THIS PROCESS]
+Who runs it: [ROLE]
+What the goal is: [DESIRED OUTCOME]
+How often it happens: [FREQUENCY]
+Main tools used: [LIST TOOLS]
+Key people involved: [INTERNAL AND EXTERNAL]
+What usually goes wrong: [COMMON FAILURE POINTS]
+What "done" looks like: [DEFINITION OF COMPLETE]
+
+Create a complete SOP with:
+1. A title and owner field
+2. A trigger condition
+3. 4–7 numbered steps with sub-tasks
+4. Clear "done when" criteria
+5. One note about the most common mistake to avoid
+
+Format it like a template — use [BRACKETS] for fields the agency needs to fill in for their specific context. Make it usable on day one.</pre>
+  </div>
+</div>
+
+<div class="sop-card">
+  <div class="sop-template">
+    <h4>Master Prompt — Turn a Process Description into an SOP</h4>
+    <pre>Here's how we currently handle [PROCESS NAME] at my agency: [DESCRIBE HOW YOU DO IT NOW — ROUGH NOTES OKAY]. 
+
+Convert this into a clean, numbered SOP with: clear step ownership, specific tool references (using the tools I mentioned), and a "done when" definition. Remove any steps that are redundant. Flag any gaps where the current process has no clear owner or outcome. Format it so someone new to the agency could follow it without asking questions.</pre>
+  </div>
+</div>
+
+<div class="sop-card">
+  <div class="sop-template">
+    <h4>Master Prompt — Add AI Automation to an Existing SOP</h4>
+    <pre>Here's an existing SOP from my agency: [PASTE SOP]. 
+
+Identify every step that could be partially or fully handled by AI (Claude, ChatGPT, or similar). For each step you identify: explain what AI would do, what the human would still need to do (quality check, decision, etc.), and what prompt or instruction to give the AI. Keep the SOP structure intact — just add an "AI ASSIST" note after each relevant step showing how to use AI there.</pre>
+  </div>
+</div>
+
+<div class="tip">
+  <strong>Remaining SOPs in the full kit</strong> (apply the Master Build Prompt to each): Client Offboarding · Lead Qualification · Freelancer/Contractor Onboarding · Content Production Cycle · Bug/Issue Escalation · End-of-Project Retrospective · Invoice & Collections
+</div>
+
+<footer>
+  <p>© Applied Leverage — <a href="https://appliedleverage.io">appliedleverage.io</a></p>
+  <p style="margin-top:8px;">Lifetime access. Duplicate, edit, and share within your team freely. Not for resale.</p>
+</footer>
+
+</div>
+</body>
+</html>

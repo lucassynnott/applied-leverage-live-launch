@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Readiness Audit Report Template — Applied Leverage</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; line-height: 1.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+  h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 40px 0 16px; border-left: 3px solid #d97706; padding-left: 12px; }
+  h3 { font-size: 1.05rem; font-weight: 700; color: #fbbf24; margin: 20px 0 8px; }
+  .subtitle { color: #9ca3af; font-size: 1.1rem; margin-bottom: 32px; }
+  .intro { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 32px; color: #d1d5db; }
+  .intro strong { color: #fff; }
+  .template-section { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+  .template-block { background: #0d0d0d; border: 1px solid #1f1f1f; border-radius: 6px; padding: 16px; margin-bottom: 12px; }
+  .template-block pre { font-family: 'Courier New', monospace; font-size: 0.88rem; color: #d1d5db; white-space: pre-wrap; word-break: break-word; }
+  .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .score-cell { background: #0d0d0d; border: 1px solid #292524; border-radius: 6px; padding: 14px; text-align: center; }
+  .score-label { font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .score-value { font-size: 2rem; font-weight: 800; color: #fbbf24; }
+  .score-max { font-size: 0.8rem; color: #6b7280; }
+  .dimension { border: 1px solid #292524; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+  .dim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .dim-name { font-weight: 700; color: #fff; font-size: 1rem; }
+  .dim-score { background: #292524; color: #fbbf24; font-weight: 800; padding: 4px 12px; border-radius: 4px; font-size: 0.9rem; }
+  .dim-score.red { background: #3b1515; color: #f87171; }
+  .dim-score.amber { background: #2c1c00; color: #fbbf24; }
+  .dim-score.green { background: #022c22; color: #34d399; }
+  .dim-desc { color: #9ca3af; font-size: 0.9rem; margin-bottom: 12px; }
+  .dim-finding { background: #0d0d0d; border-radius: 6px; padding: 12px; font-size: 0.88rem; color: #d1d5db; }
+  .tip { background: #1a1209; border: 1px solid #3d2808; border-radius: 8px; padding: 16px 20px; color: #fcd34d; margin: 24px 0; font-size: 0.9rem; }
+  .tip strong { color: #fef3c7; }
+  .delivery-badge { display: inline-block; background: #78350f; color: #fcd34d; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .reco-card { border: 1px solid #1f1f1f; border-radius: 6px; padding: 16px; margin-bottom: 10px; }
+  .reco-priority { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .reco-priority.high { color: #f87171; }
+  .reco-priority.med { color: #fbbf24; }
+  .reco-priority.low { color: #34d399; }
+  footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid #1f1f1f; color: #4b5563; font-size: 0.85rem; text-align: center; }
+  a { color: #d97706; }
+  @media (max-width: 600px) { .score-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>AI Readiness Audit Report Template</h1>
+<p class="subtitle">Deliver a polished, professional AI audit to any client. Edit the brackets. Send the report.</p>
+
+<div class="intro">
+  <p><strong>What you're holding:</strong> A complete, editable AI Readiness Audit template — the same framework we use at Applied Leverage to audit agency and consultancy operations for AI automation opportunities.</p>
+  <br>
+  <p>Replace everything in [BRACKETS] with your client's specifics. The structure, scoring logic, and recommendation framework are already built. A full audit report should take you 90 minutes to complete for a new client — not a full day.</p>
+  <br>
+  <p><strong>License:</strong> This is yours to use for client work. Deliver it under your own brand. Remove the Applied Leverage credit on client-facing versions.</p>
+</div>
+
+<div class="tip">
+  <strong>How to use this template efficiently:</strong> Run your discovery call first (45–60 min), take notes in each dimension section, then come back and fill in the template. Use the AI prompts in each section to speed up the analysis and recommendation writing. Total time per audit: 90–120 min.
+</div>
+
+<!-- COVER PAGE SECTION -->
+<h2>Part 1 — Report Cover & Summary</h2>
+<span class="delivery-badge">Edit → Copy → Deliver</span>
+
+<div class="template-section">
+  <div class="template-block">
+    <pre>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AI READINESS AUDIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Prepared for: [CLIENT COMPANY NAME]
+Prepared by:  [YOUR NAME / COMPANY]
+Date:         [DATE]
+Audit scope:  [SCOPE — e.g., "Marketing and client delivery operations"]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OVERALL AI READINESS SCORE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[SCORE] / 60
+
+[SCORE INTERPRETATION]
+0–20:   Early stage. Manual operations dominant. High automation potential.
+21–35:  Developing. Some tools in place. Clear gaps in integration.
+36–48:  Intermediate. AI in use but not systematized. Efficiency ceiling ahead.
+49–60:  Advanced. Well-integrated. Optimize and compound.
+
+[CLIENT NAME]'s score of [SCORE] indicates: [ONE SENTENCE INTERPRETATION]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXECUTIVE SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[CLIENT NAME] is a [DESCRIBE BUSINESS] currently operating with [SIZE OF TEAM] 
+across [MAIN FUNCTIONS]. This audit reviewed their operations across 6 dimensions 
+of AI readiness.
+
+The three most significant opportunities identified are:
+1. [OPPORTUNITY 1 — one sentence]
+2. [OPPORTUNITY 2 — one sentence]
+3. [OPPORTUNITY 3 — one sentence]
+
+If addressed over the next 90 days, these changes could save the team an estimated 
+[X] hours per week and reduce [SPECIFIC COST OR FRICTION POINT].
+
+The highest-priority action to take this week: [SPECIFIC FIRST ACTION]</pre>
+  </div>
+</div>
+
+<!-- SCORING SECTION -->
+<h2>Part 2 — Dimension Scores</h2>
+
+<div class="template-section">
+  <p style="color:#9ca3af; font-size:0.9rem; margin-bottom:16px;">Score each dimension 1–10. Add notes from your discovery. Total = Overall AI Readiness Score.</p>
+
+  <div class="score-grid">
+    <div class="score-cell">
+      <div class="score-label">Lead Generation</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Client Onboarding</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Service Delivery</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Reporting</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Internal Admin</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Team & Communication</div>
+      <div class="score-value">[X]</div>
+      <div class="score-max">/ 10</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIMENSION DETAILS -->
+<h2>Part 3 — Dimension Deep Dives</h2>
+
+<div class="template-section">
+  <h3>Dimension 1 — Lead Generation</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Lead Generation & Business Development</div>
+      <div class="dim-score amber">[X] / 10</div>
+    </div>
+    <div class="dim-desc">How the business attracts, qualifies, and moves leads to proposal stage.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [Describe how they currently generate and manage leads — manual outreach, referrals, inbound, CRM usage, qualification process]<br><br>
+      <strong>What's working:</strong> [What is already functioning well]<br><br>
+      <strong>Key gap:</strong> [The biggest automation or AI opportunity in this area]<br><br>
+      <strong>AI opportunity:</strong> [Specific automation to implement — e.g., "Lead scoring automation using CRM data + AI qualifier to draft personalized outreach for the top 20% of inbound leads each week"]
+    </div>
+  </div>
+
+  <h3>Dimension 2 — Client Onboarding</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Client Onboarding</div>
+      <div class="dim-score red">[X] / 10</div>
+    </div>
+    <div class="dim-desc">How quickly and consistently new clients go from signed to first deliverable.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [How long onboarding takes, what's manual, who runs it, what falls through the cracks]<br><br>
+      <strong>What's working:</strong> [What is already functioning well]<br><br>
+      <strong>Key gap:</strong> [Biggest friction or inconsistency]<br><br>
+      <strong>AI opportunity:</strong> [e.g., "Automated onboarding sequence triggered on contract sign — welcome email, Slack invite, form collection, folder creation — reducing manual setup from 3 hours to 20 minutes"]
+    </div>
+  </div>
+
+  <h3>Dimension 3 — Service Delivery</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Service Delivery</div>
+      <div class="dim-score amber">[X] / 10</div>
+    </div>
+    <div class="dim-desc">How the core service is produced and delivered consistently.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [How work is briefed, produced, QA'd, and delivered]<br><br>
+      <strong>What's working:</strong> [Strengths]<br><br>
+      <strong>Key gap:</strong> [Where time is lost or quality is inconsistent]<br><br>
+      <strong>AI opportunity:</strong> [Specific AI use in production — e.g., "AI-assisted first drafts for [SERVICE TYPE] reduce production time by 60% with human review maintained at QA stage"]
+    </div>
+  </div>
+
+  <h3>Dimension 4 — Reporting</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Client Reporting</div>
+      <div class="dim-score red">[X] / 10</div>
+    </div>
+    <div class="dim-desc">How performance data is collected, analyzed, and communicated to clients.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [Reporting cadence, tools, who builds reports, how long it takes, format]<br><br>
+      <strong>What's working:</strong> [Strengths]<br><br>
+      <strong>Key gap:</strong> [Time lost, inconsistency, or weak narrative quality]<br><br>
+      <strong>AI opportunity:</strong> [e.g., "AI-generated report narratives from raw data exports — reduces report writing from 2 hours to 20 minutes per client"]
+    </div>
+  </div>
+
+  <h3>Dimension 5 — Internal Admin</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Internal Admin & Operations</div>
+      <div class="dim-score amber">[X] / 10</div>
+    </div>
+    <div class="dim-desc">The back-office work that runs the business: invoicing, scheduling, team management.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [Invoicing, scheduling, HR admin, internal communications tools and how they're used]<br><br>
+      <strong>What's working:</strong> [Strengths]<br><br>
+      <strong>Key gap:</strong> [Biggest time drains]<br><br>
+      <strong>AI opportunity:</strong> [e.g., "Automated invoice generation and follow-up sequence — eliminates 3–4 hours/week of manual billing admin"]
+    </div>
+  </div>
+
+  <h3>Dimension 6 — Team & Communication</h3>
+  <div class="dimension">
+    <div class="dim-header">
+      <div class="dim-name">Team Coordination & Communication</div>
+      <div class="dim-score green">[X] / 10</div>
+    </div>
+    <div class="dim-desc">How the team stays aligned, shares information, and collaborates with clients.</div>
+    <div class="dim-finding">
+      <strong>Current state:</strong> [Communication tools, meeting cadence, documentation habits, knowledge management]<br><br>
+      <strong>What's working:</strong> [Strengths]<br><br>
+      <strong>Key gap:</strong> [Where communication breaks down or knowledge is lost]<br><br>
+      <strong>AI opportunity:</strong> [e.g., "AI meeting summaries + action item extraction reduce post-meeting admin by 80% and ensure follow-through on decisions"]
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATIONS -->
+<h2>Part 4 — Prioritized Recommendations</h2>
+
+<div class="template-section">
+  <p style="color:#9ca3af; font-size:0.9rem; margin-bottom:20px;">Ranked by impact × ease. Maximum 5 recommendations to keep it actionable.</p>
+
+  <div class="reco-card">
+    <div class="reco-priority high">🔴 Priority 1 — Start This Week</div>
+    <strong style="color:#fff">[RECOMMENDATION TITLE]</strong>
+    <p style="color:#9ca3af; font-size:0.9rem; margin-top:6px;"><strong style="color:#d1d5db">What:</strong> [Specific action to take]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Why first:</strong> [Why this has highest impact or enables other changes]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Tools needed:</strong> [List any tools, most of which they likely already have]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Time to implement:</strong> [Honest estimate]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Expected outcome:</strong> [Measurable result to watch for]</p>
+  </div>
+
+  <div class="reco-card">
+    <div class="reco-priority high">🔴 Priority 2 — This Month</div>
+    <strong style="color:#fff">[RECOMMENDATION TITLE]</strong>
+    <p style="color:#9ca3af; font-size:0.9rem; margin-top:6px;"><strong style="color:#d1d5db">What:</strong> [Specific action]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Why now:</strong> [Rationale]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Tools needed:</strong> [Tools]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Time to implement:</strong> [Estimate]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Expected outcome:</strong> [Result]</p>
+  </div>
+
+  <div class="reco-card">
+    <div class="reco-priority med">🟡 Priority 3 — Next 30–60 Days</div>
+    <strong style="color:#fff">[RECOMMENDATION TITLE]</strong>
+    <p style="color:#9ca3af; font-size:0.9rem; margin-top:6px;"><strong style="color:#d1d5db">What:</strong> [Specific action]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Depends on:</strong> [What needs to be done first]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Tools needed:</strong> [Tools]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Expected outcome:</strong> [Result]</p>
+  </div>
+
+  <div class="reco-card">
+    <div class="reco-priority med">🟡 Priority 4 — Next Quarter</div>
+    <strong style="color:#fff">[RECOMMENDATION TITLE]</strong>
+    <p style="color:#9ca3af; font-size:0.9rem; margin-top:6px;"><strong style="color:#d1d5db">What:</strong> [Specific action]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Expected outcome:</strong> [Result]</p>
+  </div>
+
+  <div class="reco-card">
+    <div class="reco-priority low">🟢 Priority 5 — When Ready</div>
+    <strong style="color:#fff">[RECOMMENDATION TITLE]</strong>
+    <p style="color:#9ca3af; font-size:0.9rem; margin-top:6px;"><strong style="color:#d1d5db">What:</strong> [Specific action — worth doing but not urgent]</p>
+    <p style="color:#9ca3af; font-size:0.9rem;"><strong style="color:#d1d5db">Expected outcome:</strong> [Result]</p>
+  </div>
+</div>
+
+<!-- AI PROMPTS FOR COMPLETING THE AUDIT -->
+<h2>AI Prompts to Complete Your Audit</h2>
+<span class="delivery-badge">Use During Audit Prep</span>
+
+<div class="template-section">
+  <div class="template-block">
+    <pre>PROMPT: Score a dimension
+I'm completing an AI readiness audit for [CLIENT NAME], a [DESCRIBE BUSINESS]. Here are my notes from their [DIMENSION NAME] process: [PASTE YOUR NOTES]. Score this dimension from 1–10 for AI readiness using these criteria: 1–3 = fully manual, no tools; 4–6 = some tools but not integrated; 7–9 = automated with AI involvement; 10 = fully systemized with AI throughout. Give me: the score, one sentence explaining why, and one specific AI opportunity they're missing.</pre>
+  </div>
+  <div class="template-block">
+    <pre>PROMPT: Write a dimension finding
+Based on these discovery notes for [CLIENT NAME]'s [DIMENSION]: [PASTE NOTES]. Write a finding in this format: Current state (2 sentences) → What's working (1 sentence) → Key gap (1 sentence) → AI opportunity (2 sentences with a specific tool or automation). Keep it professional and direct — this will be shown to the client.</pre>
+  </div>
+  <div class="template-block">
+    <pre>PROMPT: Write a prioritized recommendation
+Based on this finding for [CLIENT NAME]: [PASTE FINDING]. Write a prioritized recommendation that includes: what to do specifically, why it's the priority, what tools they'll need, realistic time to implement, and what outcome to measure. Format it as a structured card — not a paragraph. Make it immediately actionable — the client should be able to start this without needing to ask a follow-up question.</pre>
+  </div>
+  <div class="template-block">
+    <pre>PROMPT: Write the executive summary
+I've completed an AI readiness audit for [CLIENT NAME]. Their score: [TOTAL]/60. Key findings by dimension: [PASTE SCORES + ONE-LINE FINDING PER DIMENSION]. Top 3 recommendations: [LIST]. Write a 4-sentence executive summary: business context, overall score interpretation, top 3 opportunities in one sentence each, highest-priority first action. Tone: confident, specific, direct. No filler language.</pre>
+  </div>
+</div>
+
+<div class="tip">
+  <strong>Want help delivering your first AI audit as a productized service?</strong> The full AI Fractional COO system at <a href="https://appliedleverage.io">appliedleverage.io</a> includes fulfillment workflows, client communication templates, and pricing frameworks.
+</div>
+
+<footer>
+  <p>© Applied Leverage — <a href="https://appliedleverage.io">appliedleverage.io</a></p>
+  <p style="margin-top:8px;">Licensed for client work. Remove Applied Leverage branding on client-facing deliverables. Not for resale.</p>
+</footer>
+
+</div>
+</body>
+</html>
