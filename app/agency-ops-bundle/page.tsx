@@ -19,18 +19,15 @@ export const metadata: Metadata = {
 const checkoutUrl = "https://buy.stripe.com/00w9AV6Mi8MJb3g4SH2ZO0c";
 
 const items = [
-  "Client Intake Form Template — capture everything you need upfront, every time",
-  "Project Tracker System — track deliverables, deadlines, and status in one place",
-  "Weekly Reporting Template — automate client updates with a consistent format",
-  "Onboarding Checklist — the first 48 hours of every new client engagement, documented",
-  "Task Priority Matrix — stop firefighting, start working on what moves the needle",
-  "Agency Ops Quick-Start Guide — how to implement these systems in under 2 hours",
+  "Client Intake Form Template — capture every project requirement on the first call",
+  "Project Tracker System — keep deadlines, deliverables, and ownership visible in one place",
+  "Weekly Reporting Template — send consistent client updates without extra admin overhead",
 ];
 
 const forWho = [
   "Solo agency owners drowning in client chaos",
   "Small agencies ready to professionalize their operations",
-  "Anyone who's tired of scrambling to remember what each client needs",
+  "Anyone tired of scrambling to remember each client's requirements",
   "Teams preparing to hire their first ops person",
 ];
 
@@ -48,16 +45,13 @@ export default function AgencyOpsBundlePage() {
           Agency Ops Starter Bundle
         </h1>
         <p className="text-xl text-[#9ca3af] mb-4">
-          Your agency is growing, but your operations are still held together with 
-          spreadsheets and memory. Every new client feels like starting from scratch.
+          Every new client in an agency starts to feel the same: urgent, important, and chaotic. This bundle gives you the system you were improvising.
         </p>
         <p className="text-xl text-[#9ca3af] mb-10">
-          This bundle fixes that — the essential templates and systems to get your 
-          agency operations running smoothly, without the overhead.
+          Set up the essential operations foundations in minutes, not weeks, and start running with less friction.
         </p>
         <p className="text-[#6b7280] text-sm mb-12">
-          Designed for agencies with 1–5 people who know they need better systems 
-          but don't have time to build them from scratch.
+          Built for agencies with 1–5 people who need repeatable systems, not another stack of disconnected templates.
         </p>
 
         <div className="bg-[#111] border border-[#222] rounded-xl p-8 mb-10">
@@ -70,6 +64,11 @@ export default function AgencyOpsBundlePage() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="bg-[#111] border border-[#222] rounded-xl p-6 mb-8">
+          <h2 className="text-white font-bold text-lg mb-3">What people are saying</h2>
+          <p className="text-[#6b7280] text-xs">[Placeholder] Testimonials will be available after this launch.</p>
         </div>
 
         <div className="mb-10">
@@ -93,14 +92,6 @@ export default function AgencyOpsBundlePage() {
           <p className="text-[#6b7280] text-xs mt-4">
             Delivered immediately. Works in Notion, Google Sheets, or any tool your team uses.
           </p>
-        </div>
-
-        <div className="bg-[#111] border border-[#222] rounded-xl p-6 mb-10">
-          <h2 className="text-white font-bold text-lg mb-3">What people are saying</h2>
-          <blockquote className="text-[#9ca3af] text-sm italic mb-2">
-            "Finally got my client intake sorted. No more 'oh I forgot to ask for that' moments."
-          </blockquote>
-          <cite className="text-[#6b7280] text-xs">— Early adopter</cite>
         </div>
 
         <p className="text-center text-[#4b5563] text-sm">
