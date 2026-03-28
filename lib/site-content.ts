@@ -73,6 +73,18 @@ export const pageDefinitions = {
       "Sprint waitlist reviewed manually before space is opened",
       "Diagnostic can lead into implementation if the fit is real"
     ]
+  },
+  "agent-company-install": {
+    slug: "agent-company-install",
+    path: "/agent-company-install",
+    navLabel: "Agent Company",
+    eyebrow: "Beta",
+    summary: "Install an AI agent company that runs your operations while you sleep.",
+    highlights: [
+      "Complete agent team",
+      "Your own Paperclip instance",
+      "Setup in 14 days"
+    ]
   }
 } as const;
 
@@ -116,7 +128,8 @@ const copyFileNames: Record<PageSlug, string> = {
   diagnostic: "diagnostic.md",
   sprint: "sprint.md",
   about: "about.md",
-  apply: "apply.md"
+  apply: "apply.md",
+  "agent-company-install": "agent-company-install.md"
 };
 
 const SECTION_HEADING_PATTERN = /^##\s+(.*)$/;

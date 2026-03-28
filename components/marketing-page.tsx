@@ -62,6 +62,10 @@ const primaryActions: Record<PageSlug, ActionLink> = {
   apply: {
     label: "Apply for the Diagnostic",
     href: "#diagnostic-form"
+  },
+  "agent-company-install": {
+    label: "Join the Waitlist",
+    href: "#waitlist-form"
   }
 };
 
@@ -89,6 +93,10 @@ const secondaryActions: Record<PageSlug, ActionLink> = {
   apply: {
     label: "Join the Sprint Waitlist",
     href: "#sprint-form"
+  },
+  "agent-company-install": {
+    label: "Learn More",
+    href: "/about"
   }
 };
 
@@ -122,6 +130,11 @@ const heroStats: Record<PageSlug, Stat[]> = {
     { value: "2 paths", label: "diagnostic or sprint" },
     { value: "Operator", label: "review before next step" },
     { value: "$297", label: "diagnostic starting point" }
+  ],
+  "agent-company-install": [
+    { value: "14 days", label: "to full setup" },
+    { value: "4+", label: "AI agents running" },
+    { value: "Beta", label: "3 installs/month" }
   ]
 };
 
