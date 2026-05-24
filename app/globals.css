@@ -928,6 +928,37 @@ a {
   background: linear-gradient(180deg, rgba(244, 241, 234, 0.02) 0%, transparent 50%);
 }
 
+/* Brand texture bands — faint dotwork patterns, mostly black, behind content. */
+.page-band--meander::before,
+.page-band--laurel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.045;
+  filter: grayscale(1);
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, #000 30%, transparent 85%);
+}
+
+.page-band--meander::before {
+  background-image: url("/brand/pattern-meander.png");
+}
+
+.page-band--laurel::before {
+  background-image: url("/brand/pattern-laurel.png");
+}
+
+.page-band--meander > *,
+.page-band--laurel > * {
+  position: relative;
+  z-index: 1;
+}
+
 .page-band--contrast {
   background: transparent;
   border-top: 1px solid var(--border);
@@ -1850,15 +1881,15 @@ a {
    ═══════════════════════════════════════════════════════════════ */
 
 .quiz-container {
-  width: 680px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 680px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .quiz-results {
-  width: 680px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 680px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1954,6 +1985,7 @@ a {
   color: var(--text);
   margin-bottom: 1.25rem;
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .quiz-answers {
@@ -1975,6 +2007,8 @@ a {
   cursor: pointer;
   transition: all 0.15s ease;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .quiz-answer:hover:not(:disabled) {
@@ -2099,13 +2133,17 @@ a {
 }
 
 @media (max-width: 600px) {
-  .quiz-question {
+  .quiz-step {
     padding: 1.25rem;
   }
 
+  .quiz-question__text {
+    font-size: 1.05rem;
+  }
+
   .quiz-answer {
-    padding: 0.75rem;
-    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
   }
 
   .quiz-results__header h3 {
@@ -2158,7 +2196,7 @@ a {
 .email-form .email-input:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 0 3px rgba(244, 241, 234, 0.12);
 }
 
 .email-form .email-input::placeholder {
@@ -2219,5 +2257,98 @@ a {
   .email-form .email-input,
   .email-form .button {
     width: 100%;
+  }
+}
+
+/* ── Mobile refinement: brand imagery + type balance ───────────
+   Tunes the per-page god figures, band textures, and hero type
+   for phones so the new editorial imagery reads as deliberate
+   texture rather than clutter, and never competes with copy. */
+
+@media (max-width: 880px) {
+  /* Per-page figures become a faint, centered watermark behind the
+     hero copy — present, never fighting legibility. Already centered
+     by the 880px rule above; here we soften + guarantee containment. */
+  .hero-figure {
+    max-width: 100%;
+    max-height: 70vh;
+  }
+
+  /* Band textures: dial down further on smaller screens where the
+     viewport-relative pattern can read as noise. */
+  .page-band--meander::before,
+  .page-band--laurel::before {
+    opacity: 0.035;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Relax the 14ch cap so headlines line-balance on narrow screens
+     instead of wrapping to four cramped words. */
+  .hero-title {
+    max-width: 20ch;
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
+    line-height: 1.04;
+  }
+
+  .hero-subheadline {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  /* Comfortable reading width + side gutters for body copy. */
+  .narrative-card,
+  .page-band__intro,
+  .hero-body {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  /* Section rhythm: slightly tighter eyebrow/heading stack on mobile. */
+  .page-band__header {
+    gap: 0.5rem;
+  }
+
+  /* Quote strip stacks cleanly. */
+  .quote-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tighten the brand mark + wordmark so the header never wraps. */
+  .brand-logo {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .brand {
+    gap: 0.55rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Hero figure: keep it a whisper behind the fold on the smallest
+     screens so headline contrast is never at risk. */
+  .hero-figure {
+    opacity: 0.1;
+    width: min(24rem, 86vw);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  /* Generous tap targets — full-width primary actions already set
+     at 720px; ensure comfortable vertical padding on phones. */
+  .button {
+    padding-block: 0.95rem;
+    min-height: 48px;
+  }
+
+  /* Card interiors breathe on small screens. */
+  .surface-card,
+  .narrative-card {
+    padding: 1.4rem;
   }
 }
