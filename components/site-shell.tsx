@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import React, { type ReactNode } from "react";
 
 import { MobileNav } from "@/components/mobile-nav";
@@ -22,7 +23,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="site-shell">
       <header className="site-header">
         <Link className="brand" href="/">
-          Applied Leverage
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="brand-logo"
+            height={36}
+            priority
+            src="/brand/mark.png"
+            width={36}
+          />
+          <span className="brand-wordmark">Applied Leverage</span>
         </Link>
         <nav aria-label="Primary" className="site-nav site-nav--desktop">
           {pages.map((page) => (

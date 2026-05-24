@@ -1293,6 +1293,15 @@ function PageHero({ page }: { page: SitePage }) {
 function HomeHero({ page }: { page: SitePage }) {
   return (
     <HeroCentered page={page}>
+      <Image
+        alt=""
+        aria-hidden="true"
+        className="hero-figure"
+        height={1254}
+        priority
+        src="/brand/figure.png"
+        width={1254}
+      />
       <div className="hero-stats-bar">
         {heroStats.home.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
