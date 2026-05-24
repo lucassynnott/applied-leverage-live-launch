@@ -357,7 +357,7 @@ function renderHomePage(page: SitePage) {
       </section>
 
       {/* Offer Ladder — route colder traffic without weakening the sales spine */}
-      <section className="page-band" id="offer-ladder">
+      <section className="page-band page-band--meander" id="offer-ladder">
         <div className="page-band__header">
           <p className="eyebrow">Start here</p>
           <h2>Start with the level of help you actually need.</h2>
@@ -402,7 +402,7 @@ function renderHomePage(page: SitePage) {
       </section>
 
       {/* Who This Is For — check cards */}
-      <section className="page-band" id={fit.id}>
+      <section className="page-band page-band--laurel" id={fit.id}>
         <div className="page-band__header">
           <p className="eyebrow">{fit.heading}</p>
           <h2>This is built for operators who are already making money.</h2>
@@ -1292,16 +1292,7 @@ function PageHero({ page }: { page: SitePage }) {
 
 function HomeHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
-      <Image
-        alt=""
-        aria-hidden="true"
-        className="hero-figure"
-        height={1254}
-        priority
-        src="/brand/figure.png"
-        width={1254}
-      />
+    <HeroCentered figure="/brand/figure.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.home.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1313,7 +1304,7 @@ function HomeHero({ page }: { page: SitePage }) {
 
 function WhyHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
+    <HeroCentered figure="/brand/hermes.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.why.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1325,7 +1316,7 @@ function WhyHero({ page }: { page: SitePage }) {
 
 function DiagnosticHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
+    <HeroCentered figure="/brand/athena.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.diagnostic.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1337,7 +1328,7 @@ function DiagnosticHero({ page }: { page: SitePage }) {
 
 function SprintHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
+    <HeroCentered figure="/brand/hands.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.sprint.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1349,7 +1340,7 @@ function SprintHero({ page }: { page: SitePage }) {
 
 function AboutHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
+    <HeroCentered figure="/brand/column.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.about.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1361,7 +1352,7 @@ function AboutHero({ page }: { page: SitePage }) {
 
 function ApplyHero({ page }: { page: SitePage }) {
   return (
-    <HeroCentered page={page}>
+    <HeroCentered figure="/brand/athena.png" page={page}>
       <div className="hero-stats-bar">
         {heroStats.apply.map((stat) => (
           <HeroMetric key={stat.label} label={stat.label} value={stat.value} />
@@ -1377,9 +1368,11 @@ function ApplyHero({ page }: { page: SitePage }) {
 
 function HeroCentered({
   children,
+  figure,
   page
 }: {
   children?: ReactNode;
+  figure?: string;
   page: SitePage;
 }) {
   const primaryAction = page.hero.cta ?? primaryActions[page.slug];
@@ -1388,6 +1381,17 @@ function HeroCentered({
 
   return (
     <section className={heroClassName}>
+      {figure ? (
+        <Image
+          alt=""
+          aria-hidden="true"
+          className="hero-figure"
+          height={1254}
+          priority
+          src={figure}
+          width={1254}
+        />
+      ) : null}
       <div className="hero-centered">
         <p className="eyebrow">{page.definition.eyebrow}</p>
         <h1 className="hero-title">{page.hero.headline}</h1>
