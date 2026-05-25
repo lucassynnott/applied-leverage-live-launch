@@ -23,7 +23,7 @@ You're making money. You're still doing too much by hand. You've looked at AI an
 
 The Diagnostic is 90 minutes. You leave with a 1-page Automation Priority Map: your top 3 highest-leverage automation moves, ranked by impact and effort.
 
-**$297 diagnostic starting price** (availability confirmed after review)
+**$297.**
 
 → **[Apply for the Diagnostic](#diagnostic-form)**
 

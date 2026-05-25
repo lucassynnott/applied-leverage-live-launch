@@ -260,7 +260,7 @@ export function MarketingPage({ page }: { page: SitePage }) {
    ───────────────────────────────────────────── */
 
 function renderHomePage(page: SitePage) {
-  const proof = getSectionByHeading(page.sections, "PROOF BAR");
+  const proof = getOptionalSectionByHeading(page.sections, "PROOF BAR");
   const problem = getSectionByHeading(page.sections, "THE PROBLEM");
   const solution = getSectionByHeading(page.sections, "THE SOLUTION");
   const fit = getSectionByHeading(page.sections, "WHO THIS IS FOR");
@@ -268,7 +268,7 @@ function renderHomePage(page: SitePage) {
   const steps = splitSteps(solution.body);
   const fitList = extractChecklist(fit.body);
   const ctaCopy = splitLeadCopy(cta.body);
-  const quotes = extractQuotes(proof.body);
+  const quotes = proof ? extractQuotes(proof.body) : [];
 
   const offerLadder = [
     {
@@ -309,24 +309,26 @@ function renderHomePage(page: SitePage) {
       <PageHero page={page} />
 
       {/* Social Proof — editorial pull-quotes */}
-      <section className="page-band" id={proof.id}>
-        <div className="page-band__header">
-          <p className="eyebrow">What operators say</p>
-        </div>
-        <div className="quote-strip">
-          {quotes.map((quote) => (
-            <article className="quote-card" key={quote.text}>
-              <QuoteIcon className="quote-icon" />
-              <blockquote>
-                <p>{quote.text}</p>
-              </blockquote>
-              {quote.attribution ? (
-                <cite>{quote.attribution}</cite>
-              ) : null}
-            </article>
-          ))}
-        </div>
-      </section>
+      {quotes.length > 0 ? (
+        <section className="page-band" id={proof?.id ?? "proof"}>
+          <div className="page-band__header">
+            <p className="eyebrow">What operators say</p>
+          </div>
+          <div className="quote-strip">
+            {quotes.map((quote) => (
+              <article className="quote-card" key={quote.text}>
+                <QuoteIcon className="quote-icon" />
+                <blockquote>
+                  <p>{quote.text}</p>
+                </blockquote>
+                {quote.attribution ? (
+                  <cite>{quote.attribution}</cite>
+                ) : null}
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* The Problem — full-width editorial narrative */}
       <section className="page-band" id={problem.id}>
@@ -1617,6 +1619,15 @@ function getSectionByHeading(sections: PageSection[], heading: string): PageSect
   }
 
   return match;
+}
+
+function getOptionalSectionByHeading(
+  sections: PageSection[],
+  heading: string
+): PageSection | undefined {
+  return sections.find(
+    (section) => normalizeHeadingKey(section.heading) === normalizeHeadingKey(heading)
+  );
 }
 
 function splitParagraphs(markdown: string): string[] {

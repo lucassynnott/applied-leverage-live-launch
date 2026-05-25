@@ -7,10 +7,10 @@
 ## HERO
 
 **Headline:**
-> AI was supposed to free up your time. Why hasn't it?
+> The tools work. You're still drowning. Here's why.
 
 **Subheadline:**
-> It's not the tools. It's the order.
+> It's not the software. It's the order you build in.
 
 ---
 

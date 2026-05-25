@@ -22,20 +22,6 @@ This is different. We audit your actual workflow, map your real leverage points,
 **Primary CTA:**
 → [Get Your Automation Map — $297](/diagnostic)
 
-*Founding price currently available. Confirm current availability at application.*
-
----
-
-## PROOF BAR
-
-*[Social proof strip — to be populated from first 3 diagnostics. Placeholder:]*
-
-> "Three moves. In order. I knew exactly what to build first." — Agency owner, Dublin
->
-> "I stopped being the bottleneck in my own business." — Consultant, London
->
-> "The map gave us a much clearer order of operations." — Operator, New York
-
 ---
 
 ## THE PROBLEM

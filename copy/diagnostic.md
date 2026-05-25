@@ -18,7 +18,6 @@ The Diagnostic gives you that map.
 Not a list of ideas. Not a generic AI recommendation. A 1-page document with your top 3 highest-leverage automation moves — ranked by impact and effort — built specifically for your business.
 
 **Founding price: $297**
-*Founding price currently available. Confirm current pricing and availability at application.*
 
 **Primary CTA:**
 → [Apply for a Diagnostic](#apply)
@@ -107,10 +106,6 @@ The Diagnostic stands on its own. If there is a fit to keep building together, i
 ## PRICING
 
 **Founding price: $297**
-
-Current diagnostic price: $297.
-
-*Confirm pricing and availability at application.*
 
 → [Apply for a Diagnostic](#apply)
 

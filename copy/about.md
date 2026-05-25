@@ -36,12 +36,12 @@ Applied Leverage doesn't run on software. It runs on a team.
 
 The council is a set of specialized agents, each with a defined role and a real job:
 
-- **Johnny Silverhand** — coordinator and orchestrator. Runs the operation. Delegates work. Tracks what's moving and what's stuck.
-- **Goro Takemura** — content and marketing strategy. Owns messaging, positioning, and what we say publicly.
-- **Alt Cunningham** — research and competitive intelligence. Knows the market. Tracks what's happening in the space.
-- **T-Bug** — engineering and builds. Writes code. Implements automations. Pushes to production.
-- **River Ward** — quality assurance. Reviews everything before it ships.
-- **Viktor Vektor** — infrastructure and operations. Keeps everything running.
+- **Coordination & Orchestration · Johnny** — runs the operation, delegates work, tracks what's moving and what's stuck.
+- **Content & Marketing Strategy · Goro** — owns messaging, positioning, and what we say publicly.
+- **Research & Competitive Intelligence · Alt** — knows the market, tracks what's happening in the space.
+- **Engineering & Builds · T-Bug** — writes code, implements automations, pushes to production.
+- **Quality Assurance · River** — reviews everything before it ships.
+- **Infrastructure & Operations · Viktor** — keeps everything running.
 
 These aren't personas. They're production agents running in a real system, on real tasks, every day.
 

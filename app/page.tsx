@@ -4,7 +4,7 @@ import { MarketingPage } from "@/components/marketing-page";
 import { loadPageContent, pageDefinitions } from "@/lib/site-content";
 
 const siteUrl = "https://appliedleverage.io";
-const socialImage = `${siteUrl}/images/lucas-synnott.png`;
+const socialImage = `${siteUrl}/og/applied-leverage.png`;
 
 export const metadata: Metadata = {
   title: "Applied Leverage",
