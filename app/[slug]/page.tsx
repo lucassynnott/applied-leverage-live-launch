@@ -9,7 +9,7 @@ import {
 } from "@/lib/site-content";
 
 const siteUrl = "https://appliedleverage.io";
-const socialImage = `${siteUrl}/images/lucas-synnott.png`;
+const socialImage = `${siteUrl}/og/applied-leverage.png`;
 
 type PageProps = {
   params: Promise<{
